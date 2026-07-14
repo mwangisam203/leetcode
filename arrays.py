@@ -25,3 +25,8 @@ def two_sum(nums, target):
         seen[num] = i
 
 print(two_sum([2, 7, 11, 15], 9))  # [0, 1]
+
+
+
+#Valid Anagram
+#Problem: Given two strings, check if one is a rearrangement of the other.
