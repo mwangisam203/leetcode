@@ -1,3 +1,5 @@
+#Contains Duplicate
+
 def contains_duplicate(nums):
     seen = set()
     for num in nums:
@@ -10,7 +12,10 @@ print(contains_duplicate([1, 2, 3, 1]))  # True
 print(contains_duplicate([1, 2, 3, 4]))  # False
 
 
+#Two Sum
+
 ##Given an array and a target, return the indices of two numbers that add up to the target.
+
 def two_sum(nums, target):
     seen = {}  # value -> index
     for i, num in enumerate(nums):
