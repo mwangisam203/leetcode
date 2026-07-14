@@ -58,3 +58,8 @@ def group_anagrams(strs):
 print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 # [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
 
+
+##5: Product of Array Except Self
+##Problem: Return an array where each element is the product of all other elements (no division allowed).
+
+
