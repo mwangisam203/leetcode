@@ -40,3 +40,21 @@ def is_anagram(s, t):
 
 print(is_anagram("listen", "silent"))  # True
 print(is_anagram("rat", "car"))        # False
+
+
+
+#4: Group Anagrams
+#Problem: Given a list of strings, group the ones that are anagrams of each other.
+
+from collections import defaultdict
+
+def group_anagrams(strs):
+    groups = defaultdict(list)
+    for word in strs:
+        key = "".join(sorted(word))   # anagrams share the same sorted form
+        groups[key].append(word)
+    return list(groups.values())
+
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+# [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
+
