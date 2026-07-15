@@ -189,3 +189,30 @@ def contains_duplicate(nums):
     return False
 
 print(contains_duplicate(["subaru", "BMW", "benz", "volvo"]))
+
+
+
+def contains_duplicate(nums):
+    seen = {}
+    for num in nums:
+        if num in seen:
+            return True
+        seen[num] = True       # storing a placeholder value, since we only care about the key
+    return False
+
+
+def contains_duplicate(nums):
+    seen = []
+    for num in nums:
+        if num in seen:
+            return True
+        seen.append(num)
+    return False
+
+
+# test cases
+print(contains_duplicate([1, 2, 3, 1]))        # True  - 1 repeats
+print(contains_duplicate([1, 2, 3, 4]))        # False - all unique
+print(contains_duplicate(["a", "b", "a"]))     # True  - works on strings too
+print(contains_duplicate([]))                  # False - empty list, no duplicates possible
+print(contains_duplicate([5]))                 # False - single item, nothing to duplicate
