@@ -79,3 +79,16 @@ def product_except_self(nums):
     return result
 
 print(product_except_self([1, 2, 3, 4]))  # [24, 12, 8, 6]
+
+
+##RANDOM Practice
+
+def containsDuplicates(alfs):
+    seen = set()
+    for alf in alfs:
+        if alf in seen:
+            return True
+        seen.add(alf)
+    return False
+
+print(containsDuplicates(["ef", "abd", "cd", "abc", "dba"])) 
