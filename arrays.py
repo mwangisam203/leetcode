@@ -141,4 +141,15 @@ for i in values:
 print(number)
 print("My list: ", values)
 
+## duplicates practice
+def containDups(chars):
 
+    seen = set()
+
+    for char in chars:
+        if char in seen:
+            return True
+
+        seen.add(char)
+
+print(containDups(["abc", "cba", "abc"]))
