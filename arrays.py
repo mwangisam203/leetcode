@@ -129,13 +129,16 @@ values.append(1)
 
 print("My added list: ", values)
 
-values = [64, 36, 30, 24, 13, 5, 1]
+#values = [64, 36, 30, 24, 13, 5, 1] ## just trying modify by ignoring this list and use the appended one
 
 number = values[0]
 
 for i in values:
-    
+
     if i < number:
         number = i
 
 print(number)
+print("My list: ", values)
+
+
