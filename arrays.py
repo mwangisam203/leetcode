@@ -119,3 +119,23 @@ def duplicateWords(words):
 print(duplicateWords(["apple", "mangoes", "lemons", "pawpaw", "tomatoes"]))
 
 
+##checking min values
+values = [64, 36]
+values.append(30)
+values.append(24)
+values.append(13)
+values.append(5)
+values.append(1)
+
+print("My added list: ", values)
+
+values = [64, 36, 30, 24, 13, 5, 1]
+
+number = values[0]
+
+for i in values:
+    
+    if i < number:
+        number = i
+
+print(number)
