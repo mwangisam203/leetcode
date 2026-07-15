@@ -105,3 +105,17 @@ def hasDuplicates(numbers):
 
 print(hasDuplicates([23, 30, 12, 1, 0, 30, 12, 50, 90, 0]))
 
+
+def duplicateWords(words):
+    seen = set()
+
+    for word in words:
+        if word in seen:
+            return True
+        seen.add(word)
+
+    return False
+
+print(duplicateWords(["apple", "mangoes", "lemons", "pawpaw", "tomatoes"]))
+
+
