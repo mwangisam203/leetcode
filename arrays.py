@@ -153,3 +153,18 @@ def containDups(chars):
         seen.add(char)
 
 print(containDups(["abc", "cba", "abc"]))
+
+## Complex example
+Words = ["apples", "lemon", "mango", "orange", "avocado"]
+
+def myDuplicates(Words):
+
+    viewed = set()
+
+    for word in Words:
+        if word in viewed:
+            return True
+        viewed.add(word)
+    return False
+
+print(myDuplicates(Words))
