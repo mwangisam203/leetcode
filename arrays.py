@@ -92,3 +92,16 @@ def containsDuplicates(alfs):
     return False
 
 print(containsDuplicates(["ef", "abd", "cd", "abc", "dba"])) 
+
+
+def hasDuplicates(numbers):
+    seen = set()
+    for number in numbers:
+        if number in seen:
+            return True
+        seen.add(number)
+
+    return False
+
+print(hasDuplicates([23, 30, 12, 1, 0, 30, 12, 50, 90, 0]))
+
