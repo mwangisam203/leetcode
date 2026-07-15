@@ -180,3 +180,12 @@ def duplicateExist(vocas):
 
 print(duplicateExist([3, 3, 45, 30, 1, 0, 0,1]))
 
+def contains_duplicate(nums):
+    seen = []                  # <- list instead of set
+    for num in nums:
+        if num in seen:        # <- still works, but now O(n) per check
+            return True
+        seen.append(num)       # <- .append() instead of .add()
+    return False
+
+print(contains_duplicate(["subaru", "BMW", "benz", "volvo"]))
