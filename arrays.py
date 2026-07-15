@@ -168,3 +168,15 @@ def myDuplicates(Words):
     return False
 
 print(myDuplicates(Words))
+
+def duplicateExist(vocas):
+
+    seen = []
+    for voca in vocas:
+        if voca in seen:
+            return True
+        seen.append(voca)
+    return False
+
+print(duplicateExist([3, 3, 45, 30, 1, 0, 0,1]))
+
