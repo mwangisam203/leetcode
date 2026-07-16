@@ -229,3 +229,13 @@ def containDuplicates(nums):
     return False
 
 print(containDuplicates([12, 34, 8, 30, 0, 12]))   
+
+def my_duplicates(words):
+    viewed = []
+    for word in words:
+        if word in viewed:
+            return True
+        viewed.append(word)
+    return False
+
+print(my_duplicates(["xyz", "ghj", "vbh", "xyz"]))
