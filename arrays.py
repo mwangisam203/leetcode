@@ -239,3 +239,13 @@ def my_duplicates(words):
     return False
 
 print(my_duplicates(["xyz", "ghj", "vbh", "xyz"]))
+
+
+numbers = [20, 45, 87, 12, 49, 25, 0, 13]
+
+smallest_number = numbers[0]
+
+for num in numbers:
+    if num < smallest_number:
+        smallest_number = num
+print("smallest number is: ", smallest_number)
