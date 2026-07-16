@@ -216,3 +216,16 @@ print(contains_duplicate([1, 2, 3, 4]))        # False - all unique
 print(contains_duplicate(["a", "b", "a"]))     # True  - works on strings too
 print(contains_duplicate([]))                  # False - empty list, no duplicates possible
 print(contains_duplicate([5]))                 # False - single item, nothing to duplicate
+
+
+
+def containDuplicates(nums):
+    my_basket = set()
+
+    for num in nums:
+        if num in my_basket:
+            return True
+        my_basket.add(num)
+    return False
+
+print(containDuplicates([12, 34, 8, 30, 0, 12]))   
