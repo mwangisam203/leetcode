@@ -6,7 +6,17 @@
 #Sorting when order doesn't matter but grouping does (e.g., anagrams)
 #Basic array traversal and prefix/suffix accumulation (running totals as you loop)
 
+def hasduplicates(words):
+    viewed = set()
 
+    for word in words:
+        if word in viewed:
+            return True
+        viewed.add(word)
+
+    return False
+
+print(hasduplicates(["abc", "dsc", "kqq"]))
 
 
         
