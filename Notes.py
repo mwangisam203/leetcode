@@ -30,3 +30,22 @@ Notice how O(log n) grows very slowly, while O(n²) explodes as n gets larger.
 
 
 '''
+
+
+'''
+## General rule
+
+When writing Big O:
+
+Ignore constants.
+Keep only the fastest-growing term.
+
+Examples:
+
+O(5)        → O(1)
+O(3n)       → O(n)
+O(n + 20)   → O(n)
+O(n² + n)   → O(n²)
+O(n³ + n²)  → O(n³)
+
+'''
