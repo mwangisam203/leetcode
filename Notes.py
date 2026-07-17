@@ -14,3 +14,17 @@
 |     1,000 |    1 |      ~10 |     1,000 |      ~9,966 |         1,000,000 |
 | 1,000,000 |    1 |      ~20 | 1,000,000 | ~19,931,000 | 1,000,000,000,000 |
 '''
+
+'''
+| Complexity | Name         | Good? | Example                     |
+| ---------- | ------------ | ----- | --------------------------- |
+| O(1)       | Constant     | ⭐⭐⭐⭐⭐ | Accessing `arr[3]`          |
+| O(log n)   | Logarithmic  | ⭐⭐⭐⭐⭐ | Binary Search               |
+| O(n)       | Linear       | ⭐⭐⭐⭐  | Finding a maximum           |
+| O(n log n) | Linearithmic | ⭐⭐⭐⭐  | Merge Sort                  |
+| O(n²)      | Quadratic    | ⭐⭐    | Nested loops                |
+| O(2ⁿ)      | Exponential  | ❌     | Naive recursive subsets     |
+| O(n!)      | Factorial    | 🚨    | Generating all permutations |
+
+
+'''
