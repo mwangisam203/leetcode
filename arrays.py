@@ -249,3 +249,39 @@ for num in numbers:
     if num < smallest_number:
         smallest_number = num
 print("smallest number is: ", smallest_number)
+
+
+def hasduplicates(words):
+    viewed = set()
+
+    for word in words:
+        if word in viewed:
+            return True
+        viewed.add(word)
+
+    return False
+
+print(hasduplicates(["abc", "dsc", "kqq"]))
+
+
+def containDups(nums):
+    seen = []
+
+    for num in nums:
+        if num in seen:
+            return True
+        seen.append(num)
+    return False
+
+print(containDups([1, 4, 7, 90, 1, 5]))
+
+
+
+my_cart = [23, 9, 13, 6, 18, 1, 25, 2]
+
+smallest_number = my_cart[0]
+
+for num in my_cart:
+    if num < smallest_number:
+        smallest_number = num
+print(smallest_number)
