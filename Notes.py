@@ -19,4 +19,13 @@ def hasduplicates(words):
 print(hasduplicates(["abc", "dsc", "kqq"]))
 
 
-        
+def containDups(nums):
+    seen = []
+
+    for num in nums:
+        if num in seen:
+            return True
+        seen.append(num)
+    return False
+
+print(containDups([1, 4, 7, 90, 1, 5]))
