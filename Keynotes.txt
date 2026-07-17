@@ -1,0 +1,13 @@
+ ## A small cheat sheet
+
+
+| Code Pattern                | Complexity |
+| --------------------------- | ---------- |
+| `arr[5]`                    | O(1)       |
+| One loop over `n` items     | O(n)       |
+| Two separate loops over `n` | O(n)       |
+| Two nested loops over `n`   | O(n²)      |
+| Three nested loops over `n` | O(n³)      |
+| Nested loop with `range(5)` | O(n)       |
+| Binary Search               | O(log n)   |
+| Merge Sort                  | O(n log n) |
