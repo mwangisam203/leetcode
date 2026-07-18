@@ -94,3 +94,11 @@ Days 1–2: Two pointers (reverse array, valid palindrome, container with most w
 Days 3–4: Sliding window (max subarray sum, longest substring without repeats)
 Days 5–6: Prefix sums (subarray sum equals K, running sum)
 ~12–15 problems total
+
+
+Week 2 — Hashing + Binary Search
+
+Days 1–2: Hash maps/sets (two sum, group anagrams, longest consecutive sequence)
+Days 3–4: Binary search on sorted arrays (classic + search in rotated array)
+Days 5–6: Binary search on answer space (this is the harder, less intuitive version — e.g. "minimum capacity to ship packages in D days")
+~12 problems
