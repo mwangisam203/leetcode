@@ -146,3 +146,6 @@ Week 8: 1D DP (climbing stairs, house robber, coin change)
 Week 9: 2D DP (unique paths, longest common subsequence, edit distance)
 Week 10: DP on trees/knapsack variants + full review — redo one hard problem from each earlier topic cold
 ~25–30 problems across the three weeks
+
+The actual signal-to-pattern mapping
+This is the part people skip writing down, and it's the highest-leverage thing to memorize:
