@@ -109,3 +109,10 @@ Days 1–2: Linked list traversal, reversal, cycle detection (Floyd's)
 Days 3–4: Merge two sorted lists, remove Nth node, fast/slow pointer patterns
 Days 5–6: Stacks (valid parentheses, min stack), monotonic stack (daily temperatures)
 ~12 problems
+
+Week 4 — Recursion + Backtracking
+
+Days 1–2: Pure recursion warm-ups (subsets, permutations)
+Days 3–5: Backtracking (combination sum, N-Queens, word search)
+Day 6: Review — redo 2 problems from Week 1 cold, no notes
+~10 problems + 1 review day
