@@ -131,3 +131,11 @@ Days 1–2: BFS/DFS on grids and adjacency lists (number of islands, clone graph
 Days 3–4: Topological sort (course schedule)
 Days 5–6: Union-Find (redundant connection, number of provinces)
 ~10 problems
+
+
+Week 7 — Heaps + Greedy/Intervals
+
+Days 1–2: Heap basics (kth largest, top K frequent)
+Days 3–4: Merge intervals, meeting rooms
+Days 5–6: Greedy (jump game, gas station)
+~10 problems
