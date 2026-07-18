@@ -65,3 +65,21 @@ O(n³ + n²)  → O(n³)
 | Nested loop with `range(5)` | O(n)       |
 | Binary Search               | O(log n)   |
 | Merge Sort                  | O(n log n) |
+
+
+
+Topics about DSA
+
+Order of topics
+Go roughly in this sequence — each builds on the last:
+
+Arrays & Strings — two pointers, sliding window, prefix sums
+Hashing — hash maps/sets for O(1) lookups (this unlocks a huge chunk of "easy" problems)
+Linked Lists — traversal, reversal, fast/slow pointers
+Stacks & Queues — monotonic stacks, parentheses matching, BFS prep
+Recursion & Backtracking — before trees, since trees are recursive by nature
+Trees — traversals (in/pre/post-order), BST properties, then binary tree problems
+Graphs — BFS, DFS, then topological sort, union-find
+Heaps / Priority Queues — top-K problems, merging
+Dynamic Programming — save for last; it's the hardest and benefits from everything above (especially recursion and arrays)
+Greedy & Intervals — can be woven in anytime after arrays
