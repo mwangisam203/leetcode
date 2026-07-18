@@ -102,3 +102,10 @@ Days 1–2: Hash maps/sets (two sum, group anagrams, longest consecutive sequenc
 Days 3–4: Binary search on sorted arrays (classic + search in rotated array)
 Days 5–6: Binary search on answer space (this is the harder, less intuitive version — e.g. "minimum capacity to ship packages in D days")
 ~12 problems
+
+Week 3 — Linked Lists + Stacks/Queues
+
+Days 1–2: Linked list traversal, reversal, cycle detection (Floyd's)
+Days 3–4: Merge two sorted lists, remove Nth node, fast/slow pointer patterns
+Days 5–6: Stacks (valid parentheses, min stack), monotonic stack (daily temperatures)
+~12 problems
