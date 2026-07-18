@@ -149,3 +149,23 @@ Week 10: DP on trees/knapsack variants + full review — redo one hard problem f
 
 The actual signal-to-pattern mapping
 This is the part people skip writing down, and it's the highest-leverage thing to memorize:
+
+| If you see... | Think... |
+|---|---|
+| Sorted array + find pair/triplet | Two pointers |
+| Substring/subarray + "longest/shortest/contains" | Sliding window |
+| Need subarray sum repeatedly | Prefix sum |
+| "Find if exists" in unsorted data, need O(1) lookup | Hash map/set |
+| Sorted array, or "find minimum X such that condition holds" | Binary search (on array or on answer space) |
+| Linked list + "find middle/cycle/kth from end" | Fast/slow pointers |
+| Need "next greater/smaller element" | Monotonic stack |
+| Matching brackets/nested structure | Stack |
+| "All possible combinations/subsets/arrangements" | Backtracking |
+| Tree + "path" or "depth" | DFS (recursion) |
+| Tree + "level by level" | BFS |
+| Graph + "shortest path, unweighted" | BFS |
+| Graph + "is there a path/connected" | DFS or Union-Find |
+| Graph + "ordering with dependencies" | Topological sort |
+| "Kth largest/smallest" or "top K" | Heap |
+| Overlapping subproblems + optimal substructure + "min/max/count ways" | DP |
+| "Maximize while avoiding conflicts" (intervals, scheduling) | Greedy |
