@@ -83,3 +83,14 @@ Graphs — BFS, DFS, then topological sort, union-find
 Heaps / Priority Queues — top-K problems, merging
 Dynamic Programming — save for last; it's the hardest and benefits from everything above (especially recursion and arrays)
 Greedy & Intervals — can be woven in anytime after arrays
+
+
+Topics coverage by week
+
+Week-by-week
+Week 1 — Arrays, Strings, Two Pointers, Sliding Window
+
+Days 1–2: Two pointers (reverse array, valid palindrome, container with most water)
+Days 3–4: Sliding window (max subarray sum, longest substring without repeats)
+Days 5–6: Prefix sums (subarray sum equals K, running sum)
+~12–15 problems total
