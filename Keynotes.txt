@@ -116,3 +116,11 @@ Days 1–2: Pure recursion warm-ups (subsets, permutations)
 Days 3–5: Backtracking (combination sum, N-Queens, word search)
 Day 6: Review — redo 2 problems from Week 1 cold, no notes
 ~10 problems + 1 review day
+
+
+Week 5 — Trees
+
+Days 1–2: Traversals (recursive + iterative), depth/height
+Days 3–4: BST-specific (validate BST, insert/search, LCA)
+Days 5–6: Tree + backtracking combo (path sum, all root-to-leaf paths)
+~12 problems
