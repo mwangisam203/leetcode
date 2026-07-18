@@ -139,3 +139,10 @@ Days 1–2: Heap basics (kth largest, top K frequent)
 Days 3–4: Merge intervals, meeting rooms
 Days 5–6: Greedy (jump game, gas station)
 ~10 problems
+
+Weeks 8–10 — Dynamic Programming (give this the most time)
+
+Week 8: 1D DP (climbing stairs, house robber, coin change)
+Week 9: 2D DP (unique paths, longest common subsequence, edit distance)
+Week 10: DP on trees/knapsack variants + full review — redo one hard problem from each earlier topic cold
+~25–30 problems across the three weeks
