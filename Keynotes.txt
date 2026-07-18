@@ -124,3 +124,10 @@ Days 1–2: Traversals (recursive + iterative), depth/height
 Days 3–4: BST-specific (validate BST, insert/search, LCA)
 Days 5–6: Tree + backtracking combo (path sum, all root-to-leaf paths)
 ~12 problems
+
+Week 6 — Graphs
+
+Days 1–2: BFS/DFS on grids and adjacency lists (number of islands, clone graph)
+Days 3–4: Topological sort (course schedule)
+Days 5–6: Union-Find (redundant connection, number of provinces)
+~10 problems
