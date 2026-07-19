@@ -11,3 +11,13 @@ def find_min_manual(arr):
         if num < smallest:
             smallest = num
     return smallest
+
+
+def find_min_with_index(arr):
+    if not arr:
+        return None
+    min_idx = 0
+    for i in range(1, len(arr)):
+        if arr[i] < arr[min_idx]:
+            min_idx = i
+    return arr[min_idx], min_idx
