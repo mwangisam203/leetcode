@@ -184,3 +184,11 @@ Complexity cheat notes:
 Set/dict operations (in, add, lookup) are O(1) average, O(n) worst case (hash collisions) — mention average case unless asked.
 Sorting is O(n log n) — the moment you sort, that becomes your floor even if the rest of the algorithm is O(n).
 "O(1) space" claims should ignore input/output storage but must count any extra structure you allocate (a set(), a new list, etc.).
+
+
+Common pitfalls:
+
+Forgetting the empty-array edge case (if not arr: return None).
+Using min(arr) inside a loop (recomputes every time — O(n²) instead of O(n)). Track the running min instead.
+Confusing "has duplicates" (any) with "find the duplicate" (which one) with "find all duplicates" (all of them) — these need different tools (#7 vs #10 vs #8).
+With Floyd's algorithm, forgetting it only applies to the specific "n+1 values in [1,n]" setup — it is not a general duplicate-finder.
