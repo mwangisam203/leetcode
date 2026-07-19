@@ -169,3 +169,12 @@ This is the part people skip writing down, and it's the highest-leverage thing t
 | "Kth largest/smallest" or "top K" | Heap |
 | Overlapping subproblems + optimal substructure + "min/max/count ways" | DP |
 | "Maximize while avoiding conflicts" (intervals, scheduling) | Greedy |
+
+
+General pattern-recognition cues:
+
+
+"Find duplicate" + "no extra space allowed" → think sorting, or Floyd's cycle detection if values are in range [1,n].
+"Find duplicate" + space is fine → set or Counter, almost always the right first answer.
+"Min/max of every window" → monotonic deque, not a fresh loop per window (that's O(n·k), too slow).
+Built-ins (min(), set(), Counter) are fine to use in interviews after you've shown you understand the manual version — don't lead with them if the interviewer is testing fundamentals.
