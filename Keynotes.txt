@@ -173,8 +173,14 @@ This is the part people skip writing down, and it's the highest-leverage thing t
 
 General pattern-recognition cues:
 
-
 "Find duplicate" + "no extra space allowed" → think sorting, or Floyd's cycle detection if values are in range [1,n].
 "Find duplicate" + space is fine → set or Counter, almost always the right first answer.
 "Min/max of every window" → monotonic deque, not a fresh loop per window (that's O(n·k), too slow).
 Built-ins (min(), set(), Counter) are fine to use in interviews after you've shown you understand the manual version — don't lead with them if the interviewer is testing fundamentals.
+
+
+Complexity cheat notes:
+
+Set/dict operations (in, add, lookup) are O(1) average, O(n) worst case (hash collisions) — mention average case unless asked.
+Sorting is O(n log n) — the moment you sort, that becomes your floor even if the rest of the algorithm is O(n).
+"O(1) space" claims should ignore input/output storage but must count any extra structure you allocate (a set(), a new list, etc.).
