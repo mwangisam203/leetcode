@@ -108,3 +108,9 @@ def find_duplicate_floyd(arr):
         slow2 = arr[slow2]
         slow = arr[slow]
     return slow
+
+'''
+Time: O(n) · Space: O(1) — no extra data structure at all
+This is a special-case trick (LeetCode 287 "Find the Duplicate Number"). 
+Only works under those exact constraints. Worth knowing because it's a favorite "can you avoid extra space" follow-up.
+'''
