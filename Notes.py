@@ -74,3 +74,12 @@ def has_duplicates_early_exit(arr):
             return True
         seen.add(num)
     return False
+
+
+
+
+from collections import Counter
+
+def find_all_duplicates(arr):
+    counts = Counter(arr)
+    return [num for num, c in counts.items() if c > 1]
