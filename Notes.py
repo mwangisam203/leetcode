@@ -83,3 +83,12 @@ from collections import Counter
 def find_all_duplicates(arr):
     counts = Counter(arr)
     return [num for num, c in counts.items() if c > 1]
+
+
+
+def has_duplicates_sorted(arr):
+    arr = sorted(arr)
+    for i in range(1, len(arr)):
+        if arr[i] == arr[i - 1]:
+            return True
+    return False
