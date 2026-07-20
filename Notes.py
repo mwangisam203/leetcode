@@ -46,3 +46,21 @@ def sliding_window_min(arr, k):
         if i >= k - 1:
             result.append(arr[dq[0]])
     return result
+
+
+
+
+from collections import deque
+
+def sliding_window_min(arr, k):
+    result = []
+    dq = deque()  # stores indices, increasing value order
+    for i, num in enumerate(arr):
+        while dq and arr[dq[-1]] >= num:
+            dq.pop()
+        dq.append(i)
+        if dq[0] <= i - k:
+            dq.popleft()
+        if i >= k - 1:
+            result.append(arr[dq[0]])
+    return result
