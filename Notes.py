@@ -92,3 +92,19 @@ def has_duplicates_sorted(arr):
         if arr[i] == arr[i - 1]:
             return True
     return False
+
+
+
+def find_duplicate_floyd(arr):
+    # arr has n+1 integers, each in [1, n], exactly one duplicate
+    slow = fast = arr[0]
+    while True:
+        slow = arr[slow]
+        fast = arr[arr[fast]]
+        if slow == fast:
+            break
+    slow2 = arr[0]
+    while slow2 != slow:
+        slow2 = arr[slow2]
+        slow = arr[slow]
+    return slow
