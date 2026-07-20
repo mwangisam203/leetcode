@@ -64,3 +64,13 @@ def sliding_window_min(arr, k):
         if i >= k - 1:
             result.append(arr[dq[0]])
     return result
+
+
+
+def has_duplicates_early_exit(arr):
+    seen = set()
+    for num in arr:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False
