@@ -93,6 +93,11 @@ def has_duplicates_sorted(arr):
             return True
     return False
 
+'''
+Time: O(n log n) · Space: O(1) extra (ignoring sort's internal space, or O(n) if sorted() copies)
+Use when memory is constrained and you can afford to sort (or the array is already sorted).
+'''
+
 
 
 def find_duplicate_floyd(arr):
