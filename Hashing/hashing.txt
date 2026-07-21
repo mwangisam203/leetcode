@@ -51,3 +51,17 @@ Top K Frequent Elements
 LRU Cache (hash map + doubly linked list — a step up, very common at mid/senior level)
 Design HashMap / Design HashSet (from scratch)
 Word Pattern / Isomorphic Strings (bijective mapping between two hash maps)
+
+Follow-up pressure questions to be ready for:
+
+"Can you do this in O(1) space instead?" — often not possible with hashing (that's the tradeoff you're making: O(n) space for O(1) time), and it's fine to say so directly rather than forcing a bad answer.
+"What if the input is a stream, not a fixed array?" — tests whether you understand incremental hashing (updating counts/sums as data arrives) vs. needing the full array upfront.
+
+
+COMPLEXITY QUICK REFERENCE
+Operation	Average	Worst case
+dict/set insert	O(1)	O(n)
+dict/set lookup	O(1)	O(n)
+dict/set delete	O(1)	O(n)
+Building a dict/set from n items	O(n)	O(n²)
+set union / intersection	O(min(n, m)) roughly	O(n·m)
