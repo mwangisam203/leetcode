@@ -65,3 +65,5 @@ dict/set lookup	O(1)	O(n)
 dict/set delete	O(1)	O(n)
 Building a dict/set from n items	O(n)	O(n²)
 set union / intersection	O(min(n, m)) roughly	O(n·m)
+
+The "worst case O(n)" only shows up with pathological hash collisions — in practice and in almost all interview contexts, say O(1) and mention worst case only if asked to be precise.
