@@ -21,3 +21,9 @@ Separate chaining — each bucket holds a list/linked-list of entries (what exam
 Open addressing — on collision, probe for the next open slot (linear probing, quadratic probing, double hashing)
 Python's dict uses open addressing internally, but separate chaining is what's usually expected when asked to "implement a hash map" in interviews — it's simpler to explain and code under pressure.
 
+Common pitfalls:
+
+Using a list where a set/dict would be O(1) — checking x in some_list is O(n); checking x in some_set is O(1). This is the single most common "why is my solution too slow" bug.
+Forgetting mutable types (lists) can't be dict keys or set members — only hashable (immutable) types: strings, numbers, tuples of hashables.
+Off-by-one on prefix sum problems — always double check the "empty prefix" seed case ({0: 1} in subarray sum).
+Assuming dict insertion order doesn't matter — as of Python 3.7+, dicts preserve insertion order, and some problems rely on that.
