@@ -27,3 +27,14 @@ Using a list where a set/dict would be O(1) — checking x in some_list is O(n);
 Forgetting mutable types (lists) can't be dict keys or set members — only hashable (immutable) types: strings, numbers, tuples of hashables.
 Off-by-one on prefix sum problems — always double check the "empty prefix" seed case ({0: 1} in subarray sum).
 Assuming dict insertion order doesn't matter — as of Python 3.7+, dicts preserve insertion order, and some problems rely on that.
+
+
+INTERVIEW QUESTIONS THAT GET ASKED
+
+Conceptual (expect these as follow-ups, not just "solve the problem"):
+
+"What's the time complexity of dict/set operations, and why?" — answer: O(1) average via hashing, O(n) worst case via collisions.
+"How would you implement a hash map yourself?" — see example #10; know separate chaining at minimum.
+"What makes a good hash function?" — deterministic, uniform distribution across buckets, fast to compute, minimizes collisions.
+"What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, typically resized when load factor exceeds ~0.7.
+"Why can't you use a list as a dictionary key?" — mutability breaks hashing (the hash would change if the list changed, but hash tables assume a key's hash is stable).
