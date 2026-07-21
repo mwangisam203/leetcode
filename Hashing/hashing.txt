@@ -38,3 +38,16 @@ Conceptual (expect these as follow-ups, not just "solve the problem"):
 "What makes a good hash function?" — deterministic, uniform distribution across buckets, fast to compute, minimizes collisions.
 "What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, typically resized when load factor exceeds ~0.7.
 "Why can't you use a list as a dictionary key?" — mutability breaks hashing (the hash would change if the list changed, but hash tables assume a key's hash is stable).
+
+Coding (in rough order of frequency in interviews):
+
+Two Sum (almost universal — often the warm-up question)
+Contains Duplicate / Contains Duplicate II (within distance k)
+Group Anagrams
+Valid Anagram
+Subarray Sum Equals K
+Longest Consecutive Sequence
+Top K Frequent Elements
+LRU Cache (hash map + doubly linked list — a step up, very common at mid/senior level)
+Design HashMap / Design HashSet (from scratch)
+Word Pattern / Isomorphic Strings (bijective mapping between two hash maps)
