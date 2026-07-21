@@ -6,3 +6,10 @@ set — membership only, no values attached (contains duplicate, intersection)
 dict — key → value mapping (two sum: value → index)
 Counter (subclass of dict) — key → count, with useful extras (.most_common(), arithmetic between Counters)
 defaultdict — dict that auto-initializes missing keys (group anagrams, adjacency lists) — avoids if key not in d: d[key] = [] boilerplate
+
+
+How hashing achieves O(1):
+
+A hash function converts a key into an array index. Average case O(1) for insert/lookup/delete because you go straight to the bucket.
+Worst case is O(n) if every key collides into the same bucket — this matters when explaining complexity: say "O(1) average, O(n) worst case" not just "O(1)."
+Python dicts resize and rehash automatically as they grow — you don't manage this yourself, but know that it happens (amortized O(1) insert accounts for occasional resize cost).
