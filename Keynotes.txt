@@ -192,3 +192,13 @@ Forgetting the empty-array edge case (if not arr: return None).
 Using min(arr) inside a loop (recomputes every time — O(n²) instead of O(n)). Track the running min instead.
 Confusing "has duplicates" (any) with "find the duplicate" (which one) with "find all duplicates" (all of them) — these need different tools (#7 vs #10 vs #8).
 With Floyd's algorithm, forgetting it only applies to the specific "n+1 values in [1,n]" setup — it is not a general duplicate-finder.
+
+
+NOTES: WHAT TO PAY ATTENTION TO
+
+Choosing the right structure:
+
+set — membership only, no values attached (contains duplicate, intersection)
+dict — key → value mapping (two sum: value → index)
+Counter (subclass of dict) — key → count, with useful extras (.most_common(), arithmetic between Counters)
+defaultdict — dict that auto-initializes missing keys (group anagrams, adjacency lists) — avoids if key not in d: d[key] = [] boilerplate
