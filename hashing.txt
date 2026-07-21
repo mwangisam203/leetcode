@@ -13,3 +13,10 @@ How hashing achieves O(1):
 A hash function converts a key into an array index. Average case O(1) for insert/lookup/delete because you go straight to the bucket.
 Worst case is O(n) if every key collides into the same bucket — this matters when explaining complexity: say "O(1) average, O(n) worst case" not just "O(1)."
 Python dicts resize and rehash automatically as they grow — you don't manage this yourself, but know that it happens (amortized O(1) insert accounts for occasional resize cost).
+
+
+Collision handling (know this exists, even if you don't implement it often):
+
+Separate chaining — each bucket holds a list/linked-list of entries (what example #10 does above)
+Open addressing — on collision, probe for the next open slot (linear probing, quadratic probing, double hashing)
+Python's dict uses open addressing internally, but separate chaining is what's usually expected when asked to "implement a hash map" in interviews — it's simpler to explain and code under pressure.
