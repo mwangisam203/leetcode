@@ -65,3 +65,14 @@ def group_anagrams(strs):
         key = "".join(sorted(s))
         groups[key].append(s)
     return list(groups.values())   ##Time: O(n * k log k), k = avg string length · Space: O(n * k)
+
+''' FIRST NON-REPEATING CHARACTER
+---------------------------------------------------------------------
+"Given a string `s`, find the first non-repeating character in it and return its
+index. If it does not exist, return -1."
+ 
+Interviewer follow-up: "Can you do this without a second pass?" (usually not
+cleanly — two passes is the accepted answer here: one to count, one to check order)
+ 
+SOLUTION:
+```python '''
