@@ -76,3 +76,15 @@ cleanly — two passes is the accepted answer here: one to count, one to check o
  
 SOLUTION:
 ```python '''
+
+from collections import Counter
+ 
+def first_unique_char(s):
+    counts = Counter(s)
+    for i, ch in enumerate(s):
+        if counts[ch] == 1:
+            return i
+    return -1
+###Time: O(n) · Space: O(1) (bounded alphabet)
+
+
