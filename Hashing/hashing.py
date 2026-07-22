@@ -20,3 +20,13 @@ def two_sum(nums, target):
     return []  #Time: O(n) · Space: O(n)
 
 
+'''
+2. CONTAINS DUPLICATE
+---------------------------------------------------------------------
+HOW IT'S ASKED:
+"Given an integer array `nums`, return true if any value appears at least twice
+in the array, and return false if every element is distinct."
+ 
+Interviewer follow-up: "Can you do this in a single pass?" / "What if I ask for
+which value is duplicated, not just true/false?"
+'''
