@@ -56,3 +56,12 @@ faster for long strings, O(k) instead of O(k log k) per string)
 SOLUTION:
 ```python
 '''
+
+from collections import defaultdict
+ 
+def group_anagrams(strs):
+    groups = defaultdict(list)
+    for s in strs:
+        key = "".join(sorted(s))
+        groups[key].append(s)
+    return list(groups.values())   ##Time: O(n * k log k), k = avg string length · Space: O(n * k)
