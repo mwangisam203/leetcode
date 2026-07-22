@@ -30,3 +30,11 @@ in the array, and return false if every element is distinct."
 Interviewer follow-up: "Can you do this in a single pass?" / "What if I ask for
 which value is duplicated, not just true/false?"
 '''
+
+def contains_duplicate(nums):
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return True
+        seen.add(num)
+    return False         #Time: O(n) · Space: O(n)
