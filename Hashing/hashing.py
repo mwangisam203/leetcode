@@ -109,5 +109,4 @@ def subarray_sum(nums, k):
         count += seen.get(prefix_sum - k, 0)
         seen[prefix_sum] = seen.get(prefix_sum, 0) + 1
     return count
-```
-Time: O(n) · Space: O(n)
+          ##Time: O(n) · Space: O(n)
