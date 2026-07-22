@@ -38,3 +38,21 @@ def contains_duplicate(nums):
             return True
         seen.add(num)
     return False         #Time: O(n) · Space: O(n)
+
+
+
+
+'''
+3. GROUP ANAGRAMS
+---------------------------------------------------------------------
+"Given an array of strings `strs`, group the anagrams together. You can return
+the answer in any order. An anagram is a word formed by rearranging the letters
+of another, using all the original letters exactly once."
+ 
+Interviewer follow-up: "Is there a way to build the grouping key without sorting
+each string?" (answer: yes — a character-count tuple/signature works too, and is
+faster for long strings, O(k) instead of O(k log k) per string)
+ 
+SOLUTION:
+```python
+'''
