@@ -88,3 +88,15 @@ def first_unique_char(s):
 ###Time: O(n) · Space: O(1) (bounded alphabet)
 
 
+'''
+5. SUBARRAY SUM EQUALS K
+---------------------------------------------------------------------
+"Given an array of integers `nums` and an integer `k`, return the total number
+of contiguous subarrays whose elements sum to `k`."
+ 
+Interviewer follow-up: "The brute force is O(n^2) — can you get to O(n)?" This is
+the moment they're checking if you know the prefix-sum-plus-hashmap trick.
+ 
+SOLUTION:
+```python
+'''
