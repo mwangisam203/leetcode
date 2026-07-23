@@ -110,3 +110,17 @@ def subarray_sum(nums, k):
         seen[prefix_sum] = seen.get(prefix_sum, 0) + 1
     return count
           ##Time: O(n) · Space: O(n)
+
+'''
+6. LONGEST CONSECUTIVE SEQUENCE
+---------------------------------------------------------------------
+HOW IT'S ASKED:
+"Given an unsorted array of integers `nums`, return the length of the longest
+consecutive elements sequence. You must write an algorithm that runs in O(n) time."
+ 
+Interviewer follow-up: "The 'O(n) time' constraint in the prompt is a hint — sorting
+would be O(n log n), so they want you to recognize that constraint rules out sorting."
+ 
+SOLUTION:
+```python
+'''
