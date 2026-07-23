@@ -166,6 +166,4 @@ def is_anagram_manual(s, t):
         if ch not in counts or counts[ch] == 0:
             return False
         counts[ch] -= 1
-    return True
-```
-Time: O(n) · Space: O(1) bounded alphabet
+    return True   ### Time: O(n) · Space: O(1) bounded alphabet
