@@ -153,9 +153,9 @@ from collections import Counter
  
 def is_anagram(s, t):
     return Counter(s) == Counter(t)
-```
+'''
 Manual version (often requested explicitly):
-```python
+'''
 def is_anagram_manual(s, t):
     if len(s) != len(t):
         return False
