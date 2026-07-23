@@ -135,3 +135,37 @@ def longest_consecutive(nums):
                 length += 1
             longest = max(longest, length)
     return longest       ##Time: O(n) · Space: O(n)
+
+'''
+7. VALID ANAGRAM
+---------------------------------------------------------------------
+HOW IT'S ASKED:
+"Given two strings `s` and `t`, return true if `t` is an anagram of `s`, and
+false otherwise."
+ 
+Interviewer follow-up: "Can you do it without using Counter/a library function?"
+(expect to write the manual counting version too)
+ 
+SOLUTION:
+```python'''
+
+from collections import Counter
+ 
+def is_anagram(s, t):
+    return Counter(s) == Counter(t)
+```
+Manual version (often requested explicitly):
+```python
+def is_anagram_manual(s, t):
+    if len(s) != len(t):
+        return False
+    counts = {}
+    for ch in s:
+        counts[ch] = counts.get(ch, 0) + 1
+    for ch in t:
+        if ch not in counts or counts[ch] == 0:
+            return False
+        counts[ch] -= 1
+    return True
+```
+Time: O(n) · Space: O(1) bounded alphabet
