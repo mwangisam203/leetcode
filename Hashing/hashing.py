@@ -124,3 +124,14 @@ would be O(n log n), so they want you to recognize that constraint rules out sor
 SOLUTION:
 ```python
 '''
+
+def longest_consecutive(nums):
+    num_set = set(nums)
+    longest = 0
+    for num in num_set:
+        if num - 1 not in num_set:
+            length = 1
+            while num + length in num_set:
+                length += 1
+            longest = max(longest, length)
+    return longest       ##Time: O(n) · Space: O(n)
