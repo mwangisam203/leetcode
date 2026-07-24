@@ -215,3 +215,21 @@ def intersection(nums1, nums2):
     return list(set(nums1) & set(nums2))
 
             #Time: O(n + m) · Space: O(n + m)
+
+
+
+'''
+10. DESIGN HASHMAP
+---------------------------------------------------------------------
+HOW IT'S ASKED:
+"Design a HashMap without using any built-in hash table libraries. Implement
+the MyHashMap class with: `put(key, value)` — insert or update the value for a
+key; `get(key)` — return the value for a key, or -1 if not found; `remove(key)`
+— remove the key and its value if it exists."
+ 
+Interviewer follow-up: "How do you handle collisions?" / "What's your load
+factor strategy — would you resize?" This question exists specifically to test
+whether you understand what dict/set do internally, not whether you can use them.
+ 
+SOLUTION:
+```python'''
