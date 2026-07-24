@@ -233,3 +233,32 @@ whether you understand what dict/set do internally, not whether you can use them
  
 SOLUTION:
 ```python'''
+
+class MyHashMap:
+    def __init__(self, size=1000):
+        self.size = size
+        self.buckets = [[] for _ in range(size)]
+ 
+    def _hash(self, key):
+        return hash(key) % self.size
+ 
+    def put(self, key, value):
+        idx = self._hash(key)
+        for i, (k, v) in enumerate(self.buckets[idx]):
+            if k == key:
+                self.buckets[idx][i] = (key, value)
+                return
+        self.buckets[idx].append((key, value))
+ 
+    def get(self, key):
+        idx = self._hash(key)
+        for k, v in self.buckets[idx]:
+            if k == key:
+                return v
+        return -1
+ 
+    def remove(self, key):
+        idx = self._hash(key)
+        self.buckets[idx] = [(k, v) for k, v in self.buckets[idx] if k != key]
+```
+Time: O(1) average, O(n) worst case per operation · Space: O(n)
