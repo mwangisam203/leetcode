@@ -67,3 +67,12 @@ Building a dict/set from n items	O(n)	O(n²)
 set union / intersection	O(min(n, m)) roughly	O(n·m)
 
 The "worst case O(n)" only shows up with pathological hash collisions — in practice and in almost all interview contexts, say O(1) and mention worst case only if asked to be precise.
+
+
+NOTE ON HOW TO PRACTICE THIS
+---------------------------------------------------------------------
+Cover the solution, read only the "HOW IT'S ASKED" section, and try to:
+1. Restate the problem in your own words out loud (interviewers grade on this)
+2. State the brute force approach and its complexity
+3. Identify the hashing opportunity before looking at the solution
+4. Only then check your code against the reference above
