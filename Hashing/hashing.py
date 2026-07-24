@@ -194,3 +194,14 @@ def top_k_frequent(nums, k):
             if len(result) == k:
                 return result
     return result     #  Time: O(n) · Space: O(n)
+
+
+'''
+9. INTERSECTION OF TWO ARRAYS
+---------------------------------------------------------------------
+HOW IT'S ASKED:
+"Given two integer arrays `nums1` and `nums2`, return an array of their
+intersection. Each element in the result must be unique, and you may return
+the result in any order."
+
+'''
