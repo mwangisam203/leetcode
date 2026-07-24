@@ -260,5 +260,4 @@ class MyHashMap:
     def remove(self, key):
         idx = self._hash(key)
         self.buckets[idx] = [(k, v) for k, v in self.buckets[idx] if k != key]
-```
-Time: O(1) average, O(n) worst case per operation · Space: O(n)
+            ##Time: O(1) average, O(n) worst case per operation · Space: O(n)
