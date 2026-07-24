@@ -175,4 +175,6 @@ def is_anagram_manual(s, t):
 HOW IT'S ASKED:
 "Given an integer array `nums` and an integer `k`, return the `k` most frequent
 elements. You may return the answer in any order."
-'''
+
+Interviewer follow-up: "Sorting by frequency is O(n log n) — can you do better?"
+This is where bucket sort (index = frequency) gets you to O(n).'''
