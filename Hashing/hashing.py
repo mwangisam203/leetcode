@@ -193,4 +193,4 @@ def top_k_frequent(nums, k):
             result.append(num)
             if len(result) == k:
                 return result
-    return result
+    return result     #  Time: O(n) · Space: O(n)
