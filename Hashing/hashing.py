@@ -167,3 +167,12 @@ def is_anagram_manual(s, t):
             return False
         counts[ch] -= 1
     return True   ### Time: O(n) · Space: O(1) bounded alphabet
+
+
+'''
+8. TOP K FREQUENT ELEMENTS
+---------------------------------------------------------------------
+HOW IT'S ASKED:
+"Given an integer array `nums` and an integer `k`, return the `k` most frequent
+elements. You may return the answer in any order."
+'''
