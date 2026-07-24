@@ -208,12 +208,10 @@ Interviewer follow-up: "What if the arrays are sorted — does your approach
 change?" (with sorted input, two pointers becomes a valid O(n+m) alternative
 that uses O(1) extra space beyond the output)
 
+SOLUTION:'''
 
-SOLUTION:
-```python
+
 def intersection(nums1, nums2):
     return list(set(nums1) & set(nums2))
-```
-Time: O(n + m) · Space: O(n + m)
- 
-'''
+
+            #Time: O(n + m) · Space: O(n + m)
