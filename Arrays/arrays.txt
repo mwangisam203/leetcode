@@ -202,3 +202,11 @@ set — membership only, no values attached (contains duplicate, intersection)
 dict — key → value mapping (two sum: value → index)
 Counter (subclass of dict) — key → count, with useful extras (.most_common(), arithmetic between Counters)
 defaultdict — dict that auto-initializes missing keys (group anagrams, adjacency lists) — avoids if key not in d: d[key] = [] boilerplate
+
+
+=== ARRAYS: MIN VALUE & DUPLICATES ===
+
+Pattern cues:
+- "find smallest/largest" → track running min/max, don't call min() in a loop
+- "has duplicate" + space ok → set
+- "has duplicate" + O(1) space required → sort, or Floyd's cycle (special case)
