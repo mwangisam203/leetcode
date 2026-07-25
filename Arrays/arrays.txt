@@ -210,3 +210,7 @@ Pattern cues:
 - "find smallest/largest" → track running min/max, don't call min() in a loop
 - "has duplicate" + space ok → set
 - "has duplicate" + O(1) space required → sort, or Floyd's cycle (special case)
+
+Complexity:
+- set lookup: O(1) avg
+- sort-based dup check: O(n log n) time, O(1) extra space
