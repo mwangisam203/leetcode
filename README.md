@@ -1,3 +1,32 @@
+dsa_prep/
+├── arrays/
+│   ├── arrays.py
+│   └── arrays.txt
+├── hashing/
+│   ├── hashing.py
+│   └── hashing.txt
+├── two_pointers/
+│   ├── two_pointers.py
+│   └── two_pointers.txt
+├── sliding_window/
+│   ├── sliding_window.py
+│   └── sliding_window.txt
+├── stacks_queues/
+│   ├── stacks_queues.py
+│   └── stacks_queues.txt
+├── trees_graphs/
+│   ├── trees_graphs.py
+│   └── trees_graphs.txt
+├── dynamic_programming/
+│   ├── dynamic_programming.py
+│   └── dynamic_programming.txt
+├── recursion_backtracking/
+│   ├── recursion_backtracking.py
+│   └── recursion_backtracking.txt
+└── README.md   ← index linking to each folder + your Excel tracker
+
+
+
 === GOLDEN NUGGETS: PATTERN RECOGNITION CHEAT SHEET ===
 Purpose: when you see a problem, match its cues to a pattern FAST, before you start coding.
 Format per pattern: CUES (what tips you off) -> INTUITION -> GO-TO TECHNIQUE -> COMPLEXITY
