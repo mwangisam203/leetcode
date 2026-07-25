@@ -214,3 +214,8 @@ Pattern cues:
 Complexity:
 - set lookup: O(1) avg
 - sort-based dup check: O(n log n) time, O(1) extra space
+
+Pitfalls:
+- min(arr) inside a loop = O(n²), recomputes every time
+- empty array edge case
+- Floyd's cycle only works for n+1 values in range [1,n]
