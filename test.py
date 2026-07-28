@@ -16,3 +16,14 @@ def validAnagram(s, t):
     return True
 
 print(validAnagram("money", "nemoy"))
+
+
+def itsAnagram(a, b):
+
+    if len(a) != len(b):
+        return False
+
+    count = {}
+
+    for char in a:
+        count[char]
