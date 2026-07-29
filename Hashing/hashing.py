@@ -52,8 +52,14 @@ def isAnagram(s, t):
 print(isAnagram("adc", "dac"))    
 
 
+'''
+Idea: sorting rearranges both strings into a canonical (fixed) order. If they're anagrams, sorting makes them identical strings.
+Time complexity: O(n log n) — sorting dominates.
+Space complexity: O(n) — sorted() returns a new list; you're not sorting in place.'''
 
-## Brute force approach 2 . 
+
+
+## Brute force approach 2 . (nested loop "cross out")
 def isAnagram(s, t):
     if len(s) != len(t):
         return False
@@ -65,10 +71,6 @@ def isAnagram(s, t):
             return False
     return True
 
-'''
-Idea: sorting rearranges both strings into a canonical (fixed) order. If they're anagrams, sorting makes them identical strings.
-Time complexity: O(n log n) — sorting dominates.
-Space complexity: O(n) — sorted() returns a new list; you're not sorting in place.'''
 
 
 
