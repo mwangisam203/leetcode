@@ -34,4 +34,4 @@ def itsAnagram(t, s):
 
     return  True
 
-print(itsAnagram(""))
+print(itsAnagram("anagram", "nagaram"))
