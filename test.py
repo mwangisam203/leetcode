@@ -20,3 +20,12 @@ print(hasduplicates(["names", "name", "name"]))
 #solution
 
 def itsAnagram(t, s):
+    if len(s) != len(t):
+        return False
+
+    count = {}
+
+    for char in t:
+        count[char] = count.get(char, 0) + 1
+    for char in s:
+        
