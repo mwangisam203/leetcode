@@ -33,6 +33,11 @@ def containsDuplicate(nums):
         if nums[i] == nums[i + 1]:
             return True
     return False
+    # Time complexity: O(n log n)
+    # Space complexity: O(1) or O(n) depending on the sort algorithm's implementation (Python's sort() is in-place, O(1) extra space
+'''
+Why this is "better than brute force but not the best": once sorted, any duplicates become adjacent to each other, so you only need one pass to find them.
+but the hash set approach is still faster overall since it avoids the log n factor and doesn't require mutating the input.'''
 
 
 
