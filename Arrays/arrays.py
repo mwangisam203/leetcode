@@ -21,6 +21,8 @@ def containsDuplicate(nums):
             if nums[i] == nums[j]:
                 return True
     return False
+            ## Time complexity: O(n²)
+            ## Space complexity: O(1)
 
 
 
