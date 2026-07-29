@@ -26,6 +26,14 @@ def containsDuplicate(nums):
 '''
 The brute force checks every pair of elements, which is O(n²) — that's my starting point, but I can do better by trading space for time using a hash set, bringing it down to O(n) time at the cost of O(n) space.'''
 
+# second brute-force variant — sorting:
+def containsDuplicate(nums):
+    nums.sort()
+    for i in range(len(nums) - 1):
+        if nums[i] == nums[i + 1]:
+            return True
+    return False
+
 
 
 
