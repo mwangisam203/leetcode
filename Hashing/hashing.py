@@ -43,6 +43,15 @@ print(itsAnagram("sam", "mam"))
 
 
 
+## Brute force approach
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+    return sorted(s) == sorted(t)
+
+print(isAnagram("adc", "dac"))    
+
+
 
 # TWO SUM
 
