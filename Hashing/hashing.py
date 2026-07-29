@@ -71,7 +71,11 @@ def isAnagram(s, t):
             return False
     return True
 
-
+'''
+Time complexity: O(n²) — char in t_list is an O(n) scan through a list, 
+and .remove() is also O(n) (it has to shift elements).
+Doing this for every character in s (n characters) gives O(n²) total.
+Space complexity: O(n) — the copy t_list.'''
 
 
 
