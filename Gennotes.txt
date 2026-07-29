@@ -1,0 +1,7 @@
+Summary table so far:
+
+Problem	Brute force	Time	Space	Optimized	Time	Space
+Contains Duplicate	nested loop	O(n²)	O(1)	hash set	O(n)	O(n)
+Contains Duplicate	sort + adjacent check	O(n log n)	O(1)*	hash set	O(n)	O(n)
+Valid Anagram	sort + compare	O(n log n)	O(n)	hash map counting	O(n)	O(1) or O(n)
+Valid Anagram	nested "cross out"	O(n²)	O(n)	hash map counting	O(n)	O(1) or O(n)
