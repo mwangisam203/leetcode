@@ -43,7 +43,7 @@ print(itsAnagram("sam", "mam"))
 
 
 
-## Brute force approach
+## Brute force approach  (sorting:)
 def isAnagram(s, t):
     if len(s) != len(t):
         return False
