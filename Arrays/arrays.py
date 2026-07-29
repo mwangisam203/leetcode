@@ -23,6 +23,8 @@ def containsDuplicate(nums):
     return False
             ## Time complexity: O(n²)
             ## Space complexity: O(1)
+'''
+The brute force checks every pair of elements, which is O(n²) — that's my starting point, but I can do better by trading space for time using a hash set, bringing it down to O(n) time at the cost of O(n) space.'''
 
 
 
