@@ -56,4 +56,26 @@ def validAnagram(a, b):
 print(validAnagram("maiza", "amaize"))
 
 def myAnagram(x, y):
-    
+    if len(x) != len(y):
+        return False
+
+    count = {}
+
+    for char in x:
+        if char in count:
+            count[char] += 1
+
+        else:
+            count[char] = 1
+
+    for char in y:
+        if char not in count or count[char] == 0:
+            return False
+        count[char] -= 1
+
+    return True
+
+        
+
+
+print(myAnagram("adc", "dac"))          
