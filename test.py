@@ -79,3 +79,12 @@ def myAnagram(x, y):
 
 
 print(myAnagram("adc", "dac"))          
+
+
+
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+    return sorted(s) == sorted(t)
+
+print(myAnagram("adc", "dab"))          
