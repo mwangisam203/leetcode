@@ -43,13 +43,27 @@ print(itsAnagram("sam", "mam"))
 
 
 
-## Brute force approach  (sorting:)
+## Brute force approach 1 (sorting:)
 def isAnagram(s, t):
     if len(s) != len(t):
         return False
     return sorted(s) == sorted(t)
 
 print(isAnagram("adc", "dac"))    
+
+
+
+## Brute force approach 2 . 
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+    t_list = list(t)
+    for char in s:
+        if char in t_list:
+            t_list.remove(char)
+        else:
+            return False
+    return True
 
 '''
 Idea: sorting rearranges both strings into a canonical (fixed) order. If they're anagrams, sorting makes them identical strings.
