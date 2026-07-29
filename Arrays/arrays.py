@@ -12,6 +12,19 @@ print(contains_duplicate([1, 2, 3, 1]))  # True
 print(contains_duplicate([1, 2, 3, 4]))  # False
 
 
+
+##Brute force approach
+
+def containsDuplicate(nums):
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] == nums[j]:
+                return True
+    return False
+
+
+
+
 #Two Sum
 
 ##Given an array and a target, return the indices of two numbers that add up to the target.
