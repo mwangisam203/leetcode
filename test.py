@@ -28,4 +28,10 @@ def itsAnagram(t, s):
     for char in t:
         count[char] = count.get(char, 0) + 1
     for char in s:
-        
+        if char not in count or count[char] == 0:
+            return False
+        count[char] -= 1
+
+    return  True
+
+print(itsAnagram(""))
