@@ -1,5 +1,4 @@
 
-
 ## check if given string contain duplicates
 
 
@@ -35,3 +34,26 @@ def itsAnagram(t, s):
     return  True
 
 print(itsAnagram("anagram", "nagaram"))
+
+
+
+
+def validAnagram(a, b):
+    if len(a) == len(b):
+        return True
+
+    count = {}
+
+    for char in a:
+        count[char] = count.get(char, 0) + 1
+    for char in b:
+        if char not in count or count[char] == 0:
+            return False
+        count[char] -= 1
+
+    return True
+
+print(validAnagram("maiza", "amaize"))
+
+def myAnagram(x, y):
+    
