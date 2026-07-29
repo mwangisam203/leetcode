@@ -51,6 +51,12 @@ def isAnagram(s, t):
 
 print(isAnagram("adc", "dac"))    
 
+'''
+Idea: sorting rearranges both strings into a canonical (fixed) order. If they're anagrams, sorting makes them identical strings.
+Time complexity: O(n log n) — sorting dominates.
+Space complexity: O(n) — sorted() returns a new list; you're not sorting in place.'''
+
+
 
 
 # TWO SUM
