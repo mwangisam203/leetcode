@@ -50,8 +50,8 @@ class Answer:
                 largest = large
         return largest
 
-solve = Answer()
-Ans = solve.largest([12, 8, 5, 50])
-print(Ans)
+# solve = Answer()
+# Ans = solve.largest([12, 8, 5, 50])
+# print(Ans)
 
-Solution().maximum([8,4,10,2])
+Answer().largest([8,4,10,2])
