@@ -53,3 +53,5 @@ class Answer:
 solve = Answer()
 Ans = solve.largest([12, 8, 5, 50])
 print(Ans)
+
+Solution().maximum([8,4,10,2])
