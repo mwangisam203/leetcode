@@ -37,3 +37,16 @@ def minVal(myArray):
 
             
 print(minVal([100, 250, 23, 50, 0]))
+
+
+class Solution:
+    def findMin(self, nums):
+        minimum = nums[0]
+
+        for num in nums:
+            if num < minimum:
+                minimum = num
+        return minimum
+
+solution = Solution()
+ans = solution.findMin([13, 3, 5, 2])
