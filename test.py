@@ -24,8 +24,8 @@ for num in my_cart:
 print(smallest_number)
 
 
+
 def minVal(myArray):
-    myArray = [20, 23, 14, 37, 4]
 
     minVal = myArray[0]
 
@@ -33,5 +33,7 @@ def minVal(myArray):
         if i < minVal:
             minVal = i
 
+    return minVal
+
             
-print(minVal([]))
+print(minVal([100, 250, 23, 50, 0]))
