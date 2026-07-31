@@ -33,10 +33,10 @@ class Solution:
                 minimum = num
         return minimum
 
-solution = Solution()
-ans = solution.findMin([13, 3, 5, 2])
-# print(ans)
-Solution().findMin([13, 3, 5, 2])
+#solution = Solution()
+#ans = solution.findMin([13, 3, 5, 2])
+# print(ans) , or
+print(Solution().findMin([13, 3, 5, 2]))
 
 
 
