@@ -31,7 +31,7 @@ def minVal(myArray):
 
     for i in myArray:
         if i < minVal:
-            return minVal 
+            minVal = i
 
-
-print(minVal)
+            
+print(minVal([]))
