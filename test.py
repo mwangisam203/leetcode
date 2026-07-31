@@ -36,3 +36,20 @@ class Solution:
 solution = Solution()
 ans = solution.findMin([13, 3, 5, 2])
 print(ans)
+
+
+
+class Answer:
+
+    def largest(self, digits: list[int]) -> int:
+
+        largest  = digits[0]
+
+        for large in digits:
+            if large > largest:
+                largest = large
+        return largest
+
+solve = Answer()
+Ans = solve.largest([12, 8, 5, 50])
+print(Ans)
