@@ -35,7 +35,8 @@ class Solution:
 
 solution = Solution()
 ans = solution.findMin([13, 3, 5, 2])
-print(ans)
+# print(ans)
+Solution().findMin([13, 3, 5, 2])
 
 
 
@@ -54,4 +55,6 @@ class Answer:
 # Ans = solve.largest([12, 8, 5, 50])
 # print(Ans)
 
-Answer().largest([8,4,10,2])
+print(Answer().largest([8,4,10,2]))
+
+
