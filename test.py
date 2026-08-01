@@ -11,4 +11,12 @@ def hasDuplicates(words):
 print(hasDuplicates(["apples", "apples"]))
     
 
-#def myAnagram(self, s, t):
+def myAnagram(s, t):
+
+    if len(s) != len(t):
+        return False
+
+    count = {}
+
+    for char in s:
+        count[char] = count.get(char, 0) + 1
