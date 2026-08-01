@@ -1,4 +1,13 @@
 
+def hasDuplicates(words):
+    seen = set()
 
+    for word in words:
+        if word in seen:
+            return True
+        seen.add(word)
+    return False
+
+print(hasDuplicates(["apples", "apples"]))
     
 
