@@ -102,8 +102,17 @@ Interviewer follow-up you should expect: "Can you do better than O(n^2)?"
  
 SOLUTION: '''
 
+class Soluton:
+    def twoSum(self, nums, target):
+        seen ={}
 
-def two
+        for i, num in enumerate (len(nums)):
+            complement = target - num[i]
+
+            
+
+
+
 
 
 def two_sum(nums, target):
