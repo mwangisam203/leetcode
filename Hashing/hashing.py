@@ -103,6 +103,9 @@ Interviewer follow-up you should expect: "Can you do better than O(n^2)?"
 SOLUTION: '''
 
 
+def two
+
+
 def two_sum(nums, target):
     seen = {}  # value -> index
     for i, num in enumerate(nums):
