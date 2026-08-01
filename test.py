@@ -11,3 +11,4 @@ def hasDuplicates(words):
 print(hasDuplicates(["apples", "apples"]))
     
 
+#def myAnagram(self, s, t):
