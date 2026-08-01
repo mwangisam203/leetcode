@@ -24,4 +24,4 @@ def myAnagram(s, t):
         if char not in count or count[char] == 0:
             return False
     return True
-print(myAnagram)
+print(myAnagram("racecar", "carrace"))
