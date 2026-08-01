@@ -25,3 +25,8 @@ def myAnagram(s, t):
             return False
     return True
 print(myAnagram("racecar", "carrace"))
+
+
+
+def two_sum(nums, target):
+    for i
