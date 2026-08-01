@@ -110,7 +110,7 @@ class Soluton:
             complement = target - num
             if complement in seen:
                 return [seen[complement], i]
-            seen
+            seen[num] = i
 
 
 
