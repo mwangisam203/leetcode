@@ -107,9 +107,12 @@ class Soluton:
         seen ={}
 
         for i, num in enumerate (len(nums)):
-            complement = target - num[i]
+            complement = target - num
+            if complement in seen:
+                return [seen[complement], i]
+            seen
 
-            
+
 
 
 
