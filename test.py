@@ -1,40 +1,9 @@
+def containDuplicates(nums):
+    nums.sort()
 
-def hasDuplicates(words):
-    seen = set()
-
-    for word in words:
-        if word in seen:
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i - 1]:
             return True
-        seen.add(word)
     return False
-
-print(hasDuplicates(["apples", "apples"]))
-    
-
-def myAnagram(s, t):
-
-    if len(s) != len(t):
-        return False
-
-    count = {}
-
-    for char in s:
-        count[char] = count.get(char, 0) + 1
-    for char in t:
-        if char not in count or count[char] == 0:
-            return False
-    return True
-print(myAnagram("racecar", "carrace"))
-
-
-
-def two_sum(nums, target):
-    seen = {}
-    for num in nums:
-        complement = target - num
-        if complement in seen:
-            return [complement[seen]]
-        seen[num] = num
-    return False
-        
+print(containDuplicates([1,4,3, 1,3]))
 
