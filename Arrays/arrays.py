@@ -12,7 +12,7 @@ class Solution:
 
 
 
-  
+## optimal still but I'd rank this second
 def contains_duplicate(nums):
     seen = set()
     for num in nums:
