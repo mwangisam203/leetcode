@@ -1,5 +1,14 @@
 #Contains Duplicate
+class Solution:
+    def hasDuplicate(self, nums: list[int]) -> bool:
 
+        nums.sort()
+        for i in range (1, len(nums)):
+            if nums[i] == nums[i - 1]:
+                return True
+        return False
+
+    
 def contains_duplicate(nums):
     seen = set()
     for num in nums:
