@@ -10,6 +10,15 @@ class Solution:
                 return True
         return False
 
+def containDuplicates(nums):
+    nums.sort()
+
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i - 1]:
+            return True
+    return False
+print(containDuplicates([1,4,3, 1,3]))
+
 
 
 ## optimal still but I'd rank this second
