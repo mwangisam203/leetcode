@@ -1,4 +1,6 @@
 #Contains Duplicate
+
+# most optimal solution : sorting()
 class Solution:
     def hasDuplicate(self, nums: list[int]) -> bool:
 
@@ -8,7 +10,9 @@ class Solution:
                 return True
         return False
 
-    
+
+
+  
 def contains_duplicate(nums):
     seen = set()
     for num in nums:
