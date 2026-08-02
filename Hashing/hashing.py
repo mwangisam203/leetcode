@@ -53,7 +53,19 @@ class Solution:
             countT[t[i]] = 1 + countT.get(t[i], 0)
         return countS == countT
 
+#Two Sum
 
+##Given an array and a target, return the indices of two numbers that add up to the target.
+
+def two_sum(nums, target):
+    seen = {}  # value -> index
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+
+print(two_sum([2, 7, 11, 15], 9))  # [0, 1]
 
 ## Brute force approach 1 (sorting:)
 def isAnagram(s, t):

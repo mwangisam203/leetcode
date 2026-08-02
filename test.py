@@ -29,4 +29,6 @@ print(myAnagram("racecar", "carrace"))
 
 
 def two_sum(nums, target):
-    for i
+    seen = {}
+
+    
