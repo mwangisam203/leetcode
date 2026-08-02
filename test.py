@@ -30,5 +30,11 @@ print(myAnagram("racecar", "carrace"))
 
 def two_sum(nums, target):
     seen = {}
+    for num in nums:
+        complement = target - num
+        if complement in seen:
+            return [complement[seen]]
+        seen[num] = num
+    return False
+        
 
-    
