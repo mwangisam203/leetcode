@@ -6,10 +6,13 @@ def Anagram(s, t):
     for char in s:
         count[char] = count.get(char, 0) + 1
     for char in t:
-        if char not in count or char == 0:
+        if char not in count or count[char] == 0:
             return False
         count[char] -= 1
     return True
+
+print(Anagram("eat", "ete"))
+
 
 
 def my_anagram(s, t):
@@ -22,3 +25,4 @@ def my_anagram(s, t):
         CountT[t[i]] = 1 + CountT.get(t[i], 0)
     return CountS == CountT
 
+print(my_anagram("eat", "ete"))
