@@ -11,6 +11,7 @@ class Solution:
                 count[ord(c) - ord("a")]
 
             result[tuple(count)].append(s)
+            
         return result.values()
 
 
