@@ -33,6 +33,14 @@ def contains_duplicate(nums):
 print(contains_duplicate([1, 2, 3, 1]))  # True
 print(contains_duplicate([1, 2, 3, 4]))  # False
 
+def contain_duplicates(nums):
+
+    nums.sort()
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i - 1]:
+            return True
+    return False
+
 
 
 ##Brute force approach
