@@ -78,7 +78,6 @@ Cover the solution, read only the "HOW IT'S ASKED" section, and try to:
 4. Only then check your code against the reference above
 
 
-
 ####
 DICT vs LIST FOR COUNTING
 - list: ordered values only, no key-to-value pairing → wrong tool 
