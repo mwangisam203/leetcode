@@ -209,6 +209,8 @@ def two_sum(nums, target):
     return []  #Time: O(n) · Space: O(n)
 
 
+
+
 '''
 2. CONTAINS DUPLICATE
 ---------------------------------------------------------------------
@@ -356,6 +358,34 @@ def is_anagram_manual(s, t):
             return False
         counts[ch] -= 1
     return True   ### Time: O(n) · Space: O(1) bounded alphabet
+
+
+
+
+
+##5: Product of Array Except Self
+##Problem: Return an array where each element is the product of all other elements (no division allowed).
+
+def product_except_self(nums):
+    n = len(nums)
+    result = [1] * n
+
+    prefix = 1
+    for i in range(n):
+        result[i] = prefix
+        prefix *= nums[i]
+
+    suffix = 1
+    for i in range(n - 1, -1, -1):
+        result[i] *= suffix
+        suffix *= nums[i]
+
+    return result
+
+print(product_except_self([1, 2, 3, 4]))  # [24, 12, 8, 6]
+
+
+
 
 
 '''
