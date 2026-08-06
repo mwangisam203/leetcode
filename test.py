@@ -15,6 +15,21 @@ class Solution:
         return result.values()
 
 
+class Solution:
+    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
+
+        groups = defaultdict(list)
+
+        for i in range(len(strs)):
+            code = [0] * 26
+            for c in strs[i]:
+                code[ord(c) - ord('a')] += 1
+            groups[tuple(code)].append(strs[i])
+        
+        return list(groups.values())
+
+
+    
 
 def containsDuplicate(nums):
     nums.sort()
