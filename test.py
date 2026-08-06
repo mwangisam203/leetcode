@@ -30,7 +30,19 @@ class Solution:
 
 
 
+class Solution:
+    def groupAnagrams(self, strs: list[str]) -> List[List[str]]:
+       
+        res = defaultdict(list)
 
+        for s in strs:
+            # counting freq of each string
+            freqCount = [0] * 26
+            
+            for char in s: 
+                freqCount[ord(char) - ord('a')] += 1
+            res[tuple(freqCount)].append(s)
+        return list(res.values())
 
 def containsDuplicate(nums):
     nums.sort()
