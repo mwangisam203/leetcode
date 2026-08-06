@@ -8,7 +8,7 @@ class Solution:
             count = [0] * 26 # a ... z
 
             for c in s:
-                count[ord(c) - ord("a")]
+                count[ord(c) - ord("a")] += 1
 
             result[tuple(count)].append(s)
 
