@@ -44,6 +44,8 @@ class Solution:
             res[tuple(freqCount)].append(s)
         return list(res.values())
 
+
+
 def containsDuplicate(nums):
     nums.sort()
     for i in range(len(nums) - 1):
