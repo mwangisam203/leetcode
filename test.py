@@ -7,5 +7,6 @@ def groupAnagram(strs):
         count = 0 * 26
 
         for c in s:
-            ord[c] - ord["a"]
-        res  
+            ord[c] - ord["a"] += 1
+        res[tuple(count)].append(s)
+    return list(res.values())
