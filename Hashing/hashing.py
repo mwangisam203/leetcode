@@ -594,3 +594,19 @@ def newAnagram(s, t):
         count[char] -= 1
     return True
 
+
+
+
+def twoSum(nums, target):
+
+    viewed = {}
+
+    for i, num in enumerate(nums):
+        complement = target - num
+
+        if complement in viewed:
+            return [viewed[complement], i]
+        viewed[num] = i
+    return False
+
+print(twoSum([2, 7, 9, 11, 12], target=9))
