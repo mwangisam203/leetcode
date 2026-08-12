@@ -649,6 +649,20 @@ class Solution:
 
 from collections import defaultdict
 
+'''
+"eat" → (1,0,0,0,1,0,...,1,...) → bucket A
+"tea" → (1,0,0,0,1,0,...,1,...) → bucket A  ← same as "eat"
+"tan" → (1,0,0,0,0,...,1,...,1,...) → bucket B
+"ate" → (1,0,0,0,1,0,...,1,...) → bucket A  ← same as "eat"
+"nat" → (1,0,0,0,0,...,1,...,1,...) → bucket B  ← same as "tan"
+"bat" → (1,1,0,0,0,...,1,...) → bucket C
+
+result = {
+  bucket A: ["eat", "tea", "ate"],
+  bucket B: ["tan", "nat"],
+  bucket C: ["bat"]
+}'''
+
 def groupanagram(strs):
 
     res = defaultdict(list)
