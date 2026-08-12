@@ -674,6 +674,3 @@ def two_sum(nums, target):
             return [seen[complement], i]
         seen[num] = i
     return False
-
-
-f
