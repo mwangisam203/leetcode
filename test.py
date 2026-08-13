@@ -11,5 +11,5 @@ def hasduplicates(words):
         seen.add(word)
     return False
 
-
+print(hasduplicates(["name", "maize"]))
         
