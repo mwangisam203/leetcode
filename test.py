@@ -1,18 +1,16 @@
-from collections import defaultdict
+def anagram(s, t):
+
+    if len(s) != len(t):
+        return True
+
+    count = {}
+
+    for char in s:
+        count[char] = count.get(char, 0) + 1
+    for char in t:
+        if char not in count or count[char] == 0:
+            return False
+        count[char] -= 1
+    return True
 
 
-def groupAnagram(strs):
-
-    res = defaultdict(list)
-
-    for s in strs:
-        count = [0] * 26
-
-        for c in s:
-            count[ord(c) - ord("a")] += 1
-        res[tuple(count)].append(s)
-
-    return list(res.values())
-
-print(groupAnagram(["act","pots","tops","cat","stop","hat"]
-))
