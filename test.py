@@ -13,4 +13,4 @@ def anagram(s, t):
         count[char] -= 1
     return True
 
-
+print(anagram(s = "racecar", t = "carrace"))
