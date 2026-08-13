@@ -1,16 +1,12 @@
-def anagram(s, t):
+def two_sum(nums, target):
 
-    if len(s) != len(t):
-        return True
+    seen = {}
 
-    count = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return False
 
-    for char in s:
-        count[char] = count.get(char, 0) + 1
-    for char in t:
-        if char not in count or count[char] == 0:
-            return False
-        count[char] -= 1
-    return True
-
-print(anagram(s = "racecar", t = "carrace"))
+print(two_sum([1, 3, 4, 7, 9], target=7))
