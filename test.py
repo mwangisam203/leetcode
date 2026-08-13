@@ -1,15 +1,18 @@
+from collections import defaultdict
 
 
+def groupAnagram(strs):
 
-def hasduplicates(words):
+    res = defaultdict(list)
 
-    seen = set()
+    for s in strs:
+        count = [0] * 26
 
-    for word in words:
-        if word in seen:
-            return True
-        seen.add(word)
-    return False
+        for c in s:
+            count[ord(c) - ord("a")] += 1
+        res[tuple(count)].append(s)
 
-print(hasduplicates(["name", "maize"]))
-        
+    return list(res.values())
+
+print(groupAnagram(["act","pots","tops","cat","stop","hat"]
+))
