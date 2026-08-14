@@ -16,7 +16,7 @@ def Anagram(s, t):
 
 print(Anagram("eat", "ete"))
 
-
+#good but not optimal
 def my_anagram(s, t):
     if len(s) != len(t):
         return False
