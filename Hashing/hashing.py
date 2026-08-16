@@ -649,6 +649,7 @@ class Solution:
 
 from collections import defaultdict
 
+
 '''
 "eat" → (1,0,0,0,1,0,...,1,...) → bucket A
 "tea" → (1,0,0,0,1,0,...,1,...) → bucket A  ← same as "eat"
