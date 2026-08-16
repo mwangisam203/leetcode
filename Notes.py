@@ -67,16 +67,6 @@ def sliding_window_min(arr, k):
 
 
 
-def has_duplicates_early_exit(arr):
-    seen = set()
-    for num in arr:
-        if num in seen:
-            return True
-        seen.add(num)
-    return False
-
-
-
 
 from collections import Counter
 
