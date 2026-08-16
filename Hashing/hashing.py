@@ -632,22 +632,6 @@ def groupAnagram(strs):
 print(groupAnagram(["act","pots","tops","cat","stop","hat"]))
 
 
-class Solution:
-    def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-       
-        results = defaultdict(list)
-
-        for s in strs:
-            count = [0] * 26 # a, b , .. z
-
-            for c in s:
-                count[ord(c) - ord("a")] += 1
-
-            results[tuple(count)].append(s)
-
-        return list(results.values())
-
-from collections import defaultdict
 
 
 '''
