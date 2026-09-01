@@ -12,4 +12,4 @@ def Anagram(s, t):
     return True
 
 
-print(Anagram("eat", "ate"))
+print(Anagram("eat", "at"))
