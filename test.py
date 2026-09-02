@@ -11,3 +11,10 @@ def twosum(nums, target):
 
 print(twosum([2, 7, 8, 11,15], target=9))
 
+## Brute force approach 1 (sorting:)
+def isAnagram(s, t):
+    if len(s) != len(t):
+        return False
+    return sorted(s) == sorted(t)
+
+print(isAnagram("adc", "dac"))    
