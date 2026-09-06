@@ -390,7 +390,7 @@ print(product_except_self([1, 2, 3, 4]))  # [24, 12, 8, 6]
 
 '''
 8. TOP K FREQUENT ELEMENTS
----------------------------------------------------------------------
+--------------------------------------------------------------------------
 HOW IT'S ASKED:
 "Given an integer array `nums` and an integer `k`, return the `k` most frequent
 elements. You may return the answer in any order."
