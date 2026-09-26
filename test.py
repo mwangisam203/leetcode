@@ -1,26 +1,89 @@
-nums = [1, 2, 3, 4]
+def two_sum(nums, target):
 
-def contains_duplicates_brute_force(nums):
-    n = len(nums)
+    seen = {}
 
-    for i in range(n):
-        for j in range(i + 1, n):
-            if nums[i] == nums[j]:
-                return True
-    return False
+    for i, num in enumerate(nums):
+        complement = target - num
 
-print(contains_duplicates_brute_force(nums))
+        if complement in seen:
+            return [seen[ complement], i]
+        seen[num] = i
 
-#def conta
+print(two_sum([3,4,5,6], 7))
 
-def contains_duplicate(nums):
-    seen = set()
+    
 
-    for i in nums:
-        if i in seen:
-            return True
-        seen.add(i)
-    return False
-print(contains_duplicate(nums))
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from collections import defaultdict
+
+strs = ["act","pots","tops","cat","stop","hat"]
+
+#Output: [["hat"],["act", "cat"],["stop", "pots", "tops"]]
+
+
+def groupanagram(strs):
+    results = defaultdict(list)
+
+    for s in strs:
+        count = [0] * 26 # a....z
+
+
+
+
