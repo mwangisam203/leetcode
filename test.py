@@ -1,87 +1,16 @@
-def twosum(nums, target):
+def anagram(s, t):
 
-    seen = {}
+    count = {}
 
-    for i, num in enumerate(nums):
-        complement = target - num
-
-        if complement in seen:
-            return [seen[complement], i]
-        seen[num] = i
-
+    for char in s:
+        count[char] = count.get(char, 0) + 1
+    for char in t:
+        if char not in count or count[char] == 0:
+            return False
+        count[char] -= 1
+        
+    return True 
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-from collections import defaultdict
-
-strs = ["act","pots","tops","cat","stop","hat"]
-
-#Output: [["hat"],["act", "cat"],["stop", "pots", "tops"]]
-
-
-def groupanagram(strs):
-    results = defaultdict(list)
-
-    for s in strs:
-        count = [0] * 26 # a....z
-
 
 
 
