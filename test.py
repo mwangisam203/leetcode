@@ -1,4 +1,4 @@
-def two_sum(nums, target):
+def twosum(nums, target):
 
     seen = {}
 
@@ -6,10 +6,8 @@ def two_sum(nums, target):
         complement = target - num
 
         if complement in seen:
-            return [seen[ complement], i]
+            return [seen[complement], i]
         seen[num] = i
-
-print(two_sum([3,4,5,6], 7))
 
     
 
