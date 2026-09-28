@@ -1,21 +1,18 @@
+from collections import defaultdict
 
 
-def myAnagram(x, y):
-    if len(x) != len(y):
-        return False
+def groupAnagram(strs):
 
-    count = {}
+    res = defaultdict(list)
 
-    for c in x:
-        count[c] = count.get(c, 0) + 1
+    for str in strs:
+        count = [0] * 26 # a...z
 
-    for c in y:
-        if c not in count or count[c] == 0:
-            return False
-        count[c] -= 1
+        for c in str:
+            count[ord(c) - ord("a")] += 1
+        res[tuple(count)].append(str)
 
-    return True
-        
+    return res.values
 
-        
-print(myAnagram("adc", "dac"))
+
+
