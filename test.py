@@ -6,14 +6,16 @@ def myAnagram(x, y):
 
     count = {}
 
-    for char in count:
-        if char in count:
-            count[char] += 1
+    for c in x:
+        count[c] = count.get(c, 0) + 1
 
-        else:
-            count[char] = 1
+    for c in y:
+        if c not in count or count[c] == 0:
+            return False
+        count[c] -= 1
 
+    return True
         
 
-
-print(myAnagram("adc", "bdc"))          
+        
+print(myAnagram("adc", "dac"))
