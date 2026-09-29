@@ -1,31 +1,18 @@
-dsa_prep/
-├── arrays/
-│   ├── arrays.py
-│   └── arrays.txt
-├── hashing/
-│   ├── hashing.py
-│   └── hashing.txt
-├── two_pointers/
-│   ├── two_pointers.py
-│   └── two_pointers.txt
-├── sliding_window/
-│   ├── sliding_window.py
-│   └── sliding_window.txt
-├── stacks_queues/
-│   ├── stacks_queues.py
-│   └── stacks_queues.txt
-├── trees_graphs/
-│   ├── trees_graphs.py
-│   └── trees_graphs.txt
-├── dynamic_programming/
-│   ├── dynamic_programming.py
-│   └── dynamic_programming.txt
-├── recursion_backtracking/
-│   ├── recursion_backtracking.py
-│   └── recursion_backtracking.txt
-└── README.md   ← index linking to each folder + your Excel tracker
+# LeetCode practice
 
+Current files:
 
+- [Arrays](Arrays/arrays.py): scans, sorting, duplicates, anagrams, and prefix/suffix products.
+- [Hashing](Hashing/hashing.py): sets, dictionaries, frequency counting, and hash map design.
+- [Array notes](Arrays/arrays.txt) and [hashing notes](Hashing/hashing.txt).
+- [Additional examples](Notes.py), [scratch practice](test.py), and [summary table](Gennotes.txt).
+- [Regression checks](tests/test_examples.py).
+
+Run all checks with `python3 -m unittest discover -s tests -v`.
+Repeated definitions are independent practice variants; the checks capture each
+one before a later definition replaces it. Character-count grouping assumes a-z.
+Min/max helpers in arrays.py reject empty lists; Notes.py minimum helpers return
+None. Window sizes must be valid; Two Sum returns [] when no pair exists.
 
 === GOLDEN NUGGETS: PATTERN RECOGNITION CHEAT SHEET ===
 Purpose: when you see a problem, match its cues to a pattern FAST, before you start coding.
@@ -55,7 +42,8 @@ INTUITION: instead of checking every pair (O(n^2)), move two pointers toward eac
            (or same direction) using the sorted order to eliminate possibilities
 GO-TO: left = 0, right = len(arr)-1; move based on comparison to target
 EXAMPLES: Two Sum II (sorted), Valid Palindrome, 3Sum, Container With Most Water
-COMPLEXITY: O(n) or O(n log n) if sorting first needed
+COMPLEXITY: O(n) for a single two-pointer scan; sorting adds O(n log n).
+            3Sum is O(n²); 4Sum is O(n³) with outer loops.
 WATCH FOR: 3Sum/4Sum = fix one/two pointers, two-pointer the rest; always skip duplicates
 
 ---------------------------------------------------------------------
@@ -70,7 +58,9 @@ EXAMPLES: Longest Substring Without Repeating Characters, Minimum Window Substri
           Longest Repeating Character Replacement, Sliding Window Maximum (deque)
 COMPLEXITY: O(n) — each pointer moves forward only, total n+n moves
 WATCH FOR: "fixed size k" windows are simpler (just slide, no need to shrink dynamically);
-           variable-size windows need a while-loop to shrink when condition breaks
+           variable-size windows often shrink in a while-loop when the condition breaks.
+           Sum-based windows need suitable constraints; negative numbers can
+           invalidate greedy shrinking, so consider prefix sums instead.
 
 ---------------------------------------------------------------------
 4. STACK
@@ -96,7 +86,8 @@ INTUITION: repeatedly cut the search space in half using a condition that's
 GO-TO: left, right = 0, len(arr)-1; while left <= right: mid = (left+right)//2
 EXAMPLES: Binary Search, Search in Rotated Sorted Array, Find Minimum in Rotated Array,
           Koko Eating Bananas (binary search on the ANSWER, not the array)
-COMPLEXITY: O(log n)
+COMPLEXITY: O(log n) for array search; answer-space search costs
+            O(check_cost * log(search_range)).
 WATCH FOR: "binary search on the answer" — if a problem asks to minimize/maximize a value
            and you can check "is X feasible?" in O(n), binary search the value itself
 
@@ -167,7 +158,8 @@ INTUITION: try a choice, recurse, undo the choice (backtrack) if it doesn't pan 
 GO-TO: recursive function with a "path so far" + choices remaining; append to path,
        recurse, then pop from path (the undo step is what makes it backtracking)
 EXAMPLES: Subsets, Permutations, Combination Sum, Word Search, N-Queens
-COMPLEXITY: often exponential (O(2^n) or O(n!)) — that's expected and fine for these problems,
+COMPLEXITY: often exponential (O(n * 2^n) for materialized subsets,
+           O(n * n!) for materialized permutations) — that's expected and fine for these problems,
            the skill being tested is correct pruning, not beating exponential time
 WATCH FOR: always explicitly undo state (pop/remove) after the recursive call returns —
            forgetting this is the #1 backtracking bug
@@ -186,7 +178,8 @@ EXAMPLES: Number of Islands (DFS/BFS on grid), Clone Graph, Course Schedule (cyc
           detection = topological sort), Pacific Atlantic Water Flow
 COMPLEXITY: O(V + E) for BFS/DFS
 WATCH FOR: "shortest path" on UNWEIGHTED graph -> BFS (not DFS); DFS does not
-           guarantee shortest path. Weighted shortest path needs Dijkstra (see below)
+           guarantee shortest path. For weighted paths, use Dijkstra with nonnegative weights or an
+           appropriate alternative such as Bellman-Ford (see below)
 
 ---------------------------------------------------------------------
 12. ADVANCED GRAPHS
@@ -216,7 +209,8 @@ GO-TO: define dp[i] = answer using only the first i elements; find the recurrenc
        or top-down with recursion + a memo dict
 EXAMPLES: Climbing Stairs, House Robber, Coin Change, Longest Increasing Subsequence,
           Word Break
-COMPLEXITY: usually O(n) or O(n*k) depending on the recurrence
+COMPLEXITY: depends on the recurrence; e.g. O(n) for House Robber,
+            O(amount * number_of_coins) for Coin Change, O(n²) for basic LIS DP
 WATCH FOR: always write the recurrence relation in plain English BEFORE coding —
            "dp[i] = min(dp[i-1], dp[i-2]) + cost[i]" style. If you can't state it,
            you're not ready to code it yet.
@@ -226,8 +220,9 @@ WATCH FOR: always write the recurrence relation in plain English BEFORE coding �
 ---------------------------------------------------------------------
 CUES: pairs of [start, end], "merge overlapping", "meeting rooms",
       "insert a new interval", scheduling
-INTUITION: sort by start time first — almost always. Once sorted, overlaps only
-           need to be checked against the most recently processed interval
+INTUITION: merging intervals typically sorts by start time; compare each
+           interval with the last merged interval. For maximum non-overlapping
+           intervals, a greedy solution sorts by end time instead
 GO-TO: sort intervals by start; iterate, comparing current.start to prev.end
 EXAMPLES: Merge Intervals, Insert Interval, Non-overlapping Intervals,
           Meeting Rooms II (often needs a heap to track end times)
