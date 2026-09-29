@@ -25,8 +25,8 @@ Notice how O(log n) grows very slowly, while O(n²) explodes as n gets larger.
 | O(n)       | Linear       | ⭐⭐⭐⭐  | Finding a maximum           |
 | O(n log n) | Linearithmic | ⭐⭐⭐⭐  | Merge Sort                  |
 | O(n²)      | Quadratic    | ⭐⭐    | Nested loops                |
-| O(2ⁿ)      | Exponential  | ❌     | Naive recursive subsets     |
-| O(n!)      | Factorial    | 🚨    | Generating all permutations |
+| O(2ⁿ)      | Exponential  | ❌     | Subset decision tree (excluding output copies)     |
+| O(n!)      | Factorial    | 🚨    | Permutation search leaves (excluding output copies) |
 
 
 '''
@@ -91,7 +91,7 @@ Week-by-week
 Week 1 — Arrays, Strings, Two Pointers, Sliding Window
 
 Days 1–2: Two pointers (reverse array, valid palindrome, container with most water)
-Days 3–4: Sliding window (max subarray sum, longest substring without repeats)
+Days 3–4: Sliding window (maximum sum of a fixed-size subarray, longest substring without repeats)
 Days 5–6: Prefix sums (subarray sum equals K, running sum)
 ~12–15 problems total
 
@@ -182,7 +182,7 @@ Built-ins (min(), set(), Counter) are fine to use in interviews after you've sho
 Complexity cheat notes:
 
 Set/dict operations (in, add, lookup) are O(1) average, O(n) worst case (hash collisions) — mention average case unless asked.
-Sorting is O(n log n) — the moment you sort, that becomes your floor even if the rest of the algorithm is O(n).
+Comparison sorting is O(n log n) in the worst case; Python sorting can be O(n) on already ordered input.
 "O(1) space" claims should ignore input/output storage but must count any extra structure you allocate (a set(), a new list, etc.).
 
 
@@ -190,7 +190,7 @@ Common pitfalls:
 
 Forgetting the empty-array edge case (if not arr: return None).
 Using min(arr) inside a loop (recomputes every time — O(n²) instead of O(n)). Track the running min instead.
-Confusing "has duplicates" (any) with "find the duplicate" (which one) with "find all duplicates" (all of them) — these need different tools (#7 vs #10 vs #8).
+Confusing "has duplicates" (any) with "find the duplicate" (which one) with "find all duplicates" (all of them) — these need different return values and sometimes different tools.
 With Floyd's algorithm, forgetting it only applies to the specific "n+1 values in [1,n]" setup — it is not a general duplicate-finder.
 
 
@@ -209,13 +209,13 @@ defaultdict — dict that auto-initializes missing keys (group anagrams, adjacen
 Pattern cues:
 - "find smallest/largest" → track running min/max, don't call min() in a loop
 - "has duplicate" + space ok → set
-- "has duplicate" + O(1) space required → sort, or Floyd's cycle (special case)
+- "has duplicate" + O(1) space required → use a constant-space sort, or Floyd's cycle under its specific constraints; Python sorting may use O(n) workspace
 
 Complexity:
 - set lookup: O(1) avg
-- sort-based dup check: O(n log n) time, O(1) extra space
+- Python sort-based duplicate check: O(n log n) time, O(n) worst-case extra space
 
 Pitfalls:
 - min(arr) inside a loop = O(n²), recomputes every time
 - empty array edge case
-- Floyd's cycle only works for n+1 values in range [1,n]
+- Floyd's cycle here requires n+1 values in [1,n] with exactly one distinct duplicated value
