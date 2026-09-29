@@ -17,14 +17,14 @@ Python dicts resize and rehash automatically as they grow — you don't manage t
 
 Collision handling (know this exists, even if you don't implement it often):
 
-Separate chaining — each bucket holds a list/linked-list of entries (what example #10 does above)
+Separate chaining — each bucket holds a list/linked-list of entries (what the Design HashMap section in hashing.py does above)
 Open addressing — on collision, probe for the next open slot (linear probing, quadratic probing, double hashing)
 Python's dict uses open addressing internally, but separate chaining is what's usually expected when asked to "implement a hash map" in interviews — it's simpler to explain and code under pressure.
 
 Common pitfalls:
 
-Using a list where a set/dict would be O(1) — checking x in some_list is O(n); checking x in some_set is O(1). This is the single most common "why is my solution too slow" bug.
-Forgetting mutable types (lists) can't be dict keys or set members — only hashable (immutable) types: strings, numbers, tuples of hashables.
+Using a list where a set/dict would be O(1) — checking x in some_list is O(n); checking x in some_set is O(1) on average. This is the single most common "why is my solution too slow" bug.
+Forgetting mutable types (lists) can't be dict keys or set members — keys and members must be hashable, with stable hashes and equality. Strings, numbers, and tuples of hashable values qualify; immutability alone is not the definition of hashability.
 Off-by-one on prefix sum problems — always double check the "empty prefix" seed case ({0: 1} in subarray sum).
 Assuming dict insertion order doesn't matter — as of Python 3.7+, dicts preserve insertion order, and some problems rely on that.
 
@@ -34,9 +34,9 @@ INTERVIEW QUESTIONS THAT GET ASKED
 Conceptual (expect these as follow-ups, not just "solve the problem"):
 
 "What's the time complexity of dict/set operations, and why?" — answer: O(1) average via hashing, O(n) worst case via collisions.
-"How would you implement a hash map yourself?" — see example #10; know separate chaining at minimum.
+"How would you implement a hash map yourself?" — see the Design HashMap section in hashing.py; know separate chaining at minimum.
 "What makes a good hash function?" — deterministic, uniform distribution across buckets, fast to compute, minimizes collisions.
-"What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, typically resized when load factor exceeds ~0.7.
+"What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, the resize threshold depends on the implementation; the fixed-bucket example here does not resize.
 "Why can't you use a list as a dictionary key?" — mutability breaks hashing (the hash would change if the list changed, but hash tables assume a key's hash is stable).
 
 Coding (in rough order of frequency in interviews):
@@ -64,7 +64,8 @@ dict/set insert	O(1)	O(n)
 dict/set lookup	O(1)	O(n)
 dict/set delete	O(1)	O(n)
 Building a dict/set from n items	O(n)	O(n²)
-set union / intersection	O(min(n, m)) roughly	O(n·m)
+set union	O(n + m)	O((n + m)²) under pathological collisions
+set intersection	O(min(n, m))	O(n·m)
 
 The "worst case O(n)" only shows up with pathological hash collisions — in practice and in almost all interview contexts, say O(1) and mention worst case only if asked to be precise.
 
@@ -80,11 +81,12 @@ Cover the solution, read only the "HOW IT'S ASKED" section, and try to:
 
 ####
 DICT vs LIST FOR COUNTING
-- list: ordered values only, no key-to-value pairing → wrong tool 
-  for "count how many times X appears"
+- list: can count a fixed alphabet using character indices (e.g. 26 slots
+  for a-z); repeated list.count calls scan the list each time
 - dict: key-value pairs → perfect for "map each character to its count"
 - collections.Counter: a dict subclass built specifically for counting; 
-  Counter(string) instantly gives {char: count} for every char.
+  Counter(string) scans the string in O(n) average time and gives {char: count} for every char.
 - Counter also supports subtraction: Counter(s) - Counter(t) tells you 
-  what's left over after cancelling matching counts — empty result 
-  means the counts fully matched.
+  positive counts left after subtraction; zero and negative counts are discarded.
+  An empty result does NOT prove equality: Counter('a') - Counter('aa') is empty.
+  Use Counter(s) == Counter(t) to check matching frequencies.
