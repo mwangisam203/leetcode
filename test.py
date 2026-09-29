@@ -2,17 +2,15 @@ from collections import defaultdict
 
 
 def groupAnagram(strs):
+    """Group anagrams made of lowercase English letters (a-z)."""
 
     res = defaultdict(list)
 
-    for str in strs:
+    for word in strs:
         count = [0] * 26 # a...z
 
-        for c in str:
+        for c in word:
             count[ord(c) - ord("a")] += 1
-        res[tuple(count)].append(str)
+        res[tuple(count)].append(word)
 
-    return res.values
-
-
-
+    return list(res.values())
