@@ -14,3 +14,14 @@ def groupAnagram(strs):
         res[tuple(count)].append(word)
 
     return list(res.values())
+
+
+
+def top_k_frequent(nums, k):
+
+    counts = {}
+
+    for num in nums:
+        counts[num] = counts.get(num, 0) + 1
+
+    
