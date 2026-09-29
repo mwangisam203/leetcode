@@ -7,7 +7,7 @@ def find_min_manual(arr):
     if not arr:
         return None
     smallest = arr[0]
-    for num in arr[1:]:
+    for num in arr:  # Avoid allocating a slice.
         if num < smallest:
             smallest = num
     return smallest
@@ -24,7 +24,7 @@ def find_min_with_index(arr):
 
 
 def find_min_by_key(items, key):
-    return min(items, key=key)
+    return min(items, key=key, default=None)
 
 # example: list of (name, score) tuples, min by score
 people = [("A", 85), ("B", 72), ("C", 90)]
@@ -35,6 +35,9 @@ from collections import deque
 
 
 def sliding_window_min(arr, k):
+    """Return window minima; require 1 <= k <= len(arr)."""
+    if not 1 <= k <= len(arr):
+        raise ValueError("k must be between 1 and the array length")
     result = []
     dq = deque()  # stores indices, increasing value order
     for i, num in enumerate(arr):
@@ -53,6 +56,9 @@ def sliding_window_min(arr, k):
 from collections import deque
 
 def sliding_window_min(arr, k):
+    """Return window minima; require 1 <= k <= len(arr)."""
+    if not 1 <= k <= len(arr):
+        raise ValueError("k must be between 1 and the array length")
     result = []
     dq = deque()  # stores indices, increasing value order
     for i, num in enumerate(arr):
@@ -84,14 +90,15 @@ def has_duplicates_sorted(arr):
     return False
 
 '''
-Time: O(n log n) · Space: O(1) extra (ignoring sort's internal space, or O(n) if sorted() copies)
-Use when memory is constrained and you can afford to sort (or the array is already sorted).
+Time: O(n log n) · Space: O(n): sorted() creates a copy and sorting uses workspace.
+For already sorted input, scan it directly in O(n) time and O(1) extra space.
 '''
 
 
 
 def find_duplicate_floyd(arr):
-    # arr has n+1 integers, each in [1, n], exactly one duplicate
+    # Preconditions: n+1 integers in [1, n], with exactly one distinct
+    # duplicated value (which may appear more than twice).
     slow = fast = arr[0]
     while True:
         slow = arr[slow]
