@@ -16,6 +16,25 @@ def groupAnagram(strs):
     return list(res.values())
 
 
+def top_k(nums, k):
+
+    count = {}
+
+    for candidate in nums:
+        frequency = 0
+
+        for num in nums:
+            if num == candidate:
+                frequency += 1
+            count[candidate] = frequency
+            
+        
+
+    ranked = sorted(count, key=count.get, reverse=True)
+
+    return ranked [:k]
+
+
 
 def top_k_frequent(nums, k):
 
@@ -24,4 +43,16 @@ def top_k_frequent(nums, k):
     for num in nums:
         counts[num] = counts.get(num, 0) + 1
 
-    
+    buckets = [[] for _ in range(len(nums) + 1)]
+
+    for number, frequency in counts.items():
+        buckets[frequency].append(number)
+
+    result =[]
+
+    for frequency in range(len(nums), 0, -1):
+        for number in buckets[frequency]:
+            result.append(number)
+
+            if result == k:
+                return result
