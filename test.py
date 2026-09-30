@@ -79,6 +79,22 @@ def decode(encoded):
     i = 0
 
     while i < len(encoded):
-        
+        j = i
+
+        while encoded[j] != "#":
+            j += 1
+
+    length = int(encoded[i:j])
+
+    start = i + j
+    end = start + length
+
+    res.append(encoded[start:end])
+
+    end = i
+
+
+    return res
+
 
 
