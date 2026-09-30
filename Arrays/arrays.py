@@ -125,6 +125,8 @@ class Solution:
                 return True
         return False
 
+
+
 def containDuplicates(nums):
     nums.sort()
 
