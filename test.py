@@ -56,3 +56,29 @@ def top_k_frequent(nums, k):
 
             if result == k:
                 return result
+
+
+
+
+
+def encoded(strs):
+
+    parts = []
+
+    for word in strs:
+        parts.append(str(len(word)))
+        parts.append("#")
+        parts.append(word)
+
+    return "".join(parts)
+
+def decode(encoded):
+
+    res = []
+
+    i = 0
+
+    while i < len(encoded):
+        
+
+
