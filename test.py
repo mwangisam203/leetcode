@@ -1,68 +1,33 @@
-from collections import defaultdict
-
-
-def groupAnagram(strs):
-    """Group anagrams made of lowercase English letters (a-z)."""
-
-    res = defaultdict(list)
-
-    for word in strs:
-        count = [0] * 26 # a...z
-
-        for c in word:
-            count[ord(c) - ord("a")] += 1
-        res[tuple(count)].append(word)
-
-    return list(res.values())
-
-
-def top_k(nums, k):
+def top_k_frequent(nums, k):
 
     count = {}
 
-    for candidate in nums:
-        frequency = 0
-
-        for num in nums:
-            if num == candidate:
-                frequency += 1
-            count[candidate] = frequency
-            
-        
-
-    ranked = sorted(count, key=count.get, reverse=True)
-
-    return ranked [:k]
-
-
-
-def top_k_frequent(nums, k):
-
-    counts = {}
-
     for num in nums:
-        counts[num] = counts.get(num, 0) + 1
+        count[num] = count.get(num, 0) + 1
 
     buckets = [[] for _ in range(len(nums) + 1)]
 
-    for number, frequency in counts.items():
+    for number, frequency in count.items():
         buckets[frequency].append(number)
 
-    result =[]
+    res = []
 
     for frequency in range(len(nums), 0, -1):
         for number in buckets[frequency]:
-            result.append(number)
+            res.append(number)
 
-            if result == k:
-                return result
-
-
+            if len(res) == k:
+                return res
 
 
+print(top_k_frequent([1,2,2,3,3,3], k=2))
 
+
+'''Design an algorithm to encode a list of strings to a string.
+ The encoded string is then sent over the network and is decoded back to the original list of strings.
+
+'''
 def encoded(strs):
-
     parts = []
 
     for word in strs:
@@ -70,11 +35,12 @@ def encoded(strs):
         parts.append("#")
         parts.append(word)
 
-    return "".join(parts)
+    return "".join(word)
+
 
 def decode(encoded):
 
-    res = []
+    results = []
 
     i = 0
 
@@ -84,17 +50,18 @@ def decode(encoded):
         while encoded[j] != "#":
             j += 1
 
-    length = int(encoded[i:j])
+            length = int(encoded[i:j])
+            start = j + 1
+            end = start + length
 
-    start = i + j
-    end = start + length
+            results.append(encoded[start:end])
 
-    res.append(encoded[start:end])
+            end = i
 
-    end = i
+        return results
 
+        
 
-    return res
+    
 
-
-
+            
