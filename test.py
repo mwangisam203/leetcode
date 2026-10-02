@@ -62,3 +62,71 @@ def decode(encoded):
     
 
             
+def toper_k_freq(nums, k):
+
+    counter = {}
+
+    for num in nums:
+        counter[num] = counter.get(num, 0) + 1
+
+    buckets = [[] for _ in range(len(nums) + 1)]
+
+    for number, frequency in counter.items():
+        buckets[frequency].append(number)
+
+    result = []
+
+    for frequency in range(len(nums), 0, -1):
+        for number in buckets[frequency]:
+            result.append(number)
+
+            if len(result) == k:
+                return result
+
+
+print(toper_k_freq([1, 1, 1, 7, 7, 8, 9], k=2))
+
+
+
+def encoded(strs):
+    parts = []
+    for word in strs:
+        parts.append(str(len(strs)))
+        parts.append("#")
+        parts.append(word)
+
+    return "".join(parts)
+
+def decode(encoded):
+    res = []
+    i = 0
+
+    while i < len(encoded):
+        j = i
+
+        while encoded[j] != "#":
+            j += 1
+
+            length = int(len(encoded[i:j]))
+            start = j + 1
+            end = start + length
+
+            res.append(encoded[start: end])
+
+            end = i
+
+        return end
+
+
+
+    def contain_duplicates(nums):
+
+        seen = set()
+
+        for num in nums:
+            if num in seen:
+                return True
+            seen.add(num)
+            
+        return False
+
