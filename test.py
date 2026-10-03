@@ -97,25 +97,7 @@ def encoded(strs):
 
     return "".join(parts)
 
-def decode(encoded):
-    res = []
-    i = 0
 
-    while i < len(encoded):
-        j = i
-
-        while encoded[j] != "#":
-            j += 1
-
-            length = int(len(encoded[i:j]))
-            start = j + 1
-            end = start + length
-
-            res.append(encoded[start: end])
-
-            end = i
-
-        return end
 
 
 
