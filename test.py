@@ -88,14 +88,7 @@ print(toper_k_freq([1, 1, 1, 7, 7, 8, 9], k=2))
 
 
 
-def encoded(strs):
-    parts = []
-    for word in strs:
-        parts.append(str(len(strs)))
-        parts.append("#")
-        parts.append(word)
 
-    return "".join(parts)
 
 
 
