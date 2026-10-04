@@ -96,7 +96,14 @@ def toperk(nums, k):
 
     buckets = [[] for _ in range(len(nums) + 1)]
 
-    
+    for number, frequency in count.items():
+        buckets[frequency].append(number)
+
+    result = []
+
+    for frequency in range(len(nums), 0, -1):
+        for number in buckets[frequency]:
+            
 
 
 
