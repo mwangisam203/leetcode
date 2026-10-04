@@ -88,7 +88,15 @@ print(toper_k_freq([1, 1, 1, 7, 7, 8, 9], k=2))
 
 
 
+def toperk(nums, k):
+    count = {}
 
+    for num in nums:
+        count[num] = count.get(num, 0) + 1
+
+    buckets = [[] for _ in range(len(nums) + 1)]
+
+    
 
 
 
