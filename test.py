@@ -103,7 +103,14 @@ def toperk(nums, k):
 
     for frequency in range(len(nums), 0, -1):
         for number in buckets[frequency]:
-            
+            result.append[number]
+
+            if len(result) == k:
+                
+                return result
+
+    
+
 
 
 
