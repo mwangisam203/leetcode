@@ -24,38 +24,38 @@ print(top_k_frequent([1,2,2,3,3,3], k=2))
 
 
 
-def encoded(strs):
-    parts = []
+# def encoded(strs):
+#     parts = []
 
-    for word in strs:
-        parts.append(str(len(word)))
-        parts.append("#")
-        parts.append(word)
+#     for word in strs:
+#         parts.append(str(len(word)))
+#         parts.append("#")
+#         parts.append(word)
 
-    return "".join(word)
+#     return "".join(word)
 
 
-def decode(encoded):
+# def decode(encoded):
 
-    results = []
+#     results = []
 
-    i = 0
+#     i = 0
 
-    while i < len(encoded):
-        j = i
+#     while i < len(encoded):
+#         j = i
 
-        while encoded[j] != "#":
-            j += 1
+#         while encoded[j] != "#":
+#             j += 1
 
-            length = int(encoded[i:j])
-            start = j + 1
-            end = start + length
+#             length = int(encoded[i:j])
+#             start = j + 1
+#             end = start + length
 
-            results.append(encoded[start:end])
+#             results.append(encoded[start:end])
 
-            end = i
+#             end = i
 
-        return results
+#         return results
 
         
 
@@ -103,13 +103,13 @@ def toperk(nums, k):
 
     for frequency in range(len(nums), 0, -1):
         for number in buckets[frequency]:
-            result.append[number]
+            result.append(number)
 
             if len(result) == k:
                 
                 return result
 
-
+print(toperk([1, 1, 1, 7, 7, 8, 9], k=2))
 
     
 
