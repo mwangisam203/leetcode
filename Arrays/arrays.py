@@ -311,3 +311,26 @@ def product_except_self(nums):
     return result
 
 print(product_except_self([1, 2, 3, 4]))  # [24, 12, 8, 6]
+
+# ============================================================================
+# 5. Two Sum II — two pointers
+# ============================================================================
+
+def two_sum_sorted(nums, target):
+    """Return zero-based indices in sorted nums, or []; O(n) time, O(1) space.
+
+    Preconditions: nums is sorted in ascending order. Unlike LeetCode 167,
+    indices are zero-based, matching the Two Sum examples in hashing.py.
+    """
+    left, right = 0, len(nums) - 1
+    while left < right:
+        total = nums[left] + nums[right]
+        if total == target:
+            return [left, right]
+        if total < target:
+            left += 1
+        else:
+            right -= 1
+    return []
+
+# Example: two_sum_sorted([2, 7, 11, 15], 9) == [0, 1]
