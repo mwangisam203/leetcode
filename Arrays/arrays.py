@@ -357,3 +357,20 @@ def range_sum(prefix, start, stop):
     return prefix[stop] - prefix[start]
 
 # Example: range_sum(prefix_sums([2, -1, 4]), 1, 3) == 3
+
+# ============================================================================
+# 7. Move Zeroes — stable in-place compaction
+# ============================================================================
+
+def move_zeroes(nums):
+    """Move zeros to the end in place, preserving nonzero order.
+
+    O(n) time, O(1) extra space. Mutates nums and returns None.
+    """
+    write = 0
+    for read in range(len(nums)):
+        if nums[read] != 0:
+            nums[write], nums[read] = nums[read], nums[write]
+            write += 1
+
+# Example: [0, 1, 0, 3, 12] becomes [1, 3, 12, 0, 0].

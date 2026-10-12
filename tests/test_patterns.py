@@ -33,3 +33,10 @@ class PatternTests(unittest.TestCase):
         for start, stop in [(-1, 0), (1, 0), (0, 2)]:
             with self.assertRaises(ValueError):
                 query(build([1]), start, stop)
+
+    def test_move_zeroes(self):
+        fn = self.fn('move_zeroes')
+        for values in SMALL_ARRAYS:
+            actual = values.copy()
+            self.assertIsNone(fn(actual))
+            self.assertEqual(actual, [x for x in values if x != 0] + [0] * values.count(0))
