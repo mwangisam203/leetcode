@@ -1,6 +1,8 @@
 """Array/list practice, grouped by problem and implementation technique.
 
-Sections: minimum/maximum; contains duplicate; valid anagram; product except self.
+Sections: minimum/maximum; contains duplicate; valid anagram; product except self;
+sorted two sum; prefix/range sums; move zeroes; rotation; merge; maximum subarray;
+stock profit. See README.md for the practice progression and input contracts.
 Set/dictionary versions of duplicates and anagrams live in Hashing/hashing.py.
 Repeated function and Solution names are standalone practice variants; running
 this file executes their nearby examples, and later definitions replace earlier ones.

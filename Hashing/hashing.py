@@ -2,7 +2,9 @@
 
 Sections: contains duplicate; two sum; anagrams (valid, then grouped);
 first unique character; top K frequent; subarray sum; longest consecutive;
-intersection; hash map design.
+intersection; hash map design; isomorphic strings; word pattern. Related variants
+include nearby duplicates, Unicode anagrams, frequency sorting, zero-sum spans,
+and multiset intersection. See README.md for comparisons and complexity notes.
 List/sorting alternatives live in Arrays/arrays.py. Hash table operations have
 O(1) average cost. Repeated names are standalone practice variants; later
 definitions replace earlier ones, so keep example calls beside their definition.

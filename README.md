@@ -2,17 +2,74 @@
 
 Current files:
 
-- [Arrays](Arrays/arrays.py): scans, sorting, duplicates, anagrams, and prefix/suffix products.
-- [Hashing](Hashing/hashing.py): sets, dictionaries, frequency counting, and hash map design.
+- [Arrays](Arrays/arrays.py): scans, sorting, two pointers, prefix sums, in-place operations, and running optima.
+- [Hashing](Hashing/hashing.py): sets, frequency counting, prefix lookups, string mappings, and hash map design.
 - [Array notes](Arrays/arrays.txt) and [hashing notes](Hashing/hashing.txt).
 - [Additional examples](Notes.py), [scratch practice](test.py), and [summary table](Gennotes.txt).
-- [Regression checks](tests/test_examples.py).
+- [Original example checks](tests/test_examples.py) and [additional pattern checks](tests/test_patterns.py).
 
 Run all checks with `python3 -m unittest discover -s tests -v`.
 Repeated definitions are independent practice variants; the checks capture each
-one before a later definition replaces it. Character-count grouping assumes a-z.
+one before a later definition replaces it. The 26-slot character-count grouping
+variants assume a-z; group_anagrams_unicode supports arbitrary code points.
 Min/max helpers in arrays.py reject empty lists; Notes.py minimum helpers return
 None. Window sizes must be valid; Two Sum returns [] when no pair exists.
+
+## Practice progression
+
+Try each example before reading its implementation. State the input constraints,
+write a small reference solution, then explain why the optimized version works.
+The new functions have unique names so you can call them independently.
+
+| Array exercise | Function | Key idea | Time | Extra space beyond output |
+| --- | --- | --- | --- | --- |
+| Two Sum on sorted input | `two_sum_sorted` | Move the pointer that can improve the sum | O(n) | O(1) |
+| Repeated range sums | `prefix_sums`, `range_sum` | Subtract two prefixes | O(n) build, O(1) query | O(1) beyond the O(n) prefix result |
+| Move Zeroes | `move_zeroes` | Compact nonzero values in order | O(n) | O(1) |
+| Rotate Array | `rotate_right` | Reverse the whole list, then both parts | O(n) | O(1) |
+| Merge Sorted Arrays | `merge_sorted` | Consume the smaller remaining value | O(n + m) | O(1) |
+| Maximum Subarray | `max_subarray_sum` | Extend the current sum or restart | O(n) | O(1) |
+| Single stock trade | `max_stock_profit` | Keep the cheapest earlier price | O(n) | O(1) |
+
+`move_zeroes` and `rotate_right` mutate their list and return None; the other new
+array functions preserve their inputs. Two Sum indices are **zero-based** here,
+including the sorted variant (LeetCode 167 instead asks for one-based indices).
+`range_sum` uses a half-open interval `[start, stop)` and requires a prefix array
+created by `prefix_sums`. Negative rotation counts rotate left. Maximum Subarray
+requires nonempty input; stock profit returns zero for empty or falling prices.
+
+| Hashing exercise | Function | Key idea | Average time | Space including output |
+| --- | --- | --- | --- | --- |
+| Contains Duplicate II | `contains_nearby_duplicate` | Store the latest index per value | O(n) | O(n) |
+| Intersection II | `intersection_multiset` | Consume shared frequency counts | O(n + m) | O(n) |
+| Isomorphic Strings | `is_isomorphic` | Enforce mappings in both directions | O(n) | O(u) |
+| Word Pattern | `word_pattern` | Map characters to whitespace-separated words | O(p + t) | O(p + t) |
+| Longest zero-sum interval | `longest_zero_sum_subarray` | Preserve the earliest index of each prefix | O(n) | O(n) |
+| Unicode Group Anagrams | `group_anagrams_unicode` | Use unordered character-count signatures | O(c + w) | O(c + w) |
+| Top K by sorting | `top_k_frequent_sorted` | Sort distinct values by frequency | O(n + u log u) | O(u) |
+
+Here n and m are input lengths, u is the number of distinct values or characters,
+p and t are pattern/text lengths, and c and w are total characters/word count.
+Hash-based bounds assume average constant-time table operations.
+
+Compare these related examples in hashing.py:
+
+- Duplicate detection versus nearby duplicates: the latter stores indices, not just membership.
+- Set intersection versus multiset intersection: the latter keeps repeated matches.
+- Subarray sum count versus longest zero-sum interval: store prefix frequencies for counting,
+  but earliest indices for maximum length. Both support negative numbers.
+- Sorted and 26-slot anagram keys versus Unicode signatures: Unicode grouping is
+  case-sensitive and does not normalize visually equivalent code points.
+- Bucket-based Top K versus sorting: buckets take O(n) time and space; sorting uses
+  O(u) space and costs O(u log u) after counting. Both accept k=0 and reject k>u.
+
+The test suite runs the original variants and these additions. It checks small
+arrays exhaustively for many patterns, plus mutation contracts, invalid ranges,
+Unicode strings, frequency ties, and hash-map collisions. Run it with:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
 
 === GOLDEN NUGGETS: PATTERN RECOGNITION CHEAT SHEET ===
 Purpose: when you see a problem, match its cues to a pattern FAST, before you start coding.
