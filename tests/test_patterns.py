@@ -50,3 +50,12 @@ class PatternTests(unittest.TestCase):
                 offset = k % len(values) if values else 0
                 expected = values[-offset:] + values[:-offset] if offset else values
                 self.assertEqual(actual, expected)
+
+    def test_merge_sorted(self):
+        fn = self.fn('merge_sorted')
+        for a in SMALL_ARRAYS[:40]:
+            for b in SMALL_ARRAYS[:40]:
+                left, right = sorted(a), sorted(b)
+                self.assertEqual(fn(left, right), sorted(a + b))
+                self.assertEqual(left, sorted(a))
+                self.assertEqual(right, sorted(b))

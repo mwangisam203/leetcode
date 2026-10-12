@@ -401,3 +401,31 @@ def rotate_right(nums, k):
     reverse(k, len(nums) - 1)
 
 # Example: rotate_right([1, 2, 3, 4], 1) changes the list to [4, 1, 2, 3].
+
+# ============================================================================
+# 9. Merge Sorted Arrays — a linear merge
+# ============================================================================
+
+def merge_sorted(left, right):
+    """Merge ascending inputs into a new list, retaining duplicates.
+
+    O(n + m) time and output space, O(1) auxiliary space. Inputs are unchanged.
+    """
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    while i < len(left):
+        result.append(left[i])
+        i += 1
+    while j < len(right):
+        result.append(right[j])
+        j += 1
+    return result
+
+# Example: merge_sorted([1, 3], [2, 3]) == [1, 2, 3, 3]
