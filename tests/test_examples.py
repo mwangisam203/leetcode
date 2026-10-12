@@ -46,7 +46,7 @@ class ExampleTests(unittest.TestCase):
         return matches
 
     def test_duplicate_checks(self):
-        for label, fn in self.variants(lambda name: 'dup' in name and name not in ('find_all_duplicates', 'find_duplicate_floyd')):
+        for label, fn in self.variants(lambda name: 'dup' in name and name not in ('find_all_duplicates', 'find_duplicate_floyd', 'contains_nearby_duplicate')):
             for values in SMALL_ARRAYS:
                 with self.subTest(variant=label, values=values):
                     self.assertIs(fn(values.copy()), len(set(values)) < len(values))

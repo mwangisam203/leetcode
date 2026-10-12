@@ -177,6 +177,26 @@ def contdupli(nums):
 
 
 # ============================================================================
+# Contains Duplicate II — last-seen indices
+# ============================================================================
+
+def contains_nearby_duplicate(nums, k):
+    """Whether equal values have distinct indices at most k apart.
+
+    O(n) average time and O(n) space. Nonpositive k cannot match a pair.
+    """
+    if k <= 0:
+        return False
+    last_seen = {}
+    for i, num in enumerate(nums):
+        if num in last_seen and i - last_seen[num] <= k:
+            return True
+        last_seen[num] = i
+    return False
+
+# Example: contains_nearby_duplicate([1, 2, 3, 1], 3) is True.
+
+# ============================================================================
 # 2. Two Sum — complement lookup
 # ============================================================================
 # All variants store value -> index: O(n) average time, O(n) space.

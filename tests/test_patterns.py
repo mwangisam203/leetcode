@@ -74,3 +74,10 @@ class PatternTests(unittest.TestCase):
             prices = [x + 2 for x in values]
             expected = max([0] + [prices[j] - prices[i] for i in range(len(prices)) for j in range(i + 1, len(prices))])
             self.assertEqual(fn(prices), expected)
+
+    def test_nearby_duplicates(self):
+        fn = self.fn('contains_nearby_duplicate')
+        for values in SMALL_ARRAYS:
+            for k in range(-1, 6):
+                expected = any(values[i] == values[j] and j - i <= k for i in range(len(values)) for j in range(i + 1, len(values)))
+                self.assertIs(fn(values, k), expected)
