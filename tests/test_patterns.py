@@ -21,3 +21,15 @@ class PatternTests(unittest.TestCase):
                     self.assertIn(tuple(result), pairs)
                 else:
                     self.assertEqual(result, [])
+
+    def test_prefix_ranges(self):
+        build, query = self.fn('prefix_sums'), self.fn('range_sum')
+        for values in SMALL_ARRAYS:
+            prefix = build(values)
+            self.assertEqual(len(prefix), len(values) + 1)
+            for start in range(len(values) + 1):
+                for stop in range(start, len(values) + 1):
+                    self.assertEqual(query(prefix, start, stop), sum(values[start:stop]))
+        for start, stop in [(-1, 0), (1, 0), (0, 2)]:
+            with self.assertRaises(ValueError):
+                query(build([1]), start, stop)

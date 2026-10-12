@@ -334,3 +334,26 @@ def two_sum_sorted(nums, target):
     return []
 
 # Example: two_sum_sorted([2, 7, 11, 15], 9) == [0, 1]
+
+# ============================================================================
+# 6. Prefix sums — repeated range queries
+# ============================================================================
+
+def prefix_sums(nums):
+    """Build an initial-zero prefix array; O(n) time and space."""
+    prefix = [0]
+    for num in nums:
+        prefix.append(prefix[-1] + num)
+    return prefix
+
+
+def range_sum(prefix, start, stop):
+    """Sum [start, stop) in O(1), using a prefix_sums result.
+
+    Empty ranges return zero. Invalid boundaries raise ValueError.
+    """
+    if not 0 <= start <= stop < len(prefix):
+        raise ValueError('range must satisfy 0 <= start <= stop <= array length')
+    return prefix[stop] - prefix[start]
+
+# Example: range_sum(prefix_sums([2, -1, 4]), 1, 3) == 3
