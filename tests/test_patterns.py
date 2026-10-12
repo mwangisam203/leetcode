@@ -67,3 +67,10 @@ class PatternTests(unittest.TestCase):
         for values in SMALL_ARRAYS[1:]:
             expected = max(sum(values[i:j]) for i in range(len(values)) for j in range(i + 1, len(values) + 1))
             self.assertEqual(fn(values), expected)
+
+    def test_max_stock_profit(self):
+        fn = self.fn('max_stock_profit')
+        for values in SMALL_ARRAYS:
+            prices = [x + 2 for x in values]
+            expected = max([0] + [prices[j] - prices[i] for i in range(len(prices)) for j in range(i + 1, len(prices))])
+            self.assertEqual(fn(prices), expected)

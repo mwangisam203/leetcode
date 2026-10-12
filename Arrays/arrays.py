@@ -448,3 +448,23 @@ def max_subarray_sum(nums):
     return best
 
 # Example: max_subarray_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6
+
+# ============================================================================
+# 11. Best Time to Buy and Sell Stock — running minimum
+# ============================================================================
+
+def max_stock_profit(prices):
+    """Best profit from at most one buy followed by one sell.
+
+    O(n) time, O(1) space. Return zero if no profitable trade exists.
+    """
+    if not prices:
+        return 0
+    cheapest = prices[0]
+    best = 0
+    for price in prices:
+        best = max(best, price - cheapest)
+        cheapest = min(cheapest, price)
+    return best
+
+# Example: max_stock_profit([7, 1, 5, 3, 6, 4]) == 5
