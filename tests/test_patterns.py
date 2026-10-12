@@ -89,3 +89,11 @@ class PatternTests(unittest.TestCase):
                 a, b = left.copy(), right.copy()
                 self.assertEqual(Counter(fn(a, b)), Counter(left) & Counter(right))
                 self.assertEqual((a, b), (left, right))
+
+    def test_isomorphic_strings(self):
+        fn = self.fn('is_isomorphic')
+        words = ['', 'a', 'aa', 'ab', 'aba', 'abb', 'abc', 'éé', '猫犬']
+        for s in words:
+            for t in words:
+                expected = len(s) == len(t) and all((s[i] == s[j]) == (t[i] == t[j]) for i in range(len(s)) for j in range(len(s)))
+                self.assertIs(fn(s, t), expected)

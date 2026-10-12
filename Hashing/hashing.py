@@ -840,3 +840,26 @@ class MyHashMap:
 # With n entries and b buckets: O(1 + n/b) expected time per operation,
 # O(n) worst case; O(n + b) storage. This teaching implementation does not resize,
 # so constant average time requires keeping the load factor n/b bounded.
+
+# ============================================================================
+# 10. Isomorphic Strings — bijective mappings
+# ============================================================================
+
+def is_isomorphic(s, t):
+    """Check a one-to-one character mapping; O(n) average time, O(u) space.
+
+    u is the number of distinct characters; matching is case-sensitive.
+    """
+    if len(s) != len(t):
+        return False
+    forward, backward = {}, {}
+    for a, b in zip(s, t):
+        if a in forward and forward[a] != b:
+            return False
+        if b in backward and backward[b] != a:
+            return False
+        forward[a] = b
+        backward[b] = a
+    return True
+
+# Example: is_isomorphic('egg', 'add') is True; ('ab', 'aa') is False.
