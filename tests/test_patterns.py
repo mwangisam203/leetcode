@@ -102,3 +102,9 @@ class PatternTests(unittest.TestCase):
         fn = self.fn('word_pattern')
         for pattern, text, expected in [('abba', 'dog cat cat dog', True), ('abba', 'dog cat cat fish', False), ('ab', 'dog dog', False), ('aa', 'dog cat', False), ('', '  ', True), ('a', '', False), ('ab', '  dog\tcat\n', True)]:
             self.assertIs(fn(pattern, text), expected)
+
+    def test_longest_zero_sum(self):
+        fn = self.fn('longest_zero_sum_subarray')
+        for values in SMALL_ARRAYS:
+            expected = max([0] + [j - i for i in range(len(values)) for j in range(i + 1, len(values) + 1) if sum(values[i:j]) == 0])
+            self.assertEqual(fn(values), expected)

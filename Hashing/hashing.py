@@ -713,6 +713,27 @@ def subarray_sum(nums, k):
 
 
 # ============================================================================
+# Zero-Sum Subarrays — earliest prefix index
+# ============================================================================
+
+def longest_zero_sum_subarray(nums):
+    """Length of the longest zero-sum interval; O(n) average time and space.
+
+    Preserve the earliest index for each prefix to maximize the distance.
+    """
+    first_seen = {0: -1}
+    total = longest = 0
+    for i, num in enumerate(nums):
+        total += num
+        if total in first_seen:
+            longest = max(longest, i - first_seen[total])
+        else:
+            first_seen[total] = i
+    return longest
+
+# Example: longest_zero_sum_subarray([1, -1, 3, -3, 2]) == 4
+
+# ============================================================================
 # 7. Longest Consecutive Sequence
 # ============================================================================
 # Hash-set membership finds sequence starts and extends them.
