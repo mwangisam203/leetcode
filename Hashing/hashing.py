@@ -702,6 +702,23 @@ def top_k_frequent(nums, k):
 
 
 # ============================================================================
+# Top K Frequent — sorting alternative
+# ============================================================================
+
+def top_k_frequent_sorted(nums, k):
+    """Sort unique values by frequency; O(n + u log u) average time, O(u) space.
+
+    u is the number of unique values. Ties preserve first occurrence order.
+    Allow 0 <= k <= u, matching the bucket-sort variant above.
+    """
+    counts = Counter(nums)
+    if not 0 <= k <= len(counts):
+        raise ValueError('k must be between 0 and the number of unique values')
+    return sorted(counts, key=counts.get, reverse=True)[:k]
+
+# Example: top_k_frequent_sorted([1, 1, 1, 2, 2, 3], 2) == [1, 2]
+
+# ============================================================================
 # 6. Subarray Sum Equals K
 # ============================================================================
 # Prefix sums plus a dictionary of prefix frequencies.

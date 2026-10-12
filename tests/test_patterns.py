@@ -114,3 +114,17 @@ class PatternTests(unittest.TestCase):
         words = ['éa', 'aé', '猫犬', '犬猫', '', '', 'A', 'a', 'é', 'e\u0301']
         expected = [['éa', 'aé'], ['猫犬', '犬猫'], ['', ''], ['A'], ['a'], ['é'], ['e\u0301']]
         self.assertEqual(sorted(map(sorted, fn(words))), sorted(map(sorted, expected)))
+
+    def test_top_k_sorted(self):
+        fn = self.fn('top_k_frequent_sorted')
+        for values in SMALL_ARRAYS:
+            counts = Counter(values)
+            for k in range(len(counts) + 1):
+                result = fn(values, k)
+                self.assertEqual(len(result), k)
+                self.assertEqual(len(set(result)), k)
+                self.assertEqual(sorted([counts[x] for x in result], reverse=True), sorted(counts.values(), reverse=True)[:k])
+        self.assertEqual(fn([3, 2, 1], 2), [3, 2])
+        for k in (-1, 2):
+            with self.assertRaises(ValueError):
+                fn([1], k)
