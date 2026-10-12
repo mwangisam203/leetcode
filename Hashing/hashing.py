@@ -770,6 +770,25 @@ def intersection(nums1, nums2):
 
 
 # ============================================================================
+# Intersection II — retain shared multiplicities
+# ============================================================================
+
+def intersection_multiset(nums1, nums2):
+    """Keep each shared value the minimum number of times it occurs.
+
+    O(n + m) average time; O(n) counting space plus output. Inputs unchanged.
+    """
+    remaining = Counter(nums1)
+    result = []
+    for num in nums2:
+        if remaining[num] > 0:
+            result.append(num)
+            remaining[num] -= 1
+    return result
+
+# Example: intersection_multiset([1, 2, 2], [2, 2, 3]) == [2, 2]
+
+# ============================================================================
 # 9. Design HashMap
 # ============================================================================
 # Buckets and separate chaining handle hash collisions.

@@ -81,3 +81,11 @@ class PatternTests(unittest.TestCase):
             for k in range(-1, 6):
                 expected = any(values[i] == values[j] and j - i <= k for i in range(len(values)) for j in range(i + 1, len(values)))
                 self.assertIs(fn(values, k), expected)
+
+    def test_multiset_intersection(self):
+        fn = self.fn('intersection_multiset')
+        for left in SMALL_ARRAYS[:40]:
+            for right in SMALL_ARRAYS[:40]:
+                a, b = left.copy(), right.copy()
+                self.assertEqual(Counter(fn(a, b)), Counter(left) & Counter(right))
+                self.assertEqual((a, b), (left, right))
