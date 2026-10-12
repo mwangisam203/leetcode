@@ -429,3 +429,22 @@ def merge_sorted(left, right):
     return result
 
 # Example: merge_sorted([1, 3], [2, 3]) == [1, 2, 3, 3]
+
+# ============================================================================
+# 10. Maximum Subarray — Kadane's algorithm
+# ============================================================================
+
+def max_subarray_sum(nums):
+    """Largest nonempty contiguous sum; O(n) time, O(1) space.
+
+    Raise ValueError for empty input; all-negative inputs return their maximum.
+    """
+    if not nums:
+        raise ValueError('maximum subarray requires a nonempty list')
+    current = best = nums[0]
+    for i in range(1, len(nums)):
+        current = max(nums[i], current + nums[i])
+        best = max(best, current)
+    return best
+
+# Example: max_subarray_sum([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6

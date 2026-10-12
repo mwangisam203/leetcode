@@ -59,3 +59,11 @@ class PatternTests(unittest.TestCase):
                 self.assertEqual(fn(left, right), sorted(a + b))
                 self.assertEqual(left, sorted(a))
                 self.assertEqual(right, sorted(b))
+
+    def test_max_subarray_sum(self):
+        fn = self.fn('max_subarray_sum')
+        with self.assertRaises(ValueError):
+            fn([])
+        for values in SMALL_ARRAYS[1:]:
+            expected = max(sum(values[i:j]) for i in range(len(values)) for j in range(i + 1, len(values) + 1))
+            self.assertEqual(fn(values), expected)
