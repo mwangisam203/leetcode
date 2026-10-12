@@ -97,3 +97,8 @@ class PatternTests(unittest.TestCase):
             for t in words:
                 expected = len(s) == len(t) and all((s[i] == s[j]) == (t[i] == t[j]) for i in range(len(s)) for j in range(len(s)))
                 self.assertIs(fn(s, t), expected)
+
+    def test_word_pattern(self):
+        fn = self.fn('word_pattern')
+        for pattern, text, expected in [('abba', 'dog cat cat dog', True), ('abba', 'dog cat cat fish', False), ('ab', 'dog dog', False), ('aa', 'dog cat', False), ('', '  ', True), ('a', '', False), ('ab', '  dog\tcat\n', True)]:
+            self.assertIs(fn(pattern, text), expected)

@@ -863,3 +863,27 @@ def is_isomorphic(s, t):
     return True
 
 # Example: is_isomorphic('egg', 'add') is True; ('ab', 'aa') is False.
+
+# ============================================================================
+# 11. Word Pattern — characters mapped to words
+# ============================================================================
+
+def word_pattern(pattern, text):
+    """Match a bijection between pattern characters and whitespace-split words.
+
+    O(len(pattern) + len(text)) average time and space, including split words.
+    """
+    words = text.split()
+    if len(pattern) != len(words):
+        return False
+    forward, backward = {}, {}
+    for char, word in zip(pattern, words):
+        if char in forward and forward[char] != word:
+            return False
+        if word in backward and backward[word] != char:
+            return False
+        forward[char] = word
+        backward[word] = char
+    return True
+
+# Example: word_pattern('abba', 'dog cat cat dog') is True.
