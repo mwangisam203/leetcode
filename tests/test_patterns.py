@@ -40,3 +40,13 @@ class PatternTests(unittest.TestCase):
             actual = values.copy()
             self.assertIsNone(fn(actual))
             self.assertEqual(actual, [x for x in values if x != 0] + [0] * values.count(0))
+
+    def test_rotate_right(self):
+        fn = self.fn('rotate_right')
+        for values in SMALL_ARRAYS:
+            for k in range(-6, 7):
+                actual = values.copy()
+                self.assertIsNone(fn(actual, k))
+                offset = k % len(values) if values else 0
+                expected = values[-offset:] + values[:-offset] if offset else values
+                self.assertEqual(actual, expected)

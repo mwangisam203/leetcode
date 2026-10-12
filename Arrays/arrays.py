@@ -374,3 +374,30 @@ def move_zeroes(nums):
             write += 1
 
 # Example: [0, 1, 0, 3, 12] becomes [1, 3, 12, 0, 0].
+
+# ============================================================================
+# 8. Rotate Array — three reversals
+# ============================================================================
+
+def rotate_right(nums, k):
+    """Rotate in place; O(n) time, O(1) extra space; return None.
+
+    k is an integer; negative values rotate left. Empty input is unchanged.
+    """
+    if not nums:
+        return
+    k %= len(nums)
+    if k == 0:
+        return
+
+    def reverse(left, right):
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1
+
+    reverse(0, len(nums) - 1)
+    reverse(0, k - 1)
+    reverse(k, len(nums) - 1)
+
+# Example: rotate_right([1, 2, 3, 4], 1) changes the list to [4, 1, 2, 3].
