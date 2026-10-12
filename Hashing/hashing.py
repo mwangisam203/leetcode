@@ -624,6 +624,24 @@ def groupanagram(strs):
 
 
 # ============================================================================
+# 3d. Group Anagrams — Unicode frequency signatures
+# ============================================================================
+
+def group_anagrams_unicode(words):
+    """Group arbitrary characters using hashable frequency signatures.
+
+    O(total characters + number of words) average time and space.
+    Case and code points are exact: Unicode normalization is not applied.
+    """
+    groups = defaultdict(list)
+    for word in words:
+        signature = frozenset(Counter(word).items())
+        groups[signature].append(word)
+    return list(groups.values())
+
+# Example: group_anagrams_unicode(['éa', 'aé', '猫']) == [['éa', 'aé'], ['猫']]
+
+# ============================================================================
 # 4. First Non-Repeating Character
 # ============================================================================
 # Count characters, then scan in original order.

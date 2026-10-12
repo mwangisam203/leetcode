@@ -108,3 +108,9 @@ class PatternTests(unittest.TestCase):
         for values in SMALL_ARRAYS:
             expected = max([0] + [j - i for i in range(len(values)) for j in range(i + 1, len(values) + 1) if sum(values[i:j]) == 0])
             self.assertEqual(fn(values), expected)
+
+    def test_unicode_anagram_groups(self):
+        fn = self.fn('group_anagrams_unicode')
+        words = ['éa', 'aé', '猫犬', '犬猫', '', '', 'A', 'a', 'é', 'e\u0301']
+        expected = [['éa', 'aé'], ['猫犬', '犬猫'], ['', ''], ['A'], ['a'], ['é'], ['e\u0301']]
+        self.assertEqual(sorted(map(sorted, fn(words))), sorted(map(sorted, expected)))
