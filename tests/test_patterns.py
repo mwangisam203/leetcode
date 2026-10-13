@@ -152,3 +152,21 @@ class PatternTests(unittest.TestCase):
         large = [1] * 1000 + [2] * 500
         for left, right in [(large, [2, 1, 2]), ([2, 1, 2], large), (large, []), ([], large)]:
             self.assertEqual(Counter(fn(left, right)), Counter(left) & Counter(right))
+
+    def test_hash_map_collision_deletions(self):
+        class Key:
+            def __init__(self, value):
+                self.value = value
+            def __hash__(self):
+                return 0
+            def __eq__(self, other):
+                return isinstance(other, Key) and self.value == other.value
+        table = self.fn('MyHashMap')(1)
+        for i in range(5):
+            table.put(Key(i), i * 10)
+        for removed in (0, 2, 4):
+            table.remove(Key(removed))
+            self.assertEqual(table.get(Key(removed)), -1)
+        self.assertEqual(table.get(Key(1)), 10)
+        self.assertEqual(table.get(Key(3)), 30)
+        table.remove(Key(99))

@@ -907,7 +907,11 @@ class MyHashMap:
 
     def remove(self, key):
         idx = self._hash(key)
-        self.buckets[idx] = [(k, v) for k, v in self.buckets[idx] if k != key]
+        bucket = self.buckets[idx]
+        for i, (stored_key, _) in enumerate(bucket):
+            if stored_key == key:
+                del bucket[i]
+                return
 # With n entries and b buckets: O(1 + n/b) expected time per operation,
 # O(n) worst case; O(n + b) storage. This teaching implementation does not resize,
 # so constant average time requires keeping the load factor n/b bounded.
