@@ -715,10 +715,13 @@ def top_k_frequent_sorted(nums, k):
 
     u is the number of unique values. Ties preserve first occurrence order.
     Allow 0 <= k <= u, matching the bucket-sort variant above.
+    When k is zero, skip sorting after validating the count.
     """
     counts = Counter(nums)
     if not 0 <= k <= len(counts):
         raise ValueError('k must be between 0 and the number of unique values')
+    if k == 0:
+        return []  # No frequency ordering is needed for an empty selection.
     return sorted(counts, key=counts.get, reverse=True)[:k]
 
 # Example: top_k_frequent_sorted([1, 1, 1, 2, 2, 3], 2) == [1, 2]
