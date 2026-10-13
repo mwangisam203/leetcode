@@ -372,7 +372,8 @@ def move_zeroes(nums):
     write = 0
     for read in range(len(nums)):
         if nums[read] != 0:
-            nums[write], nums[read] = nums[read], nums[write]
+            if write != read:  # Skip writes when the value is already in place.
+                nums[write], nums[read] = nums[read], nums[write]
             write += 1
 
 # Example: [0, 1, 0, 3, 12] becomes [1, 3, 12, 0, 0].

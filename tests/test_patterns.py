@@ -128,3 +128,14 @@ class PatternTests(unittest.TestCase):
         for k in (-1, 2):
             with self.assertRaises(ValueError):
                 fn([1], k)
+
+    def test_move_zeroes_preserves_nonzero_objects(self):
+        fn = self.fn('move_zeroes')
+        first, second = 1.5, 2.5
+        values = [first, second, 0, 0]
+        alias = values
+        self.assertIsNone(fn(values))
+        self.assertIs(values, alias)
+        self.assertIs(values[0], first)
+        self.assertIs(values[1], second)
+        self.assertEqual(values, [1.5, 2.5, 0, 0])
