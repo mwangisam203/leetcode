@@ -204,3 +204,27 @@ class PatternTests(unittest.TestCase):
             table.remove(key)
         self.assertEqual(len(table), 0)
         self.assertEqual(table.size, capacity)
+
+    def test_hash_map_mixed_operations_against_dict(self):
+        from random import Random
+        class Key(int):
+            def __hash__(self):
+                return 0
+        rng = Random(20261013)
+        table = self.fn('MyHashMap')(2)
+        expected = {}
+        for _ in range(1000):
+            key = Key(rng.randrange(-20, 21))
+            operation = rng.choice(['put', 'get', 'remove'])
+            if operation == 'put':
+                value = rng.randrange(-100, 101)
+                table.put(key, value)
+                expected[key] = value
+            elif operation == 'remove':
+                table.remove(key)
+                expected.pop(key, None)
+            else:
+                self.assertEqual(table.get(key), expected.get(key, -1))
+            self.assertEqual(len(table), len(expected))
+            for stored_key, value in expected.items():
+                self.assertEqual(table.get(stored_key), value)
