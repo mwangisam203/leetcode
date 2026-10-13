@@ -228,3 +228,28 @@ class PatternTests(unittest.TestCase):
             self.assertEqual(len(table), len(expected))
             for stored_key, value in expected.items():
                 self.assertEqual(table.get(stored_key), value)
+
+    def test_array_operations_on_larger_inputs(self):
+        from random import Random
+        rng = Random(42)
+        rotate = self.fn('rotate_right')
+        merge = self.fn('merge_sorted')
+        prefix = self.fn('prefix_sums')
+        product_except_self = self.fn('product_except_self')
+        for _ in range(20):
+            values = [rng.randrange(-10, 11) for _ in range(50)]
+            original = values.copy()
+            alias = values
+            k = rng.randrange(-10000, 10001)
+            rotate(values, k)
+            self.assertIs(values, alias)
+            rotate(values, -k)
+            self.assertEqual(values, original)
+            sums = prefix(values)
+            self.assertEqual([sums[i + 1] - sums[i] for i in range(len(values))], values)
+            self.assertEqual(merge(sorted(values[:25]), sorted(values[25:])), sorted(values))
+            self.assertEqual(values, original)
+        self.assertEqual(product_except_self([0, 2, 3]), [6, 0, 0])
+        self.assertEqual(product_except_self([0, 0, 3]), [0, 0, 0])
+        huge = 10 ** 30
+        self.assertEqual(product_except_self([huge, 2, -3]), [-6, -3 * huge, 2 * huge])
