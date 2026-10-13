@@ -886,6 +886,11 @@ class MyHashMap:
             raise ValueError("hash map size must be positive")
         self.size = size
         self.buckets = [[] for _ in range(size)]
+        self._count = 0
+
+    def __len__(self):
+        """Number of entries, independent of bucket capacity; O(1)."""
+        return self._count
 
     def _hash(self, key):
         return hash(key) % self.size
@@ -897,6 +902,7 @@ class MyHashMap:
                 self.buckets[idx][i] = (key, value)
                 return
         self.buckets[idx].append((key, value))
+        self._count += 1
 
     def get(self, key):
         idx = self._hash(key)
@@ -911,6 +917,7 @@ class MyHashMap:
         for i, (stored_key, _) in enumerate(bucket):
             if stored_key == key:
                 del bucket[i]
+                self._count -= 1
                 return
 # With n entries and b buckets: O(1 + n/b) expected time per operation,
 # O(n) worst case; O(n + b) storage. This teaching implementation does not resize,

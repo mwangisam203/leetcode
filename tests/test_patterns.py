@@ -170,3 +170,18 @@ class PatternTests(unittest.TestCase):
         self.assertEqual(table.get(Key(1)), 10)
         self.assertEqual(table.get(Key(3)), 30)
         table.remove(Key(99))
+
+    def test_hash_map_entry_count(self):
+        table = self.fn('MyHashMap')(2)
+        self.assertEqual(len(table), 0)
+        table.put(1, 0)
+        table.put(1, 100)
+        table.put(3, -1)
+        self.assertEqual(len(table), 2)
+        table.remove(99)
+        self.assertEqual(len(table), 2)
+        table.remove(1)
+        table.remove(1)
+        self.assertEqual(len(table), 1)
+        table.remove(3)
+        self.assertEqual(len(table), 0)
