@@ -139,3 +139,10 @@ class PatternTests(unittest.TestCase):
         self.assertIs(values[0], first)
         self.assertIs(values[1], second)
         self.assertEqual(values, [1.5, 2.5, 0, 0])
+
+    def test_nearby_duplicate_window_boundaries(self):
+        fn = self.fn('contains_nearby_duplicate')
+        self.assertFalse(fn(list(range(1000)) + [0], 999))
+        self.assertTrue(fn(list(range(1000)) + [0], 1000))
+        self.assertTrue(fn([1, 2, 3, 1, 1], 1))
+        self.assertFalse(fn([1, 2, 1, 2], 1))

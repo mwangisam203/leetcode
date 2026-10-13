@@ -179,21 +179,24 @@ def contdupli(nums):
 
 
 # ============================================================================
-# Contains Duplicate II — last-seen indices
+# Contains Duplicate II — bounded membership window
 # ============================================================================
 
 def contains_nearby_duplicate(nums, k):
     """Whether equal values have distinct indices at most k apart.
 
-    O(n) average time and O(n) space. Nonpositive k cannot match a pair.
+    O(n) average time, O(min(n, k)) space. Nonpositive k cannot match a pair.
     """
     if k <= 0:
         return False
-    last_seen = {}
+    window = set()
     for i, num in enumerate(nums):
-        if num in last_seen and i - last_seen[num] <= k:
+        if num in window:
             return True
-        last_seen[num] = i
+        window.add(num)
+        if i >= k:
+            # Retain only the preceding k values for the next iteration.
+            window.remove(nums[i - k])
     return False
 
 # Example: contains_nearby_duplicate([1, 2, 3, 1], 3) is True.
