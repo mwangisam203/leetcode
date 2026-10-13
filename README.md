@@ -40,8 +40,8 @@ requires nonempty input; stock profit returns zero for empty or falling prices.
 
 | Hashing exercise | Function | Key idea | Average time | Space including output |
 | --- | --- | --- | --- | --- |
-| Contains Duplicate II | `contains_nearby_duplicate` | Store the latest index per value | O(n) | O(n) |
-| Intersection II | `intersection_multiset` | Consume shared frequency counts | O(n + m) | O(n) |
+| Contains Duplicate II | `contains_nearby_duplicate` | Keep a bounded membership window | O(n) | O(min(n, k)) |
+| Intersection II | `intersection_multiset` | Count the smaller input and consume matches | O(n + m) | O(min(n, m)) |
 | Isomorphic Strings | `is_isomorphic` | Enforce mappings in both directions | O(n) | O(u) |
 | Word Pattern | `word_pattern` | Map characters to whitespace-separated words | O(p + t) | O(p + t) |
 | Longest zero-sum interval | `longest_zero_sum_subarray` | Preserve the earliest index of each prefix | O(n) | O(n) |
@@ -54,7 +54,8 @@ Hash-based bounds assume average constant-time table operations.
 
 Compare these related examples in hashing.py:
 
-- Duplicate detection versus nearby duplicates: the latter stores indices, not just membership.
+- Duplicate detection versus nearby duplicates: the latter expires membership outside
+  the preceding k positions, bounding storage by the window size.
 - Set intersection versus multiset intersection: the latter keeps repeated matches.
 - Subarray sum count versus longest zero-sum interval: store prefix frequencies for counting,
   but earliest indices for maximum length. Both support negative numbers.
@@ -62,10 +63,28 @@ Compare these related examples in hashing.py:
   case-sensitive and does not normalize visually equivalent code points.
 - Bucket-based Top K versus sorting: buckets take O(n) time and space; sorting uses
   O(u) space and costs O(u log u) after counting. Both accept k=0 and reject k>u.
+  The sorting variant skips sorting when k=0.
 
 The test suite runs the original variants and these additions. It checks small
 arrays exhaustively for many patterns, plus mutation contracts, invalid ranges,
-Unicode strings, frequency ties, and hash-map collisions. Run it with:
+Unicode strings, frequency ties, and hash-map collisions. Additional checks compare
+mixed map operations with Python's dict and test larger arrays with reproducible seeds.
+
+Implementation details to study:
+
+- Move Zeroes skips self-swaps when a value is already in the right position.
+- Nearby duplicates keeps only the preceding k values; k<=0 returns False.
+- Multiset intersection counts the shorter input and drops exhausted counts.
+  Its output order is unspecified; compare multiplicities rather than list order.
+- `len(MyHashMap())` reports entries, while `.size` reports bucket capacity.
+  Updating an existing key does not change the entry count. Missing-key removal
+  does nothing, and `get` still returns -1 for missing keys.
+- MyHashMap doubles its capacity when its load factor exceeds 0.75, rehashing
+  existing entries. Insertions have amortized expected O(1) cost; a single growth
+  operation scans the old buckets and entries. Adversarial collisions can still
+  cause linear operations. Deletion does not shrink the table.
+
+Run the checks with:
 
 ```bash
 python3 -m unittest discover -s tests -v
