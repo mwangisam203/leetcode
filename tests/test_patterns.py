@@ -185,3 +185,22 @@ class PatternTests(unittest.TestCase):
         self.assertEqual(len(table), 1)
         table.remove(3)
         self.assertEqual(len(table), 0)
+
+    def test_hash_map_growth_preserves_entries(self):
+        table = self.fn('MyHashMap')(2)
+        for key in range(100):
+            table.put(key, key * 7)
+            self.assertLessEqual(len(table) / table.size, 0.75)
+        self.assertGreater(table.size, 2)
+        capacity = table.size
+        for key in range(100):
+            self.assertEqual(table.get(key), key * 7)
+            table.put(key, -key)
+        self.assertEqual(table.size, capacity)
+        self.assertEqual(len(table), 100)
+        for key in range(100):
+            self.assertEqual(table.get(key), -key)
+        for key in range(100):
+            table.remove(key)
+        self.assertEqual(len(table), 0)
+        self.assertEqual(table.size, capacity)

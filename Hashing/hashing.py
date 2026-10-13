@@ -903,6 +903,17 @@ class MyHashMap:
                 return
         self.buckets[idx].append((key, value))
         self._count += 1
+        if self._count * 4 > self.size * 3:
+            self._resize(self.size * 2)
+
+    def _resize(self, new_size):
+        """Rehash entries into new buckets when load exceeds 0.75."""
+        old_buckets = self.buckets
+        self.size = new_size
+        self.buckets = [[] for _ in range(new_size)]
+        for bucket in old_buckets:
+            for key, value in bucket:
+                self.buckets[self._hash(key)].append((key, value))
 
     def get(self, key):
         idx = self._hash(key)
@@ -919,9 +930,9 @@ class MyHashMap:
                 del bucket[i]
                 self._count -= 1
                 return
-# With n entries and b buckets: O(1 + n/b) expected time per operation,
-# O(n) worst case; O(n + b) storage. This teaching implementation does not resize,
-# so constant average time requires keeping the load factor n/b bounded.
+# Growth keeps the load factor at most 0.75. Expected get/remove: O(1);
+# put: amortized expected O(1), with O(n + b) resizing work for b old buckets.
+# Collisions can still cause O(n) operations. Storage: O(n + b); no shrinking.
 
 # ============================================================================
 # 10. Isomorphic Strings — bijective mappings

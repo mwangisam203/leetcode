@@ -36,7 +36,7 @@ Conceptual (expect these as follow-ups, not just "solve the problem"):
 "What's the time complexity of dict/set operations, and why?" — answer: O(1) average via hashing, O(n) worst case via collisions.
 "How would you implement a hash map yourself?" — see the Design HashMap section in hashing.py; know separate chaining at minimum.
 "What makes a good hash function?" — deterministic, uniform distribution across buckets, fast to compute, minimizes collisions.
-"What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, the resize threshold depends on the implementation; the fixed-bucket example here does not resize.
+"What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, the resize threshold depends on the implementation; MyHashMap doubles its bucket count above a load factor of 0.75; existing entries are rehashed, and deletions do not shrink capacity.
 "Why can't you use a list as a dictionary key?" — mutability breaks hashing (the hash would change if the list changed, but hash tables assume a key's hash is stable).
 
 Coding (in rough order of frequency in interviews):
