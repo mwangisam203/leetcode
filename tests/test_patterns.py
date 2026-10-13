@@ -146,3 +146,9 @@ class PatternTests(unittest.TestCase):
         self.assertTrue(fn(list(range(1000)) + [0], 1000))
         self.assertTrue(fn([1, 2, 3, 1, 1], 1))
         self.assertFalse(fn([1, 2, 1, 2], 1))
+
+    def test_multiset_intersection_unbalanced_inputs(self):
+        fn = self.fn('intersection_multiset')
+        large = [1] * 1000 + [2] * 500
+        for left, right in [(large, [2, 1, 2]), ([2, 1, 2], large), (large, []), ([], large)]:
+            self.assertEqual(Counter(fn(left, right)), Counter(left) & Counter(right))

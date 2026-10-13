@@ -837,14 +837,21 @@ def intersection(nums1, nums2):
 def intersection_multiset(nums1, nums2):
     """Keep each shared value the minimum number of times it occurs.
 
-    O(n + m) average time; O(n) counting space plus output. Inputs unchanged.
+    O(n + m) average time; O(min(n, m)) counting space plus output.
+    Inputs are unchanged. Output order is unspecified.
     """
+    if len(nums1) > len(nums2):
+        nums1, nums2 = nums2, nums1
     remaining = Counter(nums1)
     result = []
     for num in nums2:
         if remaining[num] > 0:
             result.append(num)
             remaining[num] -= 1
+            if remaining[num] == 0:
+                del remaining[num]
+        if not remaining:
+            break
     return result
 
 # Example: intersection_multiset([1, 2, 2], [2, 2, 3]) == [2, 2]
