@@ -7,3 +7,5 @@ def encode(strs):
         parts.append(s)
 
     return "".join(parts)
+
+    #parts += str(len(s)) + "#" + s
