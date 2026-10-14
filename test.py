@@ -20,7 +20,7 @@ def decode(encoded):
         while encoded[j] != "#":
             j += 1
 
-        length = int(len(encoded[i:j]))
+        length = int(encoded[i:j])
         start = j + 1 
         end  = start + length
 
@@ -30,7 +30,7 @@ def decode(encoded):
 
     return res
 
-print(decode(encode="4#star3#cat"))
+print(decode(encoded="4#star3#cat"))
 
         
 
