@@ -30,7 +30,14 @@ def decode(encoded):
 
     return res
 
-print(decode(encoded="4#star3#cat"))
+strs = ["hello", "", "##"]
+
+
+encoded = encode(strs)
+decode = decode(encoded)
+
+print(encoded)
+print(decode)
 
         
 
