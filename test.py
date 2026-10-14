@@ -10,27 +10,27 @@ def encode(strs):
 
     #parts += str(len(s)) + "#" + s
 
-def decode(encode):
+def decode(encoded):
     res = []
     i = 0
 
-    while i < len(encode):
+    while i < len(encoded):
         j = i
 
-        while encode[j] != "#":
+        while encoded[j] != "#":
             j += 1
 
-            length = int(len(encode[i:j]))
-            start = j + 1 
-            end  = start + length
+        length = int(len(encoded[i:j]))
+        start = j + 1 
+        end  = start + length
 
-            end = i
+        i = end
 
-        res.append(encode[start:end])
+        res.append(encoded[start:end])
 
     return res
 
-print
+print(decode(encode="4#star3#cat"))
 
         
 
