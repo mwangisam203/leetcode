@@ -2,7 +2,7 @@
 
 Sections: minimum/maximum; contains duplicate; valid anagram; product except self;
 sorted two sum; prefix/range sums; move zeroes; rotation; merge; maximum subarray;
-stock profit. See README.md for the practice progression and input contracts.
+stock profit; encode/decode strings. See README.md for the practice progression and input contracts.
 Set/dictionary versions of duplicates and anagrams live in Hashing/hashing.py.
 Repeated function and Solution names are standalone practice variants; running
 this file executes their nearby examples, and later definitions replace earlier ones.
@@ -471,3 +471,101 @@ def max_stock_profit(prices):
     return best
 
 # Example: max_stock_profit([7, 1, 5, 3, 6, 4]) == 5
+
+
+# ============================================================================
+# 12. Encode and Decode Strings — length-prefixed serialization
+# ============================================================================
+# Store each string as length#contents, so embedded # characters are unambiguous.
+# Both variants preserve empty strings and accept Unicode text.
+# decode expects a valid stream produced by encode; lengths count Python characters.
+# Time and space are O(total characters + number of strings).
+
+# Function-based practice
+
+def encode(strs):
+    parts = []
+
+    for s in strs:
+        parts.append(str(len(s)))
+        parts.append("#")
+        parts.append(s)
+
+    return "".join(parts)
+
+
+def decode(encoded):
+    res = []
+    i = 0
+
+    while i < len(encoded):
+        j = i
+
+        while encoded[j] != "#":
+            j += 1
+
+        length = int(encoded[i:j])
+        start = j + 1
+        end = start + length
+
+        i = end
+
+        res.append(encoded[start:end])
+
+    return res
+
+strs = ["hello", "wo$rl#", "##"]
+
+
+encoded = encode(strs)
+decoded = decode(encoded)
+
+print(encoded)
+print(decoded)
+
+
+# Class-based practice
+
+class Solution:
+    def encode(self, strs):
+        parts = []
+
+
+        for word in strs:
+            parts.append(str(len(word)))
+            parts.append("#")
+            parts.append(word)
+
+        return "".join(parts)
+
+    def decode(self, encoded):
+        result = []
+        i = 0
+
+        while i < len(encoded):
+            j = i
+
+            while encoded[j] != "#":
+                j += 1
+
+            length = int(encoded[i:j])
+            start = j + 1
+            end = start + length
+
+            i = end
+
+            result.append(encoded[start:end])
+
+        return result
+
+
+solution = Solution()
+
+strs = ["craig", "", "$5dafh#"]
+
+encoded = solution.encode(strs)
+decoded = solution.decode(encoded)
+
+
+print(encoded)
+print(decoded)
