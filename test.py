@@ -8,7 +8,6 @@ def encode(strs):
 
     return "".join(parts)
 
-    #parts += str(len(s)) + "#" + s
 
 def decode(encoded):
     res = []
