@@ -76,8 +76,11 @@ class Solution:
 
 solution  = Solution()
 
-encoded = encode(strs=["craig", "", "$5dafh#"])
-decode =decode(encoded=)
+strs = ["craig", "", "$5dafh#"]
+
+encoded = solution.encode(strs)
+decode =solution.decode(encoded)
 
 
-print(solution(encoded))
+print(encoded)
+print(decode)
