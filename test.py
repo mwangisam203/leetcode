@@ -29,7 +29,7 @@ def decode(encoded):
 
     return res
 
-strs = ["hello", "", "##"]
+strs = ["hello", "wo$rl#", "##"]
 
 
 encoded = encode(strs)
