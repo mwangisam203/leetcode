@@ -41,3 +41,43 @@ print(decode)
         
 
 
+class Solution:
+    def encode(self, strs):
+        parts = []
+
+
+        for word in strs:
+            parts.append(str(len(word)))
+            parts.append("#")
+            parts.append(word)
+
+        return "".join(parts)
+
+    def decode(self, encoded):
+        result = []
+        i = 0
+
+        while i < len(encoded):
+            j = i
+
+            while encoded[j] != "#":
+                j += 1
+
+            length = int(encoded[i:j])
+            start = j + 1
+            end = start + length
+
+            i = end
+
+            result.append(encoded[start:end])
+
+        return result
+
+
+solution  = Solution()
+
+encoded = encode(strs=["craig", "", "$5dafh#"])
+decode =decode(encoded=)
+
+
+print(solution(encoded))
