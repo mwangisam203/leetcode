@@ -395,6 +395,25 @@ def move_zeroes(nums):
 # Example: [0, 1, 0, 3, 12] becomes [1, 3, 12, 0, 0].
 
 # ============================================================================
+# Sorted Array Compaction — retain one copy of each value
+# ============================================================================
+
+def compact_sorted(nums):
+    """Write distinct values to the prefix and return its length.
+
+    Input must be sorted ascending. Mutates nums in O(n) time and O(1) space;
+    elements after the returned prefix are unspecified.
+    """
+    write = 0
+    for read in range(len(nums)):
+        if write == 0 or nums[read] != nums[write - 1]:
+            nums[write] = nums[read]
+            write += 1
+    return write
+
+# Example: [1, 1, 2, 2, 3] gets prefix [1, 2, 3]; returns 3.
+
+# ============================================================================
 # 8. Rotate Array — three reversals
 # ============================================================================
 

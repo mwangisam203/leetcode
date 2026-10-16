@@ -55,3 +55,12 @@ class ReviewTests(unittest.TestCase):
         for values in SMALL_ARRAYS:
             expected = next((i for i in range(len(values)) if sum(values[:i]) == sum(values[i + 1:])), -1)
             self.assertEqual(fn(values), expected)
+
+    def test_compact_sorted(self):
+        fn = self.fn('compact_sorted')
+        for values in SMALL_ARRAYS:
+            actual = sorted(values)
+            length = fn(actual)
+            expected = sorted(set(values))
+            self.assertEqual(length, len(expected))
+            self.assertEqual(actual[:length], expected)
