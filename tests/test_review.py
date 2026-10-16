@@ -71,3 +71,9 @@ class ReviewTests(unittest.TestCase):
             actual = sorted(values)
             self.assertEqual(fn(actual), sorted(x * x for x in values))
             self.assertEqual(actual, sorted(values))
+
+    def test_majority_element(self):
+        fn = self.fn('majority_element')
+        for values in SMALL_ARRAYS:
+            expected = next((value for value, count in Counter(values).items() if count > len(values) // 2), None)
+            self.assertEqual(fn(values), expected)

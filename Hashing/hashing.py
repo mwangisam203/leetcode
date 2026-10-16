@@ -752,6 +752,24 @@ def top_k_frequent_sorted(nums, k):
 # Example: top_k_frequent_sorted([1, 1, 1, 2, 2, 3], 2) == [1, 2]
 
 # ============================================================================
+# Majority Element — validate a frequency threshold
+# ============================================================================
+
+def majority_element(nums):
+    """Return the integer appearing more than n/2 times, or None.
+
+    O(n) average time and O(u) space for u distinct integers. No majority assumed.
+    """
+    counts = {}
+    for num in nums:
+        counts[num] = counts.get(num, 0) + 1
+        if counts[num] > len(nums) // 2:
+            return num
+    return None
+
+# Example: majority_element([2, 2, 1, 2]) == 2
+
+# ============================================================================
 # 6. Subarray Sum Equals K
 # ============================================================================
 # Prefix sums plus a dictionary of prefix frequencies.
