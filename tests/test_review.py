@@ -101,3 +101,10 @@ class ReviewTests(unittest.TestCase):
         for k in (0, -1):
             with self.assertRaises(ValueError):
                 fn([1, 2], k)
+
+    def test_longest_common_prefix(self):
+        fn = self.fn('longest_common_prefix')
+        for words, expected in [([], ''), ([''], ''), (['solo'], 'solo'), (['flower', 'flow', 'flight'], 'fl'), (['ab', ''], ''), (['A', 'a'], ''), (['猫咪', '猫狗'], '猫')]:
+            before = words.copy()
+            self.assertEqual(fn(words), expected)
+            self.assertEqual(words, before)

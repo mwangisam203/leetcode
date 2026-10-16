@@ -531,6 +531,26 @@ def max_stock_profit(prices):
 
 
 # ============================================================================
+# Longest Common Prefix — compare characters across strings
+# ============================================================================
+
+def longest_common_prefix(words):
+    """Common starting characters, or ''; exact case-sensitive comparison.
+
+    O(n * m) time for n words and shortest length m; O(1) auxiliary space
+    beyond the returned prefix. An empty collection returns an empty string.
+    """
+    if not words:
+        return ''
+    shortest = min(words, key=len)
+    for i, char in enumerate(shortest):
+        if any(word[i] != char for word in words):
+            return shortest[:i]
+    return shortest
+
+# Example: longest_common_prefix(['flower', 'flow', 'flight']) == 'fl'
+
+# ============================================================================
 # 12. Encode and Decode Strings — length-prefixed serialization
 # ============================================================================
 # Store each string as length#contents, so embedded # characters are unambiguous.
