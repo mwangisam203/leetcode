@@ -33,3 +33,9 @@ class ReviewTests(unittest.TestCase):
                 self.assertEqual(words, before)
                 for decode in decoders:
                     self.assertEqual(decode(encoded), words)
+
+    def test_top_k_on_sparse_and_dense_frequencies(self):
+        fn = self.fn('top_k_frequent')
+        self.assertEqual(set(fn(list(range(1000)), 1000)), set(range(1000)))
+        self.assertEqual(fn([7] * 1000 + [2] * 10, 1), [7])
+        self.assertEqual(fn([], 0), [])

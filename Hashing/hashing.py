@@ -718,7 +718,8 @@ def top_k_frequent(nums, k):
         raise ValueError("k must be between 0 and the number of unique values")
     if k == 0:
         return []
-    buckets = [[] for _ in range(len(nums) + 1)]
+    # k > 0 guarantees at least one value; larger frequencies cannot occur.
+    buckets = [[] for _ in range(max(counts.values()) + 1)]
     for num, freq in counts.items():
         buckets[freq].append(num)
     result = []
