@@ -91,3 +91,13 @@ class ReviewTests(unittest.TestCase):
             for target in range(-2, 3):
                 expected = sum(values[i] + values[j] == target for i in range(len(values)) for j in range(i + 1, len(values)))
                 self.assertEqual(fn(values, target), expected)
+
+    def test_divisible_subarray_sums(self):
+        fn = self.fn('subarrays_divisible_by_k')
+        for values in SMALL_ARRAYS:
+            for k in range(1, 5):
+                expected = sum(sum(values[i:j]) % k == 0 for i in range(len(values)) for j in range(i + 1, len(values) + 1))
+                self.assertEqual(fn(values, k), expected)
+        for k in (0, -1):
+            with self.assertRaises(ValueError):
+                fn([1, 2], k)

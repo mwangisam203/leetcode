@@ -858,6 +858,27 @@ def longest_zero_sum_subarray(nums):
 # Example: longest_zero_sum_subarray([1, -1, 3, -3, 2]) == 4
 
 # ============================================================================
+# Subarray Sums Divisible by K — matching prefix remainders
+# ============================================================================
+
+def subarrays_divisible_by_k(nums, k):
+    """Count nonempty contiguous sums divisible by positive integer k.
+
+    O(n) average time, O(min(n + 1, k)) space. Negative numbers are supported.
+    """
+    if k <= 0:
+        raise ValueError('k must be positive')
+    counts = {0: 1}
+    remainder = result = 0
+    for num in nums:
+        remainder = (remainder + num) % k
+        result += counts.get(remainder, 0)
+        counts[remainder] = counts.get(remainder, 0) + 1
+    return result
+
+# Example: subarrays_divisible_by_k([4, 5, 0, -2, -3, 1], 5) == 7
+
+# ============================================================================
 # 7. Longest Consecutive Sequence
 # ============================================================================
 # Hash-set membership finds sequence starts and extends them.
