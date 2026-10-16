@@ -853,9 +853,20 @@ SOLUTION:'''
 
 
 def intersection(nums1, nums2):
-    return list(set(nums1) & set(nums2))
+    """Unique shared values in unspecified order; inputs remain unchanged."""
+    if len(nums1) > len(nums2):
+        nums1, nums2 = nums2, nums1
+    remaining = set(nums1)
+    result = []
+    for num in nums2:
+        if not remaining:
+            break
+        if num in remaining:
+            result.append(num)
+            remaining.remove(num)
+    return result
 
-# Time: O(n + m) average; space: O(n + m).
+# Time: O(n + m) average; space: O(min(n, m)), including output.
 
 
 # ============================================================================

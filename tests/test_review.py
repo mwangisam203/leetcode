@@ -39,3 +39,13 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(set(fn(list(range(1000)), 1000)), set(range(1000)))
         self.assertEqual(fn([7] * 1000 + [2] * 10, 1), [7])
         self.assertEqual(fn([], 0), [])
+
+    def test_unique_intersection_preserves_inputs(self):
+        fn = self.fn('intersection')
+        for left, right in [([], [1]), ([1, 1, 2], [2, 2, 3]), (list(range(1000)), [0, 999, 999])]:
+            for a, b in [(left, right), (right, left)]:
+                before = (a.copy(), b.copy())
+                result = fn(a, b)
+                self.assertEqual(set(result), set(a) & set(b))
+                self.assertEqual(len(result), len(set(result)))
+                self.assertEqual((a, b), before)
