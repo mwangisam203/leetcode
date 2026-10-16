@@ -1,22 +1,30 @@
+from collections import defaultdict
+
 class Solution:
-    def anagram(self, s, t):
+    def groupAnagram(self, strs):
 
-        if len(s) != len(t):
-            return False
+        res = defaultdict(list)
 
-        count = {}
+        for word in strs:
+            count = [0] * 26
 
-        for char in s:
-            count[char] = count.get(char, 0) + 1
-        for char in t:
-            if char not in count or count[char] == 0:
-                return False
-            count[char] -= 1
+            for char in word:
+                count[ord(char) - ord("a")] += 1
 
-        return True
+            res[tuple(count)].append(word)
+
+        return list(res.values())
+
 
 solution = Solution()
+strs = ["act","pots","tops","cat","stop","hat"]
+
+results = solution.groupAnagram(strs)
+print(results)
 
 
-ans = solution.anagram(s= "bom", t="mpb")
-print(ans)
+
+
+    
+
+
