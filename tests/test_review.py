@@ -49,3 +49,9 @@ class ReviewTests(unittest.TestCase):
                 self.assertEqual(set(result), set(a) & set(b))
                 self.assertEqual(len(result), len(set(result)))
                 self.assertEqual((a, b), before)
+
+    def test_pivot_index(self):
+        fn = self.fn('pivot_index')
+        for values in SMALL_ARRAYS:
+            expected = next((i for i in range(len(values)) if sum(values[:i]) == sum(values[i + 1:])), -1)
+            self.assertEqual(fn(values), expected)

@@ -361,6 +361,22 @@ def range_sum(prefix, start, stop):
 # Example: range_sum(prefix_sums([2, -1, 4]), 1, 3) == 3
 
 # ============================================================================
+# Pivot Index — compare left and right sums
+# ============================================================================
+
+def pivot_index(nums):
+    """First index with equal sums on both sides, or -1; O(n) time, O(1) space."""
+    total = sum(nums)
+    left = 0
+    for i, num in enumerate(nums):
+        if left == total - left - num:
+            return i
+        left += num
+    return -1
+
+# Example: pivot_index([1, 7, 3, 6, 5, 6]) == 3
+
+# ============================================================================
 # 7. Move Zeroes — stable in-place compaction
 # ============================================================================
 
