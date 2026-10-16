@@ -478,7 +478,7 @@ def max_stock_profit(prices):
 # ============================================================================
 # Store each string as length#contents, so embedded # characters are unambiguous.
 # Both variants preserve empty strings and accept Unicode text.
-# decode expects a valid stream produced by encode; lengths count Python characters.
+# Lengths count Python characters; malformed streams raise ValueError.
 # Time and space are O(total characters + number of strings).
 
 # Function-based practice
@@ -495,24 +495,24 @@ def encode(strs):
 
 
 def decode(encoded):
-    res = []
+    """Decode length#payload records; reject malformed streams with ValueError."""
+    result = []
     i = 0
-
     while i < len(encoded):
-        j = i
-
-        while encoded[j] != "#":
-            j += 1
-
-        length = int(encoded[i:j])
+        j = encoded.find('#', i)
+        if j == -1:
+            raise ValueError('missing length separator')
+        header = encoded[i:j]
+        if not header or any(char < '0' or char > '9' for char in header):
+            raise ValueError('length must contain ASCII digits only')
+        length = int(header)
         start = j + 1
         end = start + length
-
+        if end > len(encoded):
+            raise ValueError('payload is shorter than its declared length')
+        result.append(encoded[start:end])
         i = end
-
-        res.append(encoded[start:end])
-
-    return res
+    return result
 
 strs = ["hello", "wo$rl#", "##"]
 
@@ -539,23 +539,23 @@ class Solution:
         return "".join(parts)
 
     def decode(self, encoded):
+        """Decode length#payload records; reject malformed streams with ValueError."""
         result = []
         i = 0
-
         while i < len(encoded):
-            j = i
-
-            while encoded[j] != "#":
-                j += 1
-
-            length = int(encoded[i:j])
+            j = encoded.find('#', i)
+            if j == -1:
+                raise ValueError('missing length separator')
+            header = encoded[i:j]
+            if not header or any(char < '0' or char > '9' for char in header):
+                raise ValueError('length must contain ASCII digits only')
+            length = int(header)
             start = j + 1
             end = start + length
-
-            i = end
-
+            if end > len(encoded):
+                raise ValueError('payload is shorter than its declared length')
             result.append(encoded[start:end])
-
+            i = end
         return result
 
 
