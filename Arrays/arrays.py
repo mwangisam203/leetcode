@@ -338,6 +338,28 @@ def two_sum_sorted(nums, target):
 # Example: two_sum_sorted([2, 7, 11, 15], 9) == [0, 1]
 
 # ============================================================================
+# Sorted Squares — fill the result from the largest end
+# ============================================================================
+
+def sorted_squares(nums):
+    """Square ascending input in O(n) time and O(n) output space.
+
+    Negative values are supported. Input is unchanged; auxiliary space is O(1).
+    """
+    result = [0] * len(nums)
+    left, right = 0, len(nums) - 1
+    for write in range(len(nums) - 1, -1, -1):
+        if abs(nums[left]) > abs(nums[right]):
+            result[write] = nums[left] ** 2
+            left += 1
+        else:
+            result[write] = nums[right] ** 2
+            right -= 1
+    return result
+
+# Example: sorted_squares([-4, -1, 0, 3, 10]) == [0, 1, 9, 16, 100]
+
+# ============================================================================
 # 6. Prefix sums — repeated range queries
 # ============================================================================
 

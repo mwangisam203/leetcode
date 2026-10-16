@@ -64,3 +64,10 @@ class ReviewTests(unittest.TestCase):
             expected = sorted(set(values))
             self.assertEqual(length, len(expected))
             self.assertEqual(actual[:length], expected)
+
+    def test_sorted_squares(self):
+        fn = self.fn('sorted_squares')
+        for values in SMALL_ARRAYS + [[-10, -4, -1, 0, 3, 12]]:
+            actual = sorted(values)
+            self.assertEqual(fn(actual), sorted(x * x for x in values))
+            self.assertEqual(actual, sorted(values))
