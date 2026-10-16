@@ -84,3 +84,10 @@ class ReviewTests(unittest.TestCase):
             expected = next((value for i, value in enumerate(values) if value in values[:i]), None)
             self.assertEqual(fn(values), expected)
         self.assertEqual(fn([1, 2, 2, 1]), 2)
+
+    def test_count_sum_pairs(self):
+        fn = self.fn('count_sum_pairs')
+        for values in SMALL_ARRAYS:
+            for target in range(-2, 3):
+                expected = sum(values[i] + values[j] == target for i in range(len(values)) for j in range(i + 1, len(values)))
+                self.assertEqual(fn(values, target), expected)

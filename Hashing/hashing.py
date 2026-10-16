@@ -335,6 +335,25 @@ def two_sum(nums, target):
 
 
 # ============================================================================
+# Two Sum — count all index pairs
+# ============================================================================
+
+def count_sum_pairs(nums, target):
+    """Count pairs i < j whose values sum to target; O(n) average time, O(u) space.
+
+    Count previous complements before recording the current value to avoid
+    reusing an index. Repeated values contribute separate index pairs.
+    """
+    counts = {}
+    pairs = 0
+    for num in nums:
+        pairs += counts.get(target - num, 0)
+        counts[num] = counts.get(num, 0) + 1
+    return pairs
+
+# Example: count_sum_pairs([3, 3, 3], 6) == 3
+
+# ============================================================================
 # 3. Anagrams
 # ============================================================================
 # Valid Anagram examples come first, followed by all Group Anagrams variants.
