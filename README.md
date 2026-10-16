@@ -90,6 +90,40 @@ Run the checks with:
 python3 -m unittest discover -s tests -v
 ```
 
+## Follow-up practice on the same patterns
+
+These examples sit beside related problems in the existing files.
+
+| Function | File | What to explain before coding |
+| --- | --- | --- |
+| `pivot_index` | Arrays/arrays.py | Why subtract the current value from the right-hand sum? |
+| `compact_sorted` | Arrays/arrays.py | Why is only the returned prefix meaningful? |
+| `sorted_squares` | Arrays/arrays.py | Why can the largest square be at either end? |
+| `majority_element` | Hashing/hashing.py | Why is the threshold strictly greater than half? |
+| `first_repeated_value` | Hashing/hashing.py | Why does [1, 2, 2, 1] return 2? |
+| `count_sum_pairs` | Hashing/hashing.py | Why count complements before storing the current value? |
+| `subarrays_divisible_by_k` | Hashing/hashing.py | Why do equal prefix remainders identify divisible sums? |
+| `longest_common_prefix` | Arrays/arrays.py | Why scan only as far as the shortest word? |
+| `longest_consecutive_sorted` | Arrays/arrays.py | Why skip duplicate values without resetting the run? |
+
+The new array scans take O(n) time except consecutive sorting (O(n log n)) and
+common-prefix comparison (O(n * m), with m the shortest word length). Common-prefix
+comparison also scans the n word lengths, so an empty shortest word still costs O(n).
+Sorted Squares allocates its output; sorted consecutive runs allocate a copy.
+Compaction mutates its input; its suffix is unspecified. Other new array functions
+preserve input. The new hash-based scans take O(n) average time; they store distinct
+values or remainders. Majority and first-repeat return None when absent.
+Divisibility requires positive integer k and supports negative array values.
+
+String codecs now reject missing separators, invalid length headers, and truncated
+payloads with ValueError. Lengths count Python characters, not encoded bytes.
+A # inside a payload is valid. Both the standalone and class codecs are checked
+for round trips and cross-compatibility in [review tests](tests/test_review.py).
+
+Two existing algorithms also use less temporary storage: Top K buckets stop at
+the maximum observed frequency, and unique intersection stores only the smaller
+input's distinct values. Intersection output order is unspecified.
+
 === GOLDEN NUGGETS: PATTERN RECOGNITION CHEAT SHEET ===
 Purpose: when you see a problem, match its cues to a pattern FAST, before you start coding.
 Format per pattern: CUES (what tips you off) -> INTUITION -> GO-TO TECHNIQUE -> COMPLEXITY

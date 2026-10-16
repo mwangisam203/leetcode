@@ -563,7 +563,7 @@ def max_stock_profit(prices):
 def longest_common_prefix(words):
     """Common starting characters, or ''; exact case-sensitive comparison.
 
-    O(n * m) time for n words and shortest length m; O(1) auxiliary space
+    O(n * (m + 1)) time for n words and shortest length m; O(1) auxiliary space
     beyond the returned prefix. An empty collection returns an empty string.
     """
     if not words:
