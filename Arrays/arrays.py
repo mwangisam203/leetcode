@@ -250,6 +250,32 @@ print(containDups([1, 4, 7, 90, 1, 5]))
 
 
 # ============================================================================
+# Longest Consecutive Sequence — sorting alternative
+# ============================================================================
+
+def longest_consecutive_sorted(nums):
+    """Longest run of consecutive integers; input unchanged.
+
+    O(n log n) time and O(n) space for a sorted copy. Compare with the
+    average O(n) hash-set approach in Hashing/hashing.py.
+    """
+    if not nums:
+        return 0
+    ordered = sorted(nums)
+    longest = current = 1
+    for i in range(1, len(ordered)):
+        if ordered[i] == ordered[i - 1]:
+            continue
+        if ordered[i] == ordered[i - 1] + 1:
+            current += 1
+        else:
+            current = 1
+        longest = max(longest, current)
+    return longest
+
+# Example: longest_consecutive_sorted([100, 4, 200, 1, 3, 2, 2]) == 4
+
+# ============================================================================
 # 3. Anagrams — sorting and list removal
 # ============================================================================
 # Frequency-counting and Group Anagrams examples: Hashing/hashing.py, Anagrams.

@@ -108,3 +108,11 @@ class ReviewTests(unittest.TestCase):
             before = words.copy()
             self.assertEqual(fn(words), expected)
             self.assertEqual(words, before)
+
+    def test_consecutive_sorting_alternative(self):
+        fn = self.fn('longest_consecutive_sorted')
+        reference = self.fn('longest_consecutive')
+        for values in SMALL_ARRAYS + [[100, 4, 200, 1, 3, 2, 2], [-5, -4, -3, 8]]:
+            before = values.copy()
+            self.assertEqual(fn(values), reference(values))
+            self.assertEqual(values, before)
