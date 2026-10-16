@@ -179,6 +179,25 @@ def contdupli(nums):
 
 
 # ============================================================================
+# First Repeated Value — report the earliest repeated encounter
+# ============================================================================
+
+def first_repeated_value(nums):
+    """Return the first integer seen a second time, or None.
+
+    O(n) average time and O(u) space. This is earliest by second occurrence,
+    not earliest first occurrence among all values that eventually repeat.
+    """
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return num
+        seen.add(num)
+    return None
+
+# Example: first_repeated_value([1, 2, 2, 1]) == 2
+
+# ============================================================================
 # Contains Duplicate II — bounded membership window
 # ============================================================================
 

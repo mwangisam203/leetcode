@@ -77,3 +77,10 @@ class ReviewTests(unittest.TestCase):
         for values in SMALL_ARRAYS:
             expected = next((value for value, count in Counter(values).items() if count > len(values) // 2), None)
             self.assertEqual(fn(values), expected)
+
+    def test_first_repeated_value(self):
+        fn = self.fn('first_repeated_value')
+        for values in SMALL_ARRAYS:
+            expected = next((value for i, value in enumerate(values) if value in values[:i]), None)
+            self.assertEqual(fn(values), expected)
+        self.assertEqual(fn([1, 2, 2, 1]), 2)
