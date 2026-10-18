@@ -1,17 +1,3 @@
-def twosum(nums, target):
-    seen = {}
-
-    for i, num in enumerate(nums):
-        compliment = target - num
-
-        if compliment in seen:
-            return [seen[compliment], i]
-        seen[num] = i
-
-    return []
-print(twosum([2, 7, 8, 9], target=9))
-
-
 
 
 def top_k(nums, k):
@@ -28,11 +14,11 @@ def top_k(nums, k):
 
     results = []
 
-    for frequency in range(len(nums), 0 -1):
+    for frequency in range(len(nums), 0, -1):
         for number in buckets[frequency]:
             results.append(number)
 
-        if len(results) == k:
-            return results
+            if len(results) == k:
+                return results
 
-print(top_k([1, 1, 1, 2, 2, 3], k=2))
+print(top_k([3, 4, 4, 2, 6, 8, 8, 8 , 8, 7, 7, 7, 7, 3], k=2))
