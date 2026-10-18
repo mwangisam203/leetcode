@@ -9,3 +9,4 @@ def twosum(nums, target):
         seen[num] = i
 
     return []
+print(twosum([2, 7, 8, 9], target=9))
