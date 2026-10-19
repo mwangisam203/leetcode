@@ -1,20 +1,21 @@
-from collections import defaultdict
+def top_k(nums, k):
+    counts = {}
 
-def groupanagram(strs):
+    for num in nums:
+        counts[num] = counts.get(num, 0) + 1
 
-    res = defaultdict(list)
+    buckets = [[] for _ in range(len(nums) + 1)]
 
-    for word in strs:
-        count = [0] * 26
+    for number, frequency in counts.items():
+        buckets[frequency].append(number)
 
-        for char in word:
-            count[ord(char) - ord("a")] += 1
+    res = []
 
-        res[tuple(count)].append(word)
+    for frequency in range(len(nums), 0, -1):
+        for number in buckets[frequency]:
+            res.append(number)
 
-    return list(res.values())
+            if len(res) == k:
+                return res
 
-print(groupanagram(["act","pots","tops","cat","stop","hat"]
-))
-
-        
+print(top_k([2, 2, 3, 3, 3, 8 ,3, 8, 8], k=2))
