@@ -22,3 +22,6 @@ class ImportTests(unittest.TestCase):
 
     def test_hashing_import(self):
         self.assert_quiet_import('Hashing.hashing')
+
+    def test_notes_import(self):
+        self.assert_quiet_import('Notes')
