@@ -1,5 +1,9 @@
 # Arrays and hashing reference
 
+See [practice and review](review.md) for a suggested progression. New search and
+stack exercises have their own notes in [Search](../Search/search.txt) and
+[Stacks](../Stacks/stacks.txt); this reference focuses on arrays and hashing.
+
 Current files:
 
 - [Arrays](../Arrays/arrays.py): scans, sorting, two pointers, prefix sums, in-place operations, and running optima.

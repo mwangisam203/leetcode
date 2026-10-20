@@ -55,6 +55,8 @@ print(top_k_frequent([1, 1, 2, 2, 3], 2))  # [1, 2]
 
 ## Deeper notes
 
+- [Practice and review](docs/review.md): a seven-session progression, recall
+  questions, and a template for learning from failing cases.
 - [Top K walkthrough](docs/top-k-walkthrough.md): list length, frequency buckets,
   tied counts, and why the stopping check belongs inside the inner loop.
 - [Arrays and hashing reference](docs/practice-reference.md): function contracts,

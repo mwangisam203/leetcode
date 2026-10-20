@@ -34,4 +34,3 @@ def load_variants():
 
 VARIANTS = load_variants()
 SMALL_ARRAYS = [list(items) for n in range(5) for items in product((-1, 0, 1), repeat=n)]
-
