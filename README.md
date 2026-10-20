@@ -40,6 +40,8 @@ Run the nearby examples with `python3 Arrays/arrays.py` or
 
 ## Deeper notes
 
+- [Top K walkthrough](docs/top-k-walkthrough.md): list length, frequency buckets,
+  tied counts, and why the stopping check belongs inside the inner loop.
 - [Arrays and hashing reference](docs/practice-reference.md): function contracts,
   complexity tables, and related approaches to compare.
 - [Pattern roadmap](docs/pattern-roadmap.txt): cues for later topics, including
