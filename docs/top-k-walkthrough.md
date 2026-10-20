@@ -4,6 +4,17 @@ The task returns **distinct values**, ordered by decreasing frequency. It does
 not return their counts or their positions. The implementation is
 [`top_k_frequent`](../Hashing/hashing.py).
 
+Run the ten-number example or supply your own values from the repository root:
+
+```bash
+python3 -m examples.top_k
+python3 -m examples.top_k 1 1 2 2 3 -k 1
+```
+
+The demo prints the length, distinct count, nonempty frequency buckets, and
+answer. It calls the existing implementation and leaves `test.py` available
+for your own practice.
+
 ## List length, distinct values, and k
 
 ```python

@@ -22,6 +22,12 @@ To run one check while practicing:
 python3 -m unittest tests.test_examples.ExampleTests.test_top_k -v
 ```
 
+To see Top K counts and buckets for a ten-number list:
+
+```bash
+python3 -m examples.top_k
+```
+
 ## Files to study
 
 | File | Focus |
