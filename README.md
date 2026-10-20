@@ -35,6 +35,7 @@ python3 -m examples.top_k
 | [Arrays/arrays.py](Arrays/arrays.py) | Scans, sorting, two pointers, prefix sums, in-place operations |
 | [Hashing/hashing.py](Hashing/hashing.py) | Sets, counts, complement lookups, grouping, hash map design |
 | [Notes.py](Notes.py) | Minimum helpers, monotonic deque, duplicate-finding variants |
+| [Window exercises](tests/test_windows.py) | Check fixed-size sums against direct reference answers |
 | [Arrays/arrays.txt](Arrays/arrays.txt) | Array concepts and common mistakes |
 | [Hashing/hashing.txt](Hashing/hashing.txt) | Hashing concepts and common mistakes |
 | [Gennotes.txt](Gennotes.txt) | Complexity and approach comparisons |

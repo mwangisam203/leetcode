@@ -530,6 +530,27 @@ def merge_sorted(left, right):
 # Example: merge_sorted([1, 3], [2, 3]) == [1, 2, 3, 3]
 
 # ============================================================================
+# Fixed-Size Window — update a sum without rescanning
+# ============================================================================
+
+def max_window_sum(nums, k):
+    """Largest sum of exactly k adjacent values; input is unchanged.
+
+    Require integer 1 <= k <= len(nums); invalid sizes raise ValueError.
+    O(n) time and O(1) auxiliary space, including for all-negative inputs.
+    """
+    if not 1 <= k <= len(nums):
+        raise ValueError('k must be between 1 and the array length')
+    current = sum(nums[i] for i in range(k))
+    best = current
+    for right in range(k, len(nums)):
+        current += nums[right] - nums[right - k]
+        best = max(best, current)
+    return best
+
+# Example: max_window_sum([2, -1, 4, -2], 2) == 3
+
+# ============================================================================
 # 10. Maximum Subarray — Kadane's algorithm
 # ============================================================================
 
