@@ -1,92 +1,97 @@
-NOTES: WHAT TO PAY ATTENTION TO
+HASHING: CHOOSE WHAT THE KEY MUST REMEMBER
 
-Choosing the right structure:
+1. MATCH THE STRUCTURE TO THE QUESTION
 
-set — membership only, no values attached (contains duplicate, intersection)
-dict — key → value mapping (two sum: value → index)
-Counter (subclass of dict) — key → count, with useful extras (.most_common(), arithmetic between Counters)
-defaultdict — dict that auto-initializes missing keys (group anagrams, adjacency lists) — avoids if key not in d: d[key] = [] boilerplate
+set: "have I seen this value?" Store membership only.
+dict: "where/when did I see it?" Store value -> index or prefix -> earliest index.
+Counter: "how many times?" Store value -> frequency.
+defaultdict(list): "which items belong together?" Store signature -> group.
 
+x in a list scans up to n items; x in a set/dict is average O(1).
+Building a table is typically average O(n) time and O(u) space for u distinct keys.
+Keys must be hashable, and their hash/equality behavior must remain stable while
+stored. A tuple works only if its contents are hashable; ([1],) is still invalid.
+Hash equality alone does not prove key equality: different keys may collide.
 
-How hashing achieves O(1):
+2. TWO SUM: LOOK UP BEFORE STORING
 
-A hash function converts a key into an array index. Average case O(1) for insert/lookup/delete because you go straight to the bucket.
-Worst case is O(n) if every key collides into the same bucket — this matters when explaining complexity: say "O(1) average, O(n) worst case" not just "O(1)."
-Python dicts resize and rehash automatically as they grow — you don't manage this yourself, but know that it happens (amortized O(1) insert accounts for occasional resize cost).
+nums = [3, 3], target = 6
+index 0: complement 3 is absent; store {3: 0}.
+index 1: complement 3 is present; return [0, 1].
+Invariant: seen contains only earlier indices, so the same element is never used
+twice. [3] with target 6 must return [], not [0, 0].
 
+For count_sum_pairs, store counts rather than one index: [1, 1, 1], target 2 has
+three INDEX pairs, (0,1), (0,2), (1,2). A set cannot represent that multiplicity.
+first_repeated_value returns the earliest second encounter: [1, 2, 2, 1] -> 2.
+This differs from finding the earliest first occurrence among repeating values.
 
-Collision handling (know this exists, even if you don't implement it often):
+3. GROUP ANAGRAMS: STORE AN EXACT SIGNATURE
 
-Separate chaining — each bucket holds a list/linked-list of entries (what the Design HashMap section in hashing.py does above)
-Open addressing — on collision, probe for the next open slot (linear probing, quadratic probing, double hashing)
-Python's dict uses open addressing internally, but separate chaining is what's usually expected when asked to "implement a hash map" in interviews — it's simpler to explain and code under pressure.
+Sorted characters: "eat", "tea", "ate" -> "aet".
+26-count tuple: positions represent a through z, so this requires lowercase ASCII.
+Unicode frequency signature: frozenset(Counter(word).items()) handles arbitrary
+characters. Matching remains case-sensitive and compares exact code points;
+visually equivalent Unicode spellings are not normalized automatically.
 
-Common pitfalls:
+A list of counts is mutable and cannot be a key; tuple(counts) can be.
+Group by the signature itself, not just hash(signature), because hashes collide.
+A set of characters loses counts: "ab" and "aab" are not anagrams.
+Counter('a') - Counter('aa') is empty because subtraction drops nonpositive counts.
+Use Counter(s) == Counter(t) to check frequency equality.
 
-Using a list where a set/dict would be O(1) — checking x in some_list is O(n); checking x in some_set is O(1) on average. This is the single most common "why is my solution too slow" bug.
-Forgetting mutable types (lists) can't be dict keys or set members — keys and members must be hashable, with stable hashes and equality. Strings, numbers, and tuples of hashable values qualify; immutability alone is not the definition of hashability.
-Off-by-one on prefix sum problems — always double check the "empty prefix" seed case ({0: 1} in subarray sum).
-Assuming dict insertion order doesn't matter — as of Python 3.7+, dicts preserve insertion order, and some problems rely on that.
+4. PREFIX SUMS: THE TABLE'S VALUE CHANGES THE QUESTION
 
+For subarray_sum, prefix[j] - prefix[i] == k implies prefix[i] == prefix[j] - k.
+Store counts of previous prefixes to count ALL matching intervals.
+Seed {0: 1} so a subarray starting at index zero can match the empty prefix.
 
-INTERVIEW QUESTIONS THAT GET ASKED
+Trace nums=[1, -1, 1], k=1 (read a match before storing the current prefix):
+value    running prefix    prior count of prefix-k    total matches
+1        1                 seen[0] = 1                1
+-1       0                 seen[-1] = 0               1
+1        1                 seen[0] = 2                3
 
-Conceptual (expect these as follow-ups, not just "solve the problem"):
+Recording the prefix before querying wrongly counts an empty interval for k=0.
+For longest_zero_sum_subarray, store the EARLIEST index, seeded {0: -1}; repeated
+prefixes bound a zero-sum interval, and the earliest index gives maximum length.
+For subarrays_divisible_by_k, count matching prefix remainders instead of exact
+prefix values. This repo requires positive k. Negative array values are supported.
 
-"What's the time complexity of dict/set operations, and why?" — answer: O(1) average via hashing, O(n) worst case via collisions.
-"How would you implement a hash map yourself?" — see the Design HashMap section in hashing.py; know separate chaining at minimum.
-"What makes a good hash function?" — deterministic, uniform distribution across buckets, fast to compute, minimizes collisions.
-"What happens when a hash table gets full?" — resizing/rehashing; mention load factor (entries / buckets) as the trigger, the resize threshold depends on the implementation; MyHashMap doubles its bucket count above a load factor of 0.75; existing entries are rehashed, and deletions do not shrink capacity.
-"Why can't you use a list as a dictionary key?" — mutability breaks hashing (the hash would change if the list changed, but hash tables assume a key's hash is stable).
+5. TOP K: FREQUENCY IS THE BUCKET INDEX
 
-Coding (in rough order of frequency in interviews):
+n = len(nums), u = len(set(nums)); these count different things.
+For [1, 1, 2, 2, 3], n=5 and u=3. This repo accepts 0 <= k <= u.
+A number's frequency is at most n, so n+1 buckets cover frequencies 0 through n.
+The implementation uses max(observed frequency)+1 to avoid unused upper buckets.
+Stop immediately after appending the kth answer, INSIDE the inner loop.
+Otherwise a tied bucket can grow the answer beyond k, so equality never succeeds.
+Read ../docs/top-k-walkthrough.md for a complete trace and the ten-number example.
 
-Two Sum (almost universal — often the warm-up question)
-Contains Duplicate / Contains Duplicate II (within distance k)
-Group Anagrams
-Valid Anagram
-Subarray Sum Equals K
-Longest Consecutive Sequence
-Top K Frequent Elements
-LRU Cache (hash map + doubly linked list — a step up, very common at mid/senior level)
-Design HashMap / Design HashSet (from scratch)
-Word Pattern / Isomorphic Strings (bijective mapping between two hash maps)
+6. COLLISIONS, GROWTH, AND SPACE
 
-Follow-up pressure questions to be ready for:
+MyHashMap uses separate chaining: each bucket holds a list of key/value pairs.
+Two unequal keys can land in the same bucket; scan and compare keys within it.
+Updating an existing key changes its value without increasing the entry count.
+len(table) counts entries; table.size counts buckets. These are different sizes.
+Load factor = entries / buckets. This implementation doubles capacity above 0.75
+and rehashes every entry, because hash(key) % capacity changes with capacity.
+Deletion does not shrink capacity. Missing get returns -1, so it cannot distinguish
+an absent key from a stored -1 value; this follows the exercise's API.
 
-"Can you do this in O(1) space instead?" — often not possible with hashing (that's the tradeoff you're making: O(n) space for O(1) time), and it's fine to say so directly rather than forcing a bad answer.
-"What if the input is a stream, not a fixed array?" — tests whether you understand incremental hashing (updating counts/sums as data arrives) vs. needing the full array upfront.
+Lookup/removal are expected O(1) with a suitable distribution; insertion is
+amortized expected O(1) across growth. Collisions can make an operation O(n).
+Capacity b also matters: storage is O(n+b), not just O(n) for a mostly empty table.
+Hashing trades memory for faster lookup; an O(1) lookup does not make the entire
+algorithm O(1). A scan of n items still takes at least O(n) time.
 
+7. PRACTICE QUESTIONS
 
-COMPLEXITY QUICK REFERENCE
-Operation	Average	Worst case
-dict/set insert	O(1)	O(n)
-dict/set lookup	O(1)	O(n)
-dict/set delete	O(1)	O(n)
-Building a dict/set from n items	O(n)	O(n²)
-set union	O(n + m)	O((n + m)²) under pathological collisions
-set intersection	O(min(n, m))	O(n·m)
+- Why does nearby-duplicate detection expire positions outside distance k?
+- When does intersection need a set, and when does it need counts?
+- Why do isomorphic strings need mappings in BOTH directions? Try ('ab', 'aa').
+- Why does longest_consecutive extend only values without a predecessor?
+- If the input were a stream, which state could you update incrementally?
 
-The "worst case O(n)" only shows up with pathological hash collisions — in practice and in almost all interview contexts, say O(1) and mention worst case only if asked to be precise.
-
-
-NOTE ON HOW TO PRACTICE THIS
----------------------------------------------------------------------
-Cover the solution, read only the "HOW IT'S ASKED" section, and try to:
-1. Restate the problem in your own words out loud (interviewers grade on this)
-2. State the brute force approach and its complexity
-3. Identify the hashing opportunity before looking at the solution
-4. Only then check your code against the reference above
-
-
-####
-DICT vs LIST FOR COUNTING
-- list: can count a fixed alphabet using character indices (e.g. 26 slots
-  for a-z); repeated list.count calls scan the list each time
-- dict: key-value pairs → perfect for "map each character to its count"
-- collections.Counter: a dict subclass built specifically for counting; 
-  Counter(string) scans the string in O(n) average time and gives {char: count} for every char.
-- Counter also supports subtraction: Counter(s) - Counter(t) tells you 
-  positive counts left after subtraction; zero and negative counts are discarded.
-  An empty result does NOT prove equality: Counter('a') - Counter('aa') is empty.
-  Use Counter(s) == Counter(t) to check matching frequencies.
+See ../Gennotes.txt for complexity comparisons. Before coding, state the table's
+key, value, initial seed, and whether the lookup happens before or after updating.
