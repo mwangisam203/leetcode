@@ -2,7 +2,7 @@
 from collections import Counter
 from itertools import product
 import unittest
-from test_examples import SMALL_ARRAYS, VARIANTS
+from tests.helpers import SMALL_ARRAYS, VARIANTS
 
 
 class ReviewTests(unittest.TestCase):

@@ -1,7 +1,7 @@
 """Reference-based checks for additional array and hashing patterns."""
 from collections import Counter
 import unittest
-from test_examples import SMALL_ARRAYS, VARIANTS
+from tests.helpers import SMALL_ARRAYS, VARIANTS
 
 
 class PatternTests(unittest.TestCase):
