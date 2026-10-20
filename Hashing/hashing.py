@@ -1094,6 +1094,28 @@ def is_isomorphic(s, t):
 # Example: is_isomorphic('egg', 'add') is True; ('ab', 'aa') is False.
 
 # ============================================================================
+# Longest Unique Substring — variable-size membership window
+# ============================================================================
+
+def longest_unique_substring_length(text):
+    """Length of the longest substring with no repeated code points.
+
+    O(n) average time, O(u) space for distinct characters in the window.
+    Empty text returns 0. Matching is case-sensitive; no normalization is applied.
+    """
+    window = set()
+    left = best = 0
+    for right, char in enumerate(text):
+        while char in window:
+            window.remove(text[left])
+            left += 1
+        window.add(char)
+        best = max(best, right - left + 1)
+    return best
+
+# Example: longest_unique_substring_length('abba') == 2
+
+# ============================================================================
 # 11. Word Pattern — characters mapped to words
 # ============================================================================
 

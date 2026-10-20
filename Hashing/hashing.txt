@@ -85,7 +85,19 @@ Capacity b also matters: storage is O(n+b), not just O(n) for a mostly empty tab
 Hashing trades memory for faster lookup; an O(1) lookup does not make the entire
 algorithm O(1). A scan of n items still takes at least O(n) time.
 
-7. PRACTICE QUESTIONS
+7. VARIABLE-SIZE WINDOWS: SHRINK UNTIL VALID
+
+longest_unique_substring_length keeps a set representing text[left:right+1].
+Before adding a repeated character, remove leftmost characters until it is absent.
+Use while, not if: in "abba", the second b requires removing both a and b.
+After adding the new character, every character in the window is unique.
+Update the best length with right-left+1. This counts contiguous characters;
+the set of all distinct characters in the entire string is not the answer.
+For "pwwkew", the answer is 3 ("wke"), not 4 ("pwke" skips a position).
+Each character enters and leaves once, so the nested while still costs O(n)
+average time overall. Python code points are counted, not visual grapheme clusters.
+
+8. PRACTICE QUESTIONS
 
 - Why does nearby-duplicate detection expire positions outside distance k?
 - When does intersection need a set, and when does it need counts?
