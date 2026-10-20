@@ -1,0 +1,84 @@
+OPTIONAL STUDY SCHEDULE
+
+Adjust the pace to your review needs; the week numbers are a suggested order,
+not completed work or deadlines. See pattern-roadmap.txt for recognition cues.
+
+Topics about DSA
+
+Order of topics
+Go roughly in this sequence — each builds on the last:
+
+Arrays & Strings — two pointers, sliding window, prefix sums
+Hashing — hash maps/sets for O(1) lookups (this unlocks a huge chunk of "easy" problems)
+Linked Lists — traversal, reversal, fast/slow pointers
+Stacks & Queues — monotonic stacks, parentheses matching, BFS prep
+Recursion & Backtracking — before trees, since trees are recursive by nature
+Trees — traversals (in/pre/post-order), BST properties, then binary tree problems
+Graphs — BFS, DFS, then topological sort, union-find
+Heaps / Priority Queues — top-K problems, merging
+Dynamic Programming — save for last; it's the hardest and benefits from everything above (especially recursion and arrays)
+Greedy & Intervals — can be woven in anytime after arrays
+
+
+Topics coverage by week
+
+Week-by-week
+Week 1 — Arrays, Strings, Two Pointers, Sliding Window
+
+Days 1–2: Two pointers (reverse array, valid palindrome, container with most water)
+Days 3–4: Sliding window (maximum sum of a fixed-size subarray, longest substring without repeats)
+Days 5–6: Prefix sums (subarray sum equals K, running sum)
+~12–15 problems total
+
+
+Week 2 — Hashing + Binary Search
+
+Days 1–2: Hash maps/sets (two sum, group anagrams, longest consecutive sequence)
+Days 3–4: Binary search on sorted arrays (classic + search in rotated array)
+Days 5–6: Binary search on answer space (this is the harder, less intuitive version — e.g. "minimum capacity to ship packages in D days")
+~12 problems
+
+Week 3 — Linked Lists + Stacks/Queues
+
+Days 1–2: Linked list traversal, reversal, cycle detection (Floyd's)
+Days 3–4: Merge two sorted lists, remove Nth node, fast/slow pointer patterns
+Days 5–6: Stacks (valid parentheses, min stack), monotonic stack (daily temperatures)
+~12 problems
+
+Week 4 — Recursion + Backtracking
+
+Days 1–2: Pure recursion warm-ups (subsets, permutations)
+Days 3–5: Backtracking (combination sum, N-Queens, word search)
+Day 6: Review — redo 2 problems from Week 1 cold, no notes
+~10 problems + 1 review day
+
+
+Week 5 — Trees
+
+Days 1–2: Traversals (recursive + iterative), depth/height
+Days 3–4: BST-specific (validate BST, insert/search, LCA)
+Days 5–6: Tree + backtracking combo (path sum, all root-to-leaf paths)
+~12 problems
+
+Week 6 — Graphs
+
+Days 1–2: BFS/DFS on grids and adjacency lists (number of islands, clone graph)
+Days 3–4: Topological sort (course schedule)
+Days 5–6: Union-Find (redundant connection, number of provinces)
+~10 problems
+
+
+Week 7 — Heaps + Greedy/Intervals
+
+Days 1–2: Heap basics (kth largest, top K frequent)
+Days 3–4: Merge intervals, meeting rooms
+Days 5–6: Greedy (jump game, gas station)
+~10 problems
+
+Weeks 8–10 — Dynamic Programming (give this the most time)
+
+Week 8: 1D DP (climbing stairs, house robber, coin change)
+Week 9: 2D DP (unique paths, longest common subsequence, edit distance)
+Week 10: DP on trees/knapsack variants + full review — redo one hard problem from each earlier topic cold
+~25–30 problems across the three weeks
+

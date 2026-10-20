@@ -1,221 +1,88 @@
- #What you need to know cold
+ARRAYS: BUILD THE INVARIANT BEFORE THE LOOP
 
-#Frequency counting with Counter or a manual dict
-#Checking for duplicates using a set
-#Using a dict to store "value → index" so you can look things up instantly instead of re-scanning
-#Sorting when order doesn't matter but grouping does (e.g., anagrams)
-#Basic array traversal and prefix/suffix accumulation (running totals as you loop)
+Python lists grow dynamically. Pass ten values and len(nums) is ten; it is not a
+capacity setting. For indices, use 0 through len(nums)-1. range(len(nums)) visits
+exactly those indices. range(len(nums), 0, -1) visits n, n-1, ..., 1: those are
+valid FREQUENCIES, but n is not an index into a list of length n.
 
-'''
-| Input (n) | O(1) | O(log n) |      O(n) |  O(n log n) |             O(n²) |
-| --------: | ---: | -------: | --------: | ----------: | ----------------: |
-|        10 |    1 |       ~3 |        10 |         ~33 |               100 |
-|       100 |    1 |       ~7 |       100 |        ~664 |            10,000 |
-|     1,000 |    1 |      ~10 |     1,000 |      ~9,966 |         1,000,000 |
-| 1,000,000 |    1 |      ~20 | 1,000,000 | ~19,931,000 | 1,000,000,000,000 |
+1. INPUT CONTRACTS
 
-Notice how O(log n) grows very slowly, while O(n²) explodes as n gets larger.
-'''
+Before choosing a pattern, ask:
+- Is the input sorted? Are duplicates and negative values allowed?
+- Do I return values, indices, a count, or a modified prefix length?
+- May I mutate the input? What should empty input do?
 
-'''
-| Complexity | Name         | Good? | Example                     |
-| ---------- | ------------ | ----- | --------------------------- |
-| O(1)       | Constant     | ⭐⭐⭐⭐⭐ | Accessing `arr[3]`          |
-| O(log n)   | Logarithmic  | ⭐⭐⭐⭐⭐ | Binary Search               |
-| O(n)       | Linear       | ⭐⭐⭐⭐  | Finding a maximum           |
-| O(n log n) | Linearithmic | ⭐⭐⭐⭐  | Merge Sort                  |
-| O(n²)      | Quadratic    | ⭐⭐    | Nested loops                |
-| O(2ⁿ)      | Exponential  | ❌     | Subset decision tree (excluding output copies)     |
-| O(n!)      | Factorial    | 🚨    | Permutation search leaves (excluding output copies) |
+The examples intentionally have different contracts:
+- minVal / findMin / largest: empty input raises ValueError.
+- Notes.py minimum helpers: empty input returns None.
+- max_subarray_sum: nonempty input; all-negative input returns its largest value.
+- max_stock_profit: empty or falling input returns 0 (choose no trade).
+- two_sum_sorted: sorted input, zero-based indices, [] if absent.
 
+2. TWO POINTERS: USE ORDER TO RULE OUT WORK
 
-'''
+For sorted Two Sum [1, 2, 4, 7], target 6:
+left=0, right=3: 1+7=8 -> decrease right (moving left cannot reduce the sum).
+left=0, right=2: 1+4=5 -> increase left (moving right cannot increase the sum).
+left=1, right=2: 2+4=6 -> return [1, 2].
+Invariant: if a valid pair remains, it lies between the two pointers.
+Use left < right so an element cannot pair with itself.
 
+Sorted Squares also uses both ends: the largest absolute value can be at either
+end, so write the largest square into the last free output position.
+Sorting an unsorted list changes positions; do not sort Two Sum input when the
+answer must use its original indices unless you retain those indices.
 
-'''
-## General rule
+3. PREFIX SUMS: DEFINE THE BOUNDARY
 
-When writing Big O:
+nums   = [2, -1, 4]
+prefix = [0,  2, 1, 5]
+prefix[i] = sum of nums[:i], excluding nums[i].
+Sum of [start, stop) = prefix[stop] - prefix[start].
+For [1, 3): 5 - 2 = 3, matching -1 + 4.
+The initial zero makes ranges starting at index 0 use the same formula.
+An empty range [i, i) has sum zero. Negative numbers are fine.
 
-Ignore constants.
-Keep only the fastest-growing term.
+Product Except Self uses a related invariant: before processing i, prefix is
+the product strictly BEFORE i. Write it first, then include nums[i]. The reverse
+pass multiplies by the product strictly AFTER i. No division is needed, so zeros
+are supported. For [0, 2, 3], the answer is [6, 0, 0].
 
-Examples:
+4. MUTATION, ALIASES, AND RETURN VALUES
 
-O(5)        → O(1)
-O(3n)       → O(n)
-O(n + 20)   → O(n)
-O(n² + n)   → O(n²)
-O(n³ + n²)  → O(n³)
+alias = nums refers to the same list; copy = nums.copy() creates a shallow copy.
+move_zeroes and rotate_right change nums and return None:
+    values = [0, 1, 0, 3]
+    move_zeroes(values)
+    # values is [1, 3, 0, 0]
+Do not write values = move_zeroes(values); that replaces values with None.
 
-'''
- 
- 
- 
- ## A small cheat sheet
+compact_sorted returns a length, not a new list:
+    values = [1, 1, 2, 2, 3]
+    length = compact_sorted(values)
+    # values[:length] is [1, 2, 3]; the suffix is unspecified.
+Its write pointer bounds a prefix of distinct values already processed.
 
+rotate_right normalizes k with k %= len(nums); test empty input first to avoid
+modulo by zero. A negative k rotates left. merge_sorted returns a new list and
+keeps both inputs unchanged. Python list.sort() mutates and returns None;
+sorted() returns a new list. Both may need O(n) sorting workspace.
 
-| Code Pattern                | Complexity |
-| --------------------------- | ---------- |
-| `arr[5]`                    | O(1)       |
-| One loop over `n` items     | O(n)       |
-| Two separate loops over `n` | O(n)       |
-| Two nested loops over `n`   | O(n²)      |
-| Three nested loops over `n` | O(n³)      |
-| Nested loop with `range(5)` | O(n)       |
-| Binary Search               | O(log n)   |
-| Merge Sort                  | O(n log n) |
+5. WINDOW OR PREFIX LOOKUP?
 
+A fixed-size sum window subtracts the outgoing value and adds the incoming one;
+negative values are fine because the size determines when to move the left edge.
+A variable-size sum window needs a reason that shrinking always helps. Negative
+values can break that reason: [1, -1, 5] contains a sum-5 interval that shrinking
+based only on the running sum can overlook. For counting exact sums with negative
+numbers, study subarray_sum in Hashing/hashing.py instead.
 
+6. TRACE AND CHECK
 
-Topics about DSA
-
-Order of topics
-Go roughly in this sequence — each builds on the last:
-
-Arrays & Strings — two pointers, sliding window, prefix sums
-Hashing — hash maps/sets for O(1) lookups (this unlocks a huge chunk of "easy" problems)
-Linked Lists — traversal, reversal, fast/slow pointers
-Stacks & Queues — monotonic stacks, parentheses matching, BFS prep
-Recursion & Backtracking — before trees, since trees are recursive by nature
-Trees — traversals (in/pre/post-order), BST properties, then binary tree problems
-Graphs — BFS, DFS, then topological sort, union-find
-Heaps / Priority Queues — top-K problems, merging
-Dynamic Programming — save for last; it's the hardest and benefits from everything above (especially recursion and arrays)
-Greedy & Intervals — can be woven in anytime after arrays
-
-
-Topics coverage by week
-
-Week-by-week
-Week 1 — Arrays, Strings, Two Pointers, Sliding Window
-
-Days 1–2: Two pointers (reverse array, valid palindrome, container with most water)
-Days 3–4: Sliding window (maximum sum of a fixed-size subarray, longest substring without repeats)
-Days 5–6: Prefix sums (subarray sum equals K, running sum)
-~12–15 problems total
-
-
-Week 2 — Hashing + Binary Search
-
-Days 1–2: Hash maps/sets (two sum, group anagrams, longest consecutive sequence)
-Days 3–4: Binary search on sorted arrays (classic + search in rotated array)
-Days 5–6: Binary search on answer space (this is the harder, less intuitive version — e.g. "minimum capacity to ship packages in D days")
-~12 problems
-
-Week 3 — Linked Lists + Stacks/Queues
-
-Days 1–2: Linked list traversal, reversal, cycle detection (Floyd's)
-Days 3–4: Merge two sorted lists, remove Nth node, fast/slow pointer patterns
-Days 5–6: Stacks (valid parentheses, min stack), monotonic stack (daily temperatures)
-~12 problems
-
-Week 4 — Recursion + Backtracking
-
-Days 1–2: Pure recursion warm-ups (subsets, permutations)
-Days 3–5: Backtracking (combination sum, N-Queens, word search)
-Day 6: Review — redo 2 problems from Week 1 cold, no notes
-~10 problems + 1 review day
-
-
-Week 5 — Trees
-
-Days 1–2: Traversals (recursive + iterative), depth/height
-Days 3–4: BST-specific (validate BST, insert/search, LCA)
-Days 5–6: Tree + backtracking combo (path sum, all root-to-leaf paths)
-~12 problems
-
-Week 6 — Graphs
-
-Days 1–2: BFS/DFS on grids and adjacency lists (number of islands, clone graph)
-Days 3–4: Topological sort (course schedule)
-Days 5–6: Union-Find (redundant connection, number of provinces)
-~10 problems
-
-
-Week 7 — Heaps + Greedy/Intervals
-
-Days 1–2: Heap basics (kth largest, top K frequent)
-Days 3–4: Merge intervals, meeting rooms
-Days 5–6: Greedy (jump game, gas station)
-~10 problems
-
-Weeks 8–10 — Dynamic Programming (give this the most time)
-
-Week 8: 1D DP (climbing stairs, house robber, coin change)
-Week 9: 2D DP (unique paths, longest common subsequence, edit distance)
-Week 10: DP on trees/knapsack variants + full review — redo one hard problem from each earlier topic cold
-~25–30 problems across the three weeks
-
-The actual signal-to-pattern mapping
-This is the part people skip writing down, and it's the highest-leverage thing to memorize:
-
-| If you see... | Think... |
-|---|---|
-| Sorted array + find pair/triplet | Two pointers |
-| Substring/subarray + "longest/shortest/contains" | Sliding window |
-| Need subarray sum repeatedly | Prefix sum |
-| "Find if exists" in unsorted data, need O(1) lookup | Hash map/set |
-| Sorted array, or "find minimum X such that condition holds" | Binary search (on array or on answer space) |
-| Linked list + "find middle/cycle/kth from end" | Fast/slow pointers |
-| Need "next greater/smaller element" | Monotonic stack |
-| Matching brackets/nested structure | Stack |
-| "All possible combinations/subsets/arrangements" | Backtracking |
-| Tree + "path" or "depth" | DFS (recursion) |
-| Tree + "level by level" | BFS |
-| Graph + "shortest path, unweighted" | BFS |
-| Graph + "is there a path/connected" | DFS or Union-Find |
-| Graph + "ordering with dependencies" | Topological sort |
-| "Kth largest/smallest" or "top K" | Heap |
-| Overlapping subproblems + optimal substructure + "min/max/count ways" | DP |
-| "Maximize while avoiding conflicts" (intervals, scheduling) | Greedy |
-
-
-General pattern-recognition cues:
-
-"Find duplicate" + "no extra space allowed" → think sorting, or Floyd's cycle detection if values are in range [1,n].
-"Find duplicate" + space is fine → set or Counter, almost always the right first answer.
-"Min/max of every window" → monotonic deque, not a fresh loop per window (that's O(n·k), too slow).
-Built-ins (min(), set(), Counter) are fine to use in interviews after you've shown you understand the manual version — don't lead with them if the interviewer is testing fundamentals.
-
-
-Complexity cheat notes:
-
-Set/dict operations (in, add, lookup) are O(1) average, O(n) worst case (hash collisions) — mention average case unless asked.
-Comparison sorting is O(n log n) in the worst case; Python sorting can be O(n) on already ordered input.
-"O(1) space" claims should ignore input/output storage but must count any extra structure you allocate (a set(), a new list, etc.).
-
-
-Common pitfalls:
-
-Forgetting the empty-array edge case (if not arr: return None).
-Using min(arr) inside a loop (recomputes every time — O(n²) instead of O(n)). Track the running min instead.
-Confusing "has duplicates" (any) with "find the duplicate" (which one) with "find all duplicates" (all of them) — these need different return values and sometimes different tools.
-With Floyd's algorithm, forgetting it only applies to the specific "n+1 values in [1,n]" setup — it is not a general duplicate-finder.
-
-
-NOTES: WHAT TO PAY ATTENTION TO
-
-Choosing the right structure:
-
-set — membership only, no values attached (contains duplicate, intersection)
-dict — key → value mapping (two sum: value → index)
-Counter (subclass of dict) — key → count, with useful extras (.most_common(), arithmetic between Counters)
-defaultdict — dict that auto-initializes missing keys (group anagrams, adjacency lists) — avoids if key not in d: d[key] = [] boilerplate
-
-
-=== ARRAYS: MIN VALUE & DUPLICATES ===
-
-Pattern cues:
-- "find smallest/largest" → track running min/max, don't call min() in a loop
-- "has duplicate" + space ok → set
-- "has duplicate" + O(1) space required → use a constant-space sort, or Floyd's cycle under its specific constraints; Python sorting may use O(n) workspace
-
-Complexity:
-- set lookup: O(1) avg
-- Python sort-based duplicate check: O(n log n) time, O(n) worst-case extra space
-
-Pitfalls:
-- min(arr) inside a loop = O(n²), recomputes every time
-- empty array edge case
-- Floyd's cycle here requires n+1 values in [1,n] with exactly one distinct duplicated value
+Track columns such as index | current value | left | right | result.
+Predict the return value before running. Compare with a small reference answer.
+Include [], [5], all equal, all negative, already sorted, and duplicates.
+For mutation problems, compare the final list as well as the return value.
+Do not assume every nested loop is quadratic: count total pointer movements.
+See ../Gennotes.txt for operation costs, ../docs/study-plan.txt for a suggested
+schedule, and ../docs/pattern-roadmap.txt for the wider topic map.
