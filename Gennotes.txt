@@ -1,11 +1,74 @@
-Summary table so far:
+COMPLEXITY: WHAT TO COUNT
 
-Problem	Brute force	Time	Space	Optimized	Time	Space
-Contains Duplicate	nested loop	O(n²)	O(1)	hash set	O(n)	O(n)
-Contains Duplicate	sort + adjacent check	O(n log n)	O(n)*	hash set	O(n)	O(n)
-Valid Anagram	sort + compare	O(n log n)	O(n)	hash map counting	O(n)	O(u)**
-Valid Anagram	nested "cross out"	O(n²)	O(n)	hash map counting	O(n)	O(u)**
+n, m = input lengths; u = number of distinct values; k = selected/window size.
+Time describes how work grows with input size, not elapsed seconds.
+State whether space includes the output. Count recursion, copies, and slices.
+The bounds below use the usual unit-cost model for numbers and hash operations;
+arbitrarily large integers and long string keys can add their own costs.
 
-* Python list.sort() uses O(n) worst-case auxiliary space.
-** u is the number of distinct characters; O(1) only for a fixed-size alphabet.
-Hash-based time bounds are average-case bounds.
+Python operation                  Time                         Extra space
+len(list), list[i]                O(1)                         O(1)
+x in list                        O(n)                         O(1)
+list.append(x)                   amortized O(1)               occasional resize
+list.pop()                       O(1)                         O(1)
+list.pop(0), list.insert(0, x)    O(n), shifting elements      possible resize
+list[a:b]                        O(k), k = slice length       O(k)
+min(list), sum(list)              O(n)                         O(1)
+x in set, dict lookup            average O(1), worst O(n)     O(1) per lookup
+set.add, dict assignment         amortized average O(1)       table may grow
+sorted(list)                     worst O(n log n)             O(n)
+list.sort()                      worst O(n log n)             O(n) worst case
+
+In-place means the original object changes. It does not promise O(1) workspace:
+Python's list.sort() mutates its input but may allocate linear sorting workspace.
+append() can occasionally copy the backing array; many appends still cost O(n)
+in total. This is amortized analysis. Average hashing cost instead concerns key
+distribution and collisions; "average" and "amortized" describe different things.
+
+APPROACH COMPARISONS
+
+Problem                Approach                 Time (average hashing)  Extra space
+Contains Duplicate     all pairs                O(n^2)                  O(1)
+Contains Duplicate     sort, adjacent scan      O(n log n)              O(n) in Python
+Contains Duplicate     set membership           O(n)                    O(u)
+Valid Anagram          sort both strings        O(n log n)              O(n)
+Valid Anagram          character counts         O(n)                    O(u)
+Two Sum                all pairs                O(n^2)                  O(1)
+Two Sum                prior value -> index     O(n)                    O(u)
+Sorted Two Sum         two pointers             O(n)                    O(1)
+Range Sum              rescan each query        O(n) per query          O(1)
+Range Sum              prefix array             O(n) build, O(1) query  O(n) stored
+Top K Frequent         count, sort unique keys  O(n + u log u)          O(u)
+Top K Frequent         count, frequency buckets O(n)                    O(n)
+Subarray Sum Equals K  enumerate, running sum   O(n^2)                  O(1)
+Subarray Sum Equals K  prefix frequencies       O(n)                    O(n)
+Window Minimum         min() per window         O(n*k) upper bound      O(1)*
+Window Minimum         monotonic deque          O(n)                    O(k)*
+
+* Excludes the output. Slicing each window adds O(k) temporary storage.
+Anagram counting is O(1) space only when the alphabet size is fixed.
+Sorting Top K in this repo skips sorting for k=0 after counting and validation.
+
+READ THE LOOP, NOT JUST THE INDENTATION
+
+- Two separate O(n) passes: O(n + n) = O(n).
+- Nested loops each making n independent steps: O(n^2).
+- Nested while-loop with a pointer that only advances n times in total: O(n).
+  Example: each index enters and leaves the monotonic deque at most once.
+- A loop that halves its remaining search interval: O(log n).
+- Calling sum(nums[:i]) for every i: O(n^2), with extra slice allocations.
+- Enumerating n^2 subarrays and calling sum() on each: O(n^3), not O(n^2).
+  Maintain a running sum for each start to get the quadratic baseline above.
+
+Drop constant factors and smaller terms: O(3n + 10) becomes O(n).
+Keep independent input sizes: O(n + m) cannot become O(n) without relating m to n.
+Include output cost: materializing all subsets takes O(n * 2^n) total space/time
+in the worst case even if the search tree itself has O(2^n) nodes.
+
+SELF-CHECK
+
+1. Does `if value in seen` scan a list or probe a set?
+2. Does a helper inside the loop rescan or copy the input?
+3. How many times can each pointer/index enter and leave the structure?
+4. Is the input already sorted, or must sorting be included?
+5. Which storage is input, output, temporary workspace, or retained preprocessing?
