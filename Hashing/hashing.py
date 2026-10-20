@@ -8,6 +8,7 @@ and multiset intersection. See README.md for comparisons and complexity notes.
 List/sorting alternatives live in Arrays/arrays.py. Hash table operations have
 O(1) average cost. Repeated names are standalone practice variants; later
 definitions replace earlier ones, so keep example calls beside their definition.
+Examples run only when executing this file directly, keeping imports quiet.
 """
 
 from collections import Counter, defaultdict
@@ -47,8 +48,9 @@ def contains_duplicate(nums):
         seen.add(num)
     return False
 
-print(contains_duplicate([1, 2, 3, 1]))  # True
-print(contains_duplicate([1, 2, 3, 4]))  # False
+if __name__ == "__main__":
+    print(contains_duplicate([1, 2, 3, 1]))  # True
+    print(contains_duplicate([1, 2, 3, 4]))  # False
 
 
 # More hash-set practice
@@ -61,7 +63,8 @@ def containsDuplicates(alfs):
         seen.add(alf)
     return False
 
-print(containsDuplicates(["ef", "abd", "cd", "abc", "dba"]))
+if __name__ == "__main__":
+    print(containsDuplicates(["ef", "abd", "cd", "abc", "dba"]))
 
 
 def hasDuplicates(numbers):
@@ -73,7 +76,8 @@ def hasDuplicates(numbers):
 
     return False
 
-print(hasDuplicates([23, 30, 12, 1, 0, 30, 12, 50, 90, 0]))
+if __name__ == "__main__":
+    print(hasDuplicates([23, 30, 12, 1, 0, 30, 12, 50, 90, 0]))
 
 
 def duplicateWords(words):
@@ -86,7 +90,8 @@ def duplicateWords(words):
 
     return False
 
-print(duplicateWords(["apple", "mangoes", "lemons", "pawpaw", "tomatoes"]))
+if __name__ == "__main__":
+    print(duplicateWords(["apple", "mangoes", "lemons", "pawpaw", "tomatoes"]))
 
 
 ## duplicates practice
@@ -101,10 +106,11 @@ def containDups(chars):
         seen.add(char)
     return False
 
-print(containDups(["abc", "cba", "abc"]))
+if __name__ == "__main__":
+    print(containDups(["abc", "cba", "abc"]))
 
-## Complex example
-Words = ["apples", "lemon", "mango", "orange", "avocado"]
+    ## Complex example
+    Words = ["apples", "lemon", "mango", "orange", "avocado"]
 
 def myDuplicates(Words):
 
@@ -116,7 +122,8 @@ def myDuplicates(Words):
         viewed.add(word)
     return False
 
-print(myDuplicates(Words))
+if __name__ == "__main__":
+    print(myDuplicates(Words))
 
 
 def contains_duplicate(nums):
@@ -137,7 +144,8 @@ def containDuplicates(nums):
         my_basket.add(num)
     return False
 
-print(containDuplicates([12, 34, 8, 30, 0, 12]))
+if __name__ == "__main__":
+    print(containDuplicates([12, 34, 8, 30, 0, 12]))
 
 
 def hasduplicates(words):
@@ -150,7 +158,8 @@ def hasduplicates(words):
 
     return False
 
-print(hasduplicates(["abc", "dsc", "kqq"]))
+if __name__ == "__main__":
+    print(hasduplicates(["abc", "dsc", "kqq"]))
 
 
 def hasduplicates(words):
@@ -164,7 +173,8 @@ def hasduplicates(words):
 
     return False
 
-print(hasduplicates(["eat", "tea", "eat"]))
+if __name__ == "__main__":
+    print(hasduplicates(["eat", "tea", "eat"]))
 
 
 def contdupli(nums):
@@ -239,7 +249,8 @@ def two_sum(nums, target):
         seen[num] = i
     return []  # No matching pair.
 
-print(two_sum([2, 7, 11, 15], 9))  # [0, 1]
+if __name__ == "__main__":
+    print(two_sum([2, 7, 11, 15], 9))  # [0, 1]
 
 
 class Solution:
@@ -254,7 +265,8 @@ class Solution:
         return []  # No matching pair.
 
 
-print(Solution().two_sum([2, 7, 9, 11], target=9))
+if __name__ == "__main__":
+    print(Solution().two_sum([2, 7, 9, 11], target=9))
 
 
 def twosum(nums, target):
@@ -269,7 +281,8 @@ def twosum(nums, target):
     return []  # No matching pair.
 
 
-print(twosum([2, 7, 8, 11,15], target=9))
+if __name__ == "__main__":
+    print(twosum([2, 7, 8, 11,15], target=9))
 
 
 # TWO SUM
@@ -319,7 +332,8 @@ def twoSum(nums, target):
         viewed[num] = i
     return []  # No matching pair.
 
-print(twoSum([2, 7, 9, 11, 12], target=9))
+if __name__ == "__main__":
+    print(twoSum([2, 7, 9, 11, 12], target=9))
 
 
 def two_sum(nums, target):
@@ -370,8 +384,9 @@ def is_anagram(s, t):
         return False
     return Counter(s) == Counter(t)
 
-print(is_anagram("listen", "silent"))  # True
-print(is_anagram("rat", "car"))        # False
+if __name__ == "__main__":
+    print(is_anagram("listen", "silent"))  # True
+    print(is_anagram("rat", "car"))        # False
 
 
 class Solution:
@@ -388,7 +403,8 @@ class Solution:
             count[char] -= 1
         return True
 
-print(Solution().isAnagram("jar", "jam"))
+if __name__ == "__main__":
+    print(Solution().isAnagram("jar", "jam"))
 
 
 ##valid anagram
@@ -407,7 +423,8 @@ def Anagram(s, t):
     return True
 
 
-print(Anagram("eat", "ete"))
+if __name__ == "__main__":
+    print(Anagram("eat", "ete"))
 
 # Two frequency dictionaries: still O(n) average time.
 def my_anagram(s, t):
@@ -421,7 +438,8 @@ def my_anagram(s, t):
     return CountS == CountT
 
 
-print(my_anagram("eat", "ete"))
+if __name__ == "__main__":
+    print(my_anagram("eat", "ete"))
 
 
 def validAnagram(s, t):
@@ -441,7 +459,8 @@ def validAnagram(s, t):
 
     return True
 
-print(validAnagram("money", "nemoy"))
+if __name__ == "__main__":
+    print(validAnagram("money", "nemoy"))
 
 
 #example 2:
@@ -463,7 +482,8 @@ def itsAnagram(a, b):
 
     return True
 
-print(itsAnagram("sam", "mam"))
+if __name__ == "__main__":
+    print(itsAnagram("sam", "mam"))
 
 
 class Solution:
@@ -539,7 +559,8 @@ def group_anagrams(strs):
         groups[key].append(word)
     return list(groups.values())
 
-print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+if __name__ == "__main__":
+    print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 # [['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']]
 
 
@@ -603,11 +624,12 @@ class Solution:
         return list(res.values())
 
 
-solution = Solution()
-strs = ["act","pots","tops","cat","stop","hat"]
+if __name__ == "__main__":
+    solution = Solution()
+    strs = ["act","pots","tops","cat","stop","hat"]
 
-results = solution.groupAnagram(strs)
-print(results)
+    results = solution.groupAnagram(strs)
+    print(results)
 
 
 class Solution:
@@ -664,7 +686,8 @@ def groupAnagram(strs):
     return list(res.values())
 
 
-print(groupAnagram(["act","pots","tops","cat","stop","hat"]))
+if __name__ == "__main__":
+    print(groupAnagram(["act","pots","tops","cat","stop","hat"]))
 
 
 '''

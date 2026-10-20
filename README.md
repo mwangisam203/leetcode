@@ -36,7 +36,13 @@ python3 -m unittest tests.test_examples.ExampleTests.test_top_k -v
 | [tests/](tests/) | Reference checks, boundary cases, and exhaustive small inputs |
 
 Run the nearby examples with `python3 Arrays/arrays.py` or
-`python3 Hashing/hashing.py`.
+`python3 Hashing/hashing.py`. Importing these modules keeps the examples quiet:
+
+```python
+from Hashing.hashing import top_k_frequent
+
+print(top_k_frequent([1, 1, 2, 2, 3], 2))  # [1, 2]
+```
 
 ## Deeper notes
 

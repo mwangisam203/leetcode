@@ -19,3 +19,6 @@ class ImportTests(unittest.TestCase):
 
     def test_arrays_import(self):
         self.assert_quiet_import('Arrays.arrays')
+
+    def test_hashing_import(self):
+        self.assert_quiet_import('Hashing.hashing')
