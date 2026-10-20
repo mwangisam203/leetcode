@@ -1,0 +1,32 @@
+BINARY SEARCH: DEFINE THE INTERVAL BEFORE UPDATING IT
+
+Precondition: ascending sorted input. The functions do not sort or validate it.
+Both use [left, right), initially [0, len(nums)). right may equal len(nums), but
+mid is strictly below right whenever the interval is nonempty.
+
+binary_search returns any matching index, or -1. With duplicate values, do not
+assume the first match. If nums[mid] < target, all values through mid are too
+small: left = mid + 1. If nums[mid] > target, discard mid and everything after
+it: right = mid. The interval shrinks on every iteration.
+
+Trace [1, 3, 5, 7, 9], target=7:
+left=0, right=5, mid=2 -> 5 is too small -> left=3.
+left=3, right=5, mid=4 -> 9 is too large -> right=4.
+left=3, right=4, mid=3 -> return 3.
+
+lower_bound searches for a boundary, not an arbitrary match. Its invariant is:
+- Every index before left has value < target.
+- Every index at or after right has value >= target.
+An equal midpoint moves right to mid, preserving the possibility of an earlier
+equal value. At termination left==right is the first legal insertion position.
+For [1, 2, 2, 4], target=2 returns 1; target=3 returns 3; target=5 returns 4.
+For [] it returns 0. A result equal to len(nums) is a position, not a valid index:
+
+    index = lower_bound(nums, target)
+    found = index < len(nums) and nums[index] == target
+
+Do not mix this interval with inclusive-right code. Here while left < right
+pairs with right = mid; inclusive-right variants typically use left <= right
+and right = mid - 1. Mixing them can skip answers or prevent progress.
+Do not slice the list at each step; slices allocate and weaken the space bound.
+Explain why the answer remains inside the remaining interval after each update.

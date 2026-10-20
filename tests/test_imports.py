@@ -25,3 +25,6 @@ class ImportTests(unittest.TestCase):
 
     def test_notes_import(self):
         self.assert_quiet_import('Notes')
+
+    def test_search_import(self):
+        self.assert_quiet_import('Search.search')
