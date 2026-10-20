@@ -37,6 +37,7 @@ python3 -m examples.top_k
 | [Notes.py](Notes.py) | Minimum helpers, monotonic deque, duplicate-finding variants |
 | [Window exercises](tests/test_windows.py) | Fixed-size sums and longest substrings without repeats |
 | [Search/search.py](Search/search.py), [notes](Search/search.txt) | Binary search and first-position boundaries |
+| [Stacks/stacks.py](Stacks/stacks.py), [notes](Stacks/stacks.txt) | Bracket matching and next-warmer-day queries |
 | [Arrays/arrays.txt](Arrays/arrays.txt) | Array concepts and common mistakes |
 | [Hashing/hashing.txt](Hashing/hashing.txt) | Hashing concepts and common mistakes |
 | [Gennotes.txt](Gennotes.txt) | Complexity and approach comparisons |
@@ -60,7 +61,8 @@ print(top_k_frequent([1, 1, 2, 2, 3], 2))  # [1, 2]
   complexity tables, and related approaches to compare.
 - [Pattern roadmap](docs/pattern-roadmap.txt): cues for later topics, including
   stacks, search, trees, graphs, and dynamic programming. This is a study guide;
-  the executable exercises currently cover arrays, hashing, windows, and binary search.
+  the executable exercises currently cover arrays, hashing, windows, binary search,
+  and stacks.
 
 Some older practice functions and `Solution` classes intentionally share names.
 A normal import exposes the last definition with a given name. The tests capture

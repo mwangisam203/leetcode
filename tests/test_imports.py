@@ -28,3 +28,6 @@ class ImportTests(unittest.TestCase):
 
     def test_search_import(self):
         self.assert_quiet_import('Search.search')
+
+    def test_stacks_import(self):
+        self.assert_quiet_import('Stacks.stacks')

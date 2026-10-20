@@ -1,0 +1,36 @@
+STACKS: WHAT IS STILL WAITING TO BE RESOLVED?
+
+Use a list with append() and pop() at the end for last-in, first-out behavior.
+Avoid pop(0), which shifts elements and implements a different removal order.
+
+VALID PARENTHESES
+
+Invariant: the stack contains opening brackets not yet matched, in input order.
+The newest opener must close first, which is why a stack fits nested structure.
+For "([])": push '(' -> push '[' -> ']' pops '[' -> ')' pops '(' -> empty, True.
+For "([)]": ')' expects '(' but the newest opener is '[' -> False immediately.
+Equal counts of opening/closing brackets do not prove nesting is valid.
+For "((", the loop ends with unmatched openers -> False. "" is valid.
+This exercise accepts only ()[]{}; letters, spaces, and other characters return
+False rather than being ignored. It is not a parser for brackets inside source code.
+
+DAILY TEMPERATURES: A MONOTONIC STACK
+
+Store unresolved indices, not just their temperatures: the answer is a distance.
+For [70, 70, 72, 69]:
+day 0: push 0; pending temperatures [70].
+day 1: equal is not warmer; push 1; pending [70, 70].
+day 2: 72 resolves index 1 (wait 1) and index 0 (wait 2); push 2.
+day 3: 69 resolves nothing; push 3.
+Result: [2, 1, 0, 0]. Unresolved positions keep their initial zero.
+
+Temperatures in the stack are nonincreasing from bottom to top. When a warmer
+day arrives, it resolves every smaller value exposed at the top. It is the FIRST
+warmer day for each: otherwise that index would already have been popped.
+Use strict > rather than >= so equal values remain pending.
+Each index is pushed once and popped at most once, making the nested loop O(n)
+overall. Worst-case storage is O(n) for a nonincreasing sequence.
+
+Compare with Notes.py sliding_window_min: a deque can discard candidates from
+the back AND expire old indices from the front. A stack only removes from the top.
+Before coding, say what an index represents and exactly what event removes it.
