@@ -6,6 +6,7 @@ stock profit; encode/decode strings. See README.md for the practice progression 
 Set/dictionary versions of duplicates and anagrams live in Hashing/hashing.py.
 Repeated function and Solution names are standalone practice variants; running
 this file executes their nearby examples, and later definitions replace earlier ones.
+Importing the module does not run the examples.
 """
 
 
@@ -15,46 +16,47 @@ this file executes their nearby examples, and later definitions replace earlier 
 # Linear scans: O(n) time, O(1) extra space; these examples require nonempty lists.
 
 # Checking minimum values
-values = [64, 36]
-values.append(30)
-values.append(24)
-values.append(13)
-values.append(5)
-values.append(1)
+if __name__ == "__main__":
+    values = [64, 36]
+    values.append(30)
+    values.append(24)
+    values.append(13)
+    values.append(5)
+    values.append(1)
 
-print("My added list: ", values)
+    print("My added list: ", values)
 
-# The append calls above build [64, 36, 30, 24, 13, 5, 1].
+    # The append calls above build [64, 36, 30, 24, 13, 5, 1].
 
-number = values[0]
+    number = values[0]
 
-for i in values:
+    for i in values:
 
-    if i < number:
-        number = i
+        if i < number:
+            number = i
 
-print(number)
-print("My list: ", values)
-
-
-numbers = [20, 45, 87, 12, 49, 25, 0, 13]
-
-smallest_number = numbers[0]
-
-for num in numbers:
-    if num < smallest_number:
-        smallest_number = num
-print("smallest number is: ", smallest_number)
+    print(number)
+    print("My list: ", values)
 
 
-my_cart = [23, 9, 13, 6, 18, 1, 25, 2]
+    numbers = [20, 45, 87, 12, 49, 25, 0, 13]
 
-smallest_number = my_cart[0]
+    smallest_number = numbers[0]
 
-for num in my_cart:
-    if num < smallest_number:
-        smallest_number = num
-print(smallest_number)
+    for num in numbers:
+        if num < smallest_number:
+            smallest_number = num
+    print("smallest number is: ", smallest_number)
+
+
+    my_cart = [23, 9, 13, 6, 18, 1, 25, 2]
+
+    smallest_number = my_cart[0]
+
+    for num in my_cart:
+        if num < smallest_number:
+            smallest_number = num
+    print(smallest_number)
 
 
 def minVal(myArray):
@@ -70,7 +72,8 @@ def minVal(myArray):
     return minVal
 
 
-print(minVal([100, 250, 23, 50, 0]))
+if __name__ == "__main__":
+    print(minVal([100, 250, 23, 50, 0]))
 
 
 class Solution:
@@ -87,7 +90,8 @@ class Solution:
 #solution = Solution()
 #ans = solution.findMin([13, 3, 5, 2])
 # print(ans) , or
-print(Solution().findMin([13, 3, 5, 2]))
+if __name__ == "__main__":
+    print(Solution().findMin([13, 3, 5, 2]))
 
 
 class Answer:
@@ -107,7 +111,8 @@ class Answer:
 # Ans = solve.largest([12, 8, 5, 50])
 # print(Ans)
 
-print(Answer().largest([8,4,10,2]))
+if __name__ == "__main__":
+    print(Answer().largest([8,4,10,2]))
 
 
 # ============================================================================
@@ -136,7 +141,8 @@ def containDuplicates(nums):
         if nums[i] == nums[i - 1]:
             return True
     return False
-print(containDuplicates([1,4,3, 1,3]))
+if __name__ == "__main__":
+    print(containDuplicates([1,4,3, 1,3]))
 
 
 def contain_duplicates(nums):
@@ -196,7 +202,8 @@ def duplicateExist(vocas):
         seen.append(voca)
     return False
 
-print(duplicateExist([3, 3, 45, 30, 1, 0, 0,1]))
+if __name__ == "__main__":
+    print(duplicateExist([3, 3, 45, 30, 1, 0, 0,1]))
 
 def contains_duplicate(nums):
     seen = []                  # <- list instead of set
@@ -206,7 +213,8 @@ def contains_duplicate(nums):
         seen.append(num)       # <- .append() instead of .add()
     return False
 
-print(contains_duplicate(["subaru", "BMW", "benz", "volvo"]))
+if __name__ == "__main__":
+    print(contains_duplicate(["subaru", "BMW", "benz", "volvo"]))
 
 
 def contains_duplicate(nums):
@@ -219,11 +227,12 @@ def contains_duplicate(nums):
 
 
 # test cases
-print(contains_duplicate([1, 2, 3, 1]))        # True  - 1 repeats
-print(contains_duplicate([1, 2, 3, 4]))        # False - all unique
-print(contains_duplicate(["a", "b", "a"]))     # True  - works on strings too
-print(contains_duplicate([]))                  # False - empty list, no duplicates possible
-print(contains_duplicate([5]))                 # False - single item, nothing to duplicate
+if __name__ == "__main__":
+    print(contains_duplicate([1, 2, 3, 1]))        # True  - 1 repeats
+    print(contains_duplicate([1, 2, 3, 4]))        # False - all unique
+    print(contains_duplicate(["a", "b", "a"]))     # True  - works on strings too
+    print(contains_duplicate([]))                  # False - empty list, no duplicates possible
+    print(contains_duplicate([5]))                 # False - single item, nothing to duplicate
 
 
 def my_duplicates(words):
@@ -234,7 +243,8 @@ def my_duplicates(words):
         viewed.append(word)
     return False
 
-print(my_duplicates(["xyz", "ghj", "vbh", "xyz"]))
+if __name__ == "__main__":
+    print(my_duplicates(["xyz", "ghj", "vbh", "xyz"]))
 
 
 def containDups(nums):
@@ -246,7 +256,8 @@ def containDups(nums):
         seen.append(num)
     return False
 
-print(containDups([1, 4, 7, 90, 1, 5]))
+if __name__ == "__main__":
+    print(containDups([1, 4, 7, 90, 1, 5]))
 
 
 # ============================================================================
@@ -286,7 +297,8 @@ def isAnagram(s, t):
         return False
     return sorted(s) == sorted(t)
 
-print(isAnagram("adc", "dac"))
+if __name__ == "__main__":
+    print(isAnagram("adc", "dac"))
 
 
 '''
@@ -338,7 +350,8 @@ def product_except_self(nums):
 
     return result
 
-print(product_except_self([1, 2, 3, 4]))  # [24, 12, 8, 6]
+if __name__ == "__main__":
+    print(product_except_self([1, 2, 3, 4]))  # [24, 12, 8, 6]
 
 # ============================================================================
 # 5. Two Sum II — two pointers
@@ -617,14 +630,15 @@ def decode(encoded):
         i = end
     return result
 
-strs = ["hello", "wo$rl#", "##"]
+if __name__ == "__main__":
+    strs = ["hello", "wo$rl#", "##"]
 
 
-encoded = encode(strs)
-decoded = decode(encoded)
+    encoded = encode(strs)
+    decoded = decode(encoded)
 
-print(encoded)
-print(decoded)
+    print(encoded)
+    print(decoded)
 
 
 # Class-based practice
@@ -662,13 +676,14 @@ class Solution:
         return result
 
 
-solution = Solution()
+if __name__ == "__main__":
+    solution = Solution()
 
-strs = ["craig", "", "$5dafh#"]
+    strs = ["craig", "", "$5dafh#"]
 
-encoded = solution.encode(strs)
-decoded = solution.decode(encoded)
+    encoded = solution.encode(strs)
+    decoded = solution.decode(encoded)
 
 
-print(encoded)
-print(decoded)
+    print(encoded)
+    print(decoded)
