@@ -1,6 +1,7 @@
 def anagram(s, t):
 
-    if len(s)
+    if len(s)  != len(t):
+        return False
 
     counts = {}
 
