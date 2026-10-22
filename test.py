@@ -1,13 +1,12 @@
-def anagram(s, t):
+def groupanagram(strs):
+    res = {} # defaultdict
 
-    if len(s)  != len(t):
-        return False
+    for word in strs:
+        count = [0] * 26
 
-    counts = {}
+        for char in word:
+            count[ord(char) - ord("a")] += 1
 
-    for char in s:
-        counts[char] = counts.get(char, 0) + 1
-    for char in t:
-        if char not in counts or counts[char] == 0:
-            return False
-        counts[char] -= 1
+        res[tuple(count)].append(word)
+
+    return list(res.values())
