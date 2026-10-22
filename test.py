@@ -9,8 +9,6 @@ def encode(strs):
 
     return "".join(parts)
 
-# strs = (("fab", "", "amize"))
-# print(encode(strs))
 
 def decode(encoded):
     res = []
