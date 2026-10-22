@@ -1,12 +1,13 @@
-def groupanagram(strs):
-    res = {} # defaultdict
+def twosum(nums, target):
+    seen = {}
 
-    for word in strs:
-        count = [0] * 26
+    for i, num in enumerate(nums):
+        diff = target - num
 
-        for char in word:
-            count[ord(char) - ord("a")] += 1
+        if diff in seen:
+            return [seen[diff], i]
+        seen[num] = i
 
-        res[tuple(count)].append(word)
+    return False
 
-    return list(res.values())
+print(twosum([2, 7 , 8, 9], target=9))
