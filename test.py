@@ -1,13 +1,35 @@
-def twosum(nums, target):
-    seen = {}
+def encode(strs):
 
-    for i, num in enumerate(nums):
-        diff = target - num
+    parts = []
 
-        if diff in seen:
-            return [seen[diff], i]
-        seen[num] = i
+    for word in strs:
+        parts.append(str(len(word)))
+        parts.append("#")
+        parts.append(word)
 
-    return False
+    return "".join(parts)
 
-print(twosum([2, 7 , 8, 9], target=9))
+# strs = (("fab", "", "amize"))
+# print(encode(strs))
+
+def decode(encoded):
+    res = []
+    i = [0]
+
+    while i < len(encoded):
+        j = i
+
+        while encoded[j] != "#":
+            j += 1
+
+            length = int(encoded[i:j])
+            start  = j + 1
+            end = start + len
+
+            i = end
+
+        res.append(encoded[start:end])
+
+    return res
+
+        
