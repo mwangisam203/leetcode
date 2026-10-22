@@ -614,8 +614,9 @@ def longest_common_prefix(words):
 # 12. Encode and Decode Strings — length-prefixed serialization
 # ============================================================================
 # Store each string as length#contents, so embedded # characters are unambiguous.
-# Both variants preserve empty strings and accept Unicode text.
-# Lengths count Python characters; malformed streams raise ValueError.
+# All variants preserve empty strings and accept Unicode text.
+# Lengths count Python characters. Reference decoders reject malformed streams;
+# the manual practice decoder below assumes valid input from an encoder.
 # Time and space are O(total characters + number of strings).
 
 # Function-based practice
@@ -660,6 +661,47 @@ if __name__ == "__main__":
 
     print(encoded)
     print(decoded)
+
+
+# Manual practice — moved from test.py after completing the exercise.
+# Compare the separator-scanning loop with the validated reference above.
+
+def encode_practice(strs):
+    """Encode each word as length#word; O(total characters + word count)."""
+    parts = []
+
+    for word in strs:
+        parts.append(str(len(word)))
+        parts.append("#")
+        parts.append(word)
+
+    return "".join(parts)
+
+
+def decode_practice(encoded):
+    """Decode a valid length-prefixed stream, using a manual separator scan.
+
+    Assumes complete records with nonnegative ASCII length headers.
+    O(total encoded characters) time and space, including the returned strings.
+    """
+    res = []
+    i = 0
+
+    while i < len(encoded):
+        j = i
+
+        while encoded[j] != "#":
+            j += 1
+
+        length = int(encoded[i:j])
+        start = j + 1
+        end = start + length
+
+        i = end
+
+        res.append(encoded[start:end])
+
+    return res
 
 
 # Class-based practice

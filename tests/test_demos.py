@@ -32,3 +32,12 @@ class DemoTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2)
             self.assertIn('number of unique values', result.stderr)
             self.assertNotIn('Traceback', result.stderr)
+
+    def test_codec_example(self):
+        result = subprocess.run(
+            [sys.executable, '-m', 'examples.codec'], cwd=ROOT,
+            capture_output=True, text=True, timeout=10,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout.count('PASS '), 8)
+        self.assertIn('All 8 test cases passed.', result.stdout)

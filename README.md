@@ -28,6 +28,17 @@ To see Top K counts and buckets for a ten-number list:
 python3 -m examples.top_k
 ```
 
+Run the eight encode/decode practice cases with:
+
+```bash
+python3 -m examples.codec
+```
+
+The [codec example](examples/codec.py) checks `encode_practice` and
+`decode_practice` in Arrays/arrays.py. These are the completed scratch exercise;
+the practice decoder assumes correctly encoded input. The reference decoders
+in the same file also check for malformed streams.
+
 ## Files to study
 
 | File | Focus |
