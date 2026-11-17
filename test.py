@@ -1,13 +1,17 @@
-def containsDuplicates(nums):
+def two_sum(nums, target):
 
-    seen = set()
+    seen = {}
 
-    for num in nums:
-        if num in seen:
-            return True
-        seen.add(num)
+    for i, num in enumerate(nums):
+        complement = target - num
 
-    return False
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+        
+    return []
 
-nums = [2, 3, 4, 5]
-print(containsDuplicates(nums))
+nums = [4,4,5,6]
+target = 7
+
+print(two_sum(nums, target))
